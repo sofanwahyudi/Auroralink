@@ -33,6 +33,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="{{url('admin')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li ><a href="{{url('admin/supplier')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
+        <li ><a href="{{url('admin/leads')}}"><i class="fa fa-paper-plane-o"></i> <span>Leads</span></a></li>
         <li class="treeview ">
                 <a href="#"><i class="fa fa-cube"></i> <span>Part</span>
                   <span class="pull-right-container">
@@ -55,10 +56,38 @@
                 <ul class="treeview-menu ">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li><a href="{{url('admin/jasa')}}"><i class="fa fa-list"></i> <span>Daftar Jasa</span></a></li>
-                  <li><a href="{{url('admin/jasa/job')}}"><i class="fa fa-filter"></i> <span>Job</span></a></li>
-                  <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa fa-filter"></i> <span>Kategori Servis</span></a></li>
+                  <li><a href="{{url('admin/jasa/job')}}"><i class="fa  fa-thumb-tack"></i> <span>Job</span></a></li>
+                  <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa  fa-thumb-tack"></i> <span>Kategori Servis</span></a></li>
 
               </ul>
+        </li>
+        <li class="treeview ">
+            <a href="#"><i class="fa fa-cubes"></i> <span>produk</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu ">
+              {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
+              <li><a href="{{url('admin/produk')}}"><i class="fa fa-list"></i> <span>Daftar Produk</span></a></li>
+              <li><a href="{{url('admin/produk/kategori')}}"><i class="fa  fa-angle-double-right"></i> <span>Kategori</span></a></li>
+              {{-- <li><a href="{{url('admin/produk/komentar')}}"><i class="fa  fa-angle-double-right"></i> <span>Komentar</span></a></li> --}}
+
+          </ul>
+        </li>
+        <li class="treeview ">
+            <a href="#"><i class="fa fa-ticket"></i> <span>Ticket</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu ">
+              {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
+              <li><a href="{{url('admin/jasa')}}"><i class="fa fa-list"></i> <span>Daftar Ticket</span></a></li>
+              <li><a href="{{url('admin/jasa/job')}}"><i class="fa fa-flag"></i> <span>Prioritas</span></a></li>
+              <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa fa-angle-double-right"></i> <span>Kategori</span></a></li>
+
+          </ul>
         </li>
         <li class="treeview ">
                 <a href="#"><i class="fa fa-tasks"></i> <span>Task</span>
@@ -70,7 +99,7 @@
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li><a href="{{url('admin/task')}}"><i class="fa fa-list"></i> <span>Daftar Task</span></a></li>
                   <li><a href="{{url('admin/task/project')}}"><i class="fa fa-codepen"></i> <span>Project</span></a></li>
-                  <li><a href="{{url('admin/task/servis')}}"><i class="fa fa-filter"></i> <span>Servis</span></a></li>
+                  <li><a href="{{url('admin/task/servis')}}"><i class="fa fa-medkit"></i> <span>Servis</span></a></li>
                   <li><a href="{{url('admin/task/support')}}"><i class="fa fa-compress"></i> <span>Support</span></a></li>
 
               </ul>
@@ -96,9 +125,9 @@
                 </a>
                 <ul class="treeview-menu ">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-                  <li><a href="{{url('admin/post')}}"><i class="fa fa-users"></i> <span>Daftar Team</span></a></li>
-                  <li><a href="{{url('admin/post/kategori')}}"><i class="fa fa-user-secret"></i> <span>Departemen</span></a></li>
-                  <li><a href="{{url('admin/post/kategori')}}"><i class="fa  fa-user-plus"></i> <span>Devisi</span></a></li>
+                  <li><a href="{{url('admin/team')}}"><i class="fa fa-users"></i> <span>Daftar Team</span></a></li>
+                  <li><a href="{{url('admin/team/departemen')}}"><i class="fa fa-user-secret"></i> <span>Departemen</span></a></li>
+                  <li><a href="{{url('admin/team/devisi')}}"><i class="fa  fa-user-plus"></i> <span>Devisi</span></a></li>
 
               </ul>
         </li>

@@ -4,7 +4,39 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
-    @include('layouts.head')
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@yield('title')</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{url('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('assets/bower_components/font-awesome/css/font-awesome.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{{url('assets/bower_components/Ionicons/css/ionicons.min.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{url('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{url('assets/dist/css/AdminLTE.min.css')}}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{url('assets/dist/css/skins/_all-skins.min.css')}}">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css" rel="stylesheet"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  </head>
     <title>@yield('title')</title>
 <!--
 BODY TAG OPTIONS:
@@ -76,133 +108,30 @@ desired effect
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED JS SCRIPTS -->
-
 <!-- jQuery 3 -->
-<script src="{{url('assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{url('assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="{{url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- DataTables -->
+<script type="text/javascript" src="{{url('assets/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{url('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<!-- SlimScroll -->
+<script type="text/javascript" src="{{url('assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- FastClick -->
+<script type="text/javascript" src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{url('assets/dist/js/adminlte.min.js')}}"></script>
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
-     <script type="text/javascript">
-        {{-- ajax Form Add Post--}}
-          $(document).on('click','.create-modal', function() {
-            $('#create').modal('show');
-            $('.form-horizontal').show();
-            $('.modal-title').text('Add Post');
-          });
-          $("#add").click(function() {
-            $.ajax({
-              type: 'POST',
-              url: 'addPost',
-              data: {
-                '_token': $('input[name=_token]').val(),
-                'title': $('input[name=title]').val(),
-                'body': $('input[name=body]').val()
-              },
-              success: function(data){
-                if ((data.errors)) {
-                  $('.error').removeClass('hidden');
-                  $('.error').text(data.errors.title);
-                  $('.error').text(data.errors.body);
-                } else {
-                  $('.error').remove();
-                  $('#table').append("<tr class='post" + data.id + "'>"+
-                  "<td>" + data.id + "</td>"+
-                  "<td>" + data.title + "</td>"+
-                  "<td>" + data.body + "</td>"+
-                  "<td>" + data.created_at + "</td>"+
-                  "<td><button class='show-modal btn btn-info btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='fa fa-eye'></span></button> <button class='edit-modal btn btn-warning btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='glyphicon glyphicon-pencil'></span></button> <button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='glyphicon glyphicon-trash'></span></button></td>"+
-                  "</tr>");
-                }
-              },
-            });
-            $('#title').val('');
-            $('#body').val('');
-          });
-
-        // function Edit POST
-        $(document).on('click', '.edit-modal', function() {
-        $('#footer_action_button').text(" Update Post");
-        $('#footer_action_button').addClass('glyphicon-check');
-        $('#footer_action_button').removeClass('glyphicon-trash');
-        $('.actionBtn').addClass('btn-success');
-        $('.actionBtn').removeClass('btn-danger');
-        $('.actionBtn').addClass('edit');
-        $('.modal-title').text('Post Edit');
-        $('.deleteContent').hide();
-        $('.form-horizontal').show();
-        $('#fid').val($(this).data('id'));
-        $('#t').val($(this).data('title'));
-        $('#b').val($(this).data('body'));
-        $('#myModal').modal('show');
-        });
-
-        $('.modal-footer').on('click', '.edit', function() {
-          $.ajax({
-            type: 'POST',
-            url: 'editPost',
-            data: {
-        '_token': $('input[name=_token]').val(),
-        'id': $("#fid").val(),
-        'title': $('#t').val(),
-        'body': $('#b').val()
-            },
-        success: function(data) {
-              $('.post' + data.id).replaceWith(" "+
-              "<tr class='post" + data.id + "'>"+
-              "<td>" + data.id + "</td>"+
-              "<td>" + data.title + "</td>"+
-              "<td>" + data.body + "</td>"+
-              "<td>" + data.created_at + "</td>"+
-         "<td><button class='show-modal btn btn-info btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='fa fa-eye'></span></button> <button class='edit-modal btn btn-warning btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='glyphicon glyphicon-pencil'></span></button> <button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "' data-title='" + data.title + "' data-body='" + data.body + "'><span class='glyphicon glyphicon-trash'></span></button></td>"+
-              "</tr>");
-            }
-          });
-        });
-
-        // form Delete function
-        $(document).on('click', '.delete-modal', function() {
-        $('#footer_action_button').text(" Delete");
-        $('#footer_action_button').removeClass('glyphicon-check');
-        $('#footer_action_button').addClass('glyphicon-trash');
-        $('.actionBtn').removeClass('btn-success');
-        $('.actionBtn').addClass('btn-danger');
-        $('.actionBtn').addClass('delete');
-        $('.modal-title').text('Delete Post');
-        $('.id').text($(this).data('id'));
-        $('.deleteContent').show();
-        $('.form-horizontal').hide();
-        $('.title').html($(this).data('title'));
-        $('#myModal').modal('show');
-        });
-
-        $('.modal-footer').on('click', '.delete', function(){
-          $.ajax({
-            type: 'POST',
-            url: 'deletePost',
-            data: {
-              '_token': $('input[name=_token]').val(),
-              'id': $('.id').text()
-            },
-            success: function(data){
-               $('.post' + $('.id').text()).remove();
-            }
-          });
-        });
-
-          // Show function
-          $(document).on('click', '.show-modal', function() {
-          $('#show').modal('show');
-          $('#i').text($(this).data('id'));
-          $('#ti').text($(this).data('title'));
-          $('#by').text($(this).data('body'));
-          $('.modal-title').text('Show Post');
-          });
-        </script>
+<script type="text/javascript" src="{{url('assets/dist/js/adminlte.min.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script type="text/javascript" src="{{url('assets/dist/js/demo.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+$(document).on('click','.create-modal', function(){
+    $('#create').modal('show');
+    $('.form-horizontal').show();
+    $('.modal-title').text('Add Suplier');
+});
+</script>
 </body>
+@yield('footer')
 </html>
