@@ -5,22 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use Spatie\Permission\Models\Role;
-use DB;
 use Hash;
 
 class UserController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        // $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
+        //   $this->middleware('permission:role-create', ['only' => ['create','store']]);
+        //   $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
+        //   $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+    }
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('setting.users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $data = User::all();
+        return view('setting.users.index')->withData($data);
     }
 
     /**
@@ -43,22 +47,18 @@ class UserController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|max:255',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
+            'role' => 'required'
             ]);
-            if($request->role == null){
-                $role = 0;
-            }
-            else{
-                $role = $request->role;
-            }
-            $password = '123456';
+            $role = '3';
+            $password = $request->password;
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($password);
             $user->assignRole($role);
             $user->save();
-            return redirect()->route('users.index')->with('success','Data Berhasil disimpan');
+            return redirect()->back()->with('success','Data Berhasil disimpan');
     }
 
     /**
@@ -94,28 +94,26 @@ class UserController extends Controller
     {
         //
         $this->validate($request,[
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users'
+            'role' => 'required'
             ]);
 
 
-            if($request->role == null){
-                $role = 0;
-            }
-            else{
-                $role = $request->role;
-            }
+            // if($request->role == null){
+            //     $role = 0;
+            // }
+            // else{
+            //     $role = has($request->role);
+            // }
             $user = User::findOrFail($id);
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
+            $user->syncRoles(explode(',', $request->role));
 
-            $user->assignRole($role);
             if ($user->save()) {
-                return redirect()->route('users.index', $id);
+                return redirect()->back()->with('success','Data Berhasil disimpan');
             } else {
-                Session::flash('error', 'ups.... maaf');
-                return redirect()->route('users.edit', $id);
+                return redirect()->back()->with('danger','Ups... Maaf');
             }
     }
 
@@ -129,9 +127,26 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if ($user->delete()) {
-            return redirect()->route('users.index')->with('success','Data Berhasil dihapus');
+            return redirect()->back()->with('success','Data Berhasil dihapus');
         } else {
             return redirect()->back()->with('danger','Ups...');
         }
+    }
+    public function exportExcel() {
+        $namafile = 'Pelanggan'.date('Y-m-d_H-i-s').'.xlsx';
+        return Excel::download(new ExportUser, $namafile);
+    }
+
+    public function exportCsv() {
+        $namafile = 'Pelanggan'.date('Y-m-d_H-i-s').'.csv';
+        return Excel::download(new ExportUser, $namafile);
+    }
+
+    public function deleteMultiple(Request $request){
+
+        $ids = $request->ids;
+        User::whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Data Berhasil Di Hapus."]);
+
     }
 }

@@ -10,7 +10,8 @@ $factory->define(\App\Supplier::class, function (Faker $faker) {
         'nama' => $faker->name,
         'alamat' => $faker->address,
         'email' =>  $faker->email,
-        'telepon' => $faker->phoneNumber,
+        'website' =>  $faker->safeEmailDomain,
+        'telepon' => '',
         'status' => 'active',
     ];
 });

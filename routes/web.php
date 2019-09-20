@@ -18,47 +18,61 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'admin'], function () {
-        Route::resource('roles','RoleController');
-        Route::resource('users','UserController');
-        Route::resource('dashboard', 'AdminController');
-    Route::group(['prefix' => 'post'], function () {
-        Route::resource('/', 'PostController');
-        Route::resource('/tags', 'TagsController');
-        Route::resource('/kategori', 'KategoriPostController');
-    });
-    Route::group(['prefix' => 'team'], function () {
-        Route::resource('/', 'TeamController');
-        Route::resource('/departemen', 'DeptController');
-        Route::resource('/devisi', 'DevisiController');
-    });
-    Route::group(['prefix' => 'jasa'], function () {
-        Route::resource('/', 'JasaController');;
-        Route::resource('/job', 'JobController');
-        Route::resource('/kategori_servis', 'KategoriServisController');
-    });
-    Route::group(['prefix' => 'task'], function () {
-        Route::resource('/', 'TaskController');
-        Route::resource('/project', 'ProjectController');
-        Route::resource('/servis', 'ServisController');
-        Route::resource('/support', 'SupportController');
-    });
-    Route::group(['prefix' => 'produk'], function () {
-        Route::resource('/', 'ProdukController');
-        Route::resource('/kategori', 'KategoriProdukController');
-    });
-    Route::group(['prefix' => 'part'], function () {
-        Route::resource('/', 'PartController');
-        Route::resource('/kategori', 'KategoriPartController');
-    });
-    Route::resource('supplier', 'SupplierController');
-    Route::post('delete-multiple-category', ['as'=>'supplier.multiple-delete','uses'=>'SupplierController@deleteMultiple']);
-    Route::get('export_excel', 'SupplierController@exportExcel')->name('exporte');
-    Route::get('export_csv', 'SupplierController@exportCsv')->name('exports');
-    Route::get('supplier/json','SupplierController@json');
-    Route::resource('leads', 'LeadsController');
-    });
-    Route::group(['prefix' => 'klien'], function () {
-        Route::get('users/{id}','UserController@show');
-    });
+            Route::resource('roles','RoleController');
+            Route::get('roles', 'RoleController@index')->name('roles');
+            Route::resource('users','UserController');
+            Route::get('users', 'UserController@index')->name('users');
+            Route::resource('dashboard', 'AdminController');
+            Route::get('dashboard', 'AdminController@index')->name('dashboard');
+        Route::group(['prefix' => 'post'], function () {
+            Route::resource('/', 'PostController');
+            Route::resource('/tags', 'TagsController');
+            Route::resource('/kategori', 'KategoriPostController');
+        });
+        Route::group(['prefix' => 'team'], function () {
+            Route::resource('/', 'TeamController');
+            Route::resource('/departemen', 'DeptController');
+            Route::resource('/devisi', 'DevisiController');
+        });
+        Route::group(['prefix' => 'jasa'], function () {
+            Route::resource('/', 'JasaController');;
+            Route::resource('/job', 'JobController');
+            Route::resource('/kategori_servis', 'KategoriServisController');
+        });
+        Route::group(['prefix' => 'task'], function () {
+            Route::resource('/', 'TaskController');
+            Route::resource('/project', 'ProjectController');
+            Route::resource('/servis', 'ServisController');
+            Route::resource('/support', 'SupportController');
+        });
+        Route::group(['prefix' => 'produk'], function () {
+            Route::resource('/', 'ProdukController');
+            Route::resource('/kategori', 'KategoriProdukController');
+        });
+        Route::group(['prefix' => 'part'], function () {
+            Route::resource('/', 'PartController');
+            Route::get('/', 'PartController@index')->name('parts');
+            Route::resource('/kategori', 'KategoriPartController');
+            Route::get('/kategori', 'KategoriPartController@index')->name('kats');
+            Route::get('export_excel', 'KategoriPartController@exportExcel')->name('export_kategori_xls');
+            Route::get('export_csv', 'KategoriPartController@exportCsv')->name('export_kategori_csv');
+            Route::post('delete-multiple', ['as'=>'kategori.multiple-delete','uses'=>'KategoriPartController@deleteMultiple']);
+        });
+            Route::resource('supplier', 'SupplierController')->except([
+                'show'
+            ]);
+            Route::get('/supplier', 'SupplierController@index')->name('suppliers');
+            Route::post('delete-multiple-category', ['as'=>'supplier.multiple-delete','uses'=>'SupplierController@deleteMultiple']);
+            Route::get('supplier/export_excel', 'SupplierController@exportExcel')->name('exporte');
+            Route::get('supplier/export_csv', 'SupplierController@exportCsv')->name('exports');
+            Route::resource('leads', 'LeadsController')->except([
+                'show'
+            ]);
+            Route::get('leads', 'LeadsController@index')->name('leads');
+            Route::post('delete-multiple', ['as'=>'leads.multiple-delete','uses'=>'LeadsController@deleteMultiple']);
+            Route::get('leads/export_excel', 'LeadsController@exportExcel')->name('export_Leads_xls');
+            Route::get('leads/export_csv', 'LeadsController@exportCsv')->name('export_Leads_csv');
+            });
+
 });
 Route::get('/home', 'HomeController@index')->name('home');

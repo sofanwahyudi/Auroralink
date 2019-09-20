@@ -69,11 +69,11 @@
         <li class="dropdown tasks-menu">
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-flag-o"></i>
+            <i class="fa fa-tasks"></i>
             <span class="label label-danger">9</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">You have 9 tasks</li>
+            <li class="header">Anda mempunyai 9 tasks</li>
             <li>
               <!-- Inner menu: contains the tasks -->
               <ul class="menu">
@@ -81,7 +81,7 @@
                   <a href="#">
                     <!-- Task title and progress text -->
                     <h3>
-                      Design some buttons
+                      Progress Anda
                       <small class="pull-right">20%</small>
                     </h3>
                     <!-- The progress bar -->
@@ -98,7 +98,7 @@
               </ul>
             </li>
             <li class="footer">
-              <a href="#">View all tasks</a>
+              <a href="#">Lihat semua tasks</a>
             </li>
           </ul>
         </li>
@@ -119,21 +119,6 @@
               <p>
                     {{ Auth::user()->name }}
               </p>
-            </li>
-            <!-- Menu Body -->
-            <li class="user-body">
-              <div class="row">
-                <div class="col-xs-4 text-center">
-                  <a href="#">Lihat</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Update</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Role</a>
-                </div>
-              </div>
-              <!-- /.row -->
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">

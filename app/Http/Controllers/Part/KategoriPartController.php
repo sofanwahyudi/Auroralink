@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Kategori;
 use Illuminate\Http\Request;
+use Excel;
+use App\Exports\ExportPartKategori;
 
 class KategoriPartController extends Controller
 {
@@ -13,7 +16,9 @@ class KategoriPartController extends Controller
      */
     public function index()
     {
-        return view('admin.part.kategori');
+        $data= Kategori::all();
+        // dd($data);
+        return view('admin.part.kategori')->withData($data);
     }
 
     /**
@@ -34,7 +39,19 @@ class KategoriPartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required|max:25',
+            'deskripsi' => 'required|max:25',
+        ]);
+
+        $data = new Kategori();
+        $data->nama = $request->nama;
+        $data->deskripsi = $request->deskripsi;
+        if ($data->save()) {
+            return redirect()->back()->with('success','Data Berhasil disimpan');
+        } else {
+            return redirect()->back()->with('danger','Ups... Maaf');
+        }
     }
 
     /**
@@ -68,7 +85,19 @@ class KategoriPartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required|max:25',
+            'deskripsi' => 'required|max:25',
+        ]);
+        $data = Kategori::findOrFail($id);
+        $data->nama = $request->nama;
+        $data->deskripsi = $request->deskripsi;
+
+        if ($data->save()) {
+            return redirect()->back()->with('success','Data Berhasil disimpan');
+        } else {
+            return redirect()->back()->with('danger','Ups... Maaf');
+        }
     }
 
     /**
@@ -79,6 +108,27 @@ class KategoriPartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kat = Kategori::find($id);
+        if ($kat->delete()) {
+            return redirect()->back()->with('success','Data Berhasil dihapus');
+        } else {
+            return redirect()->back()->with('danger','Ups...');
+        }
+    }
+    public function deleteMultiple(Request $request){
+
+        $ids = $request->ids;
+        Kategori::whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Data Berhasil Di Hapus."]);
+
+    }
+    public function exportExcel() {
+        $namafile = 'Kategori_Part'.date('Y-m-d_H-i-s').'.xlsx';
+        return Excel::download(new ExportPartKategori, $namafile);
+    }
+
+    public function exportCsv() {
+        $namafile = 'Kategori_Part'.date('Y-m-d_H-i-s').'.csv';
+        return Excel::download(new ExportPartKategori, $namafile);
     }
 }

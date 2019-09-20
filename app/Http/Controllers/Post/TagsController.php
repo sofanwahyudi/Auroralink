@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Exports\ExportLeads;
-use App\Model\Leads;
-use Illuminate\Http\Request;
-use Excel;
 
-class LeadsController extends Controller
+use Illuminate\Http\Request;
+
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class LeadsController extends Controller
      */
     public function index()
     {
-        $data= Leads::all();
-        return view('admin.leads.index')->withData($data);
+        //
     }
 
     /**
@@ -83,21 +80,5 @@ class LeadsController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function deleteMultiple(Request $request){
-
-        $ids = $request->ids;
-        Leads::whereIn('id',explode(",",$ids))->delete();
-        return response()->json(['success'=>"Data Berhasil Di Hapus."]);
-
-    }
-    public function exportExcel() {
-        $namafile = 'Leads'.date('Y-m-d_H-i-s').'.xlsx';
-        return Excel::download(new ExportLeads, $namafile);
-    }
-
-    public function exportCsv() {
-        $namafile = 'Leads'.date('Y-m-d_H-i-s').'.csv';
-        return Excel::download(new ExportLeads, $namafile);
     }
 }

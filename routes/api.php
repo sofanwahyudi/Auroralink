@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('supplier', 'SupplierController@getIndexApi');
+Route::post('supplier', 'SupplierController@addApi');
+Route::put('supplier', 'SupplierController@updateApi');
+Route::post('supplier', 'SupplierController@deleteApi');

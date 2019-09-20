@@ -26,9 +26,20 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addApi(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nama' => 'required|max:255',
+            'email' => 'required|email|unique:users'
+            ]);
+
+            $supplier = new Supplier();
+            $supplier->nama = $request->nama;
+            $supplier->alamat = $request->alamat;
+            $supplier->telepon = $request->telepon;
+            $supplier->email = $request->email;
+            $supplier->save();
+            return 'Data Berhasil disimpan';
     }
 
     /**
@@ -47,8 +58,9 @@ class SupplierController extends Controller
             $supplier = new Supplier();
             $supplier->nama = $request->nama;
             $supplier->alamat = $request->alamat;
-            $supplier->telepon = $request->telepon;
+            $supplier->telepon =$request->telepon;
             $supplier->email = $request->email;
+            $supplier->website = $request->website;
             $supplier->save();
             return redirect()->back()->with('success','Data Berhasil disimpan');
     }
@@ -56,12 +68,12 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function updateApi(Request $request)
     {
-        //
+
     }
 
     /**
@@ -70,10 +82,9 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function deleteApi($id)
     {
-        $supplier = Supplier::find($id);
-        return response()->json($supplier);
+
     }
 
     /**
@@ -85,7 +96,24 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect()->back();
+        $this->validate($request, [
+        ]);
+        $supplier = Supplier::findOrFail($id);
+        $supplier->nama = $request->nama;
+        $supplier->alamat = $request->alamat;
+        $supplier->telepon = $request->telepon;
+        $supplier->email = $request->email;
+        $supplier->website = $request->website;
+        if ($supplier->status == 'active') {
+        $supplier->status = 'active';
+        }else{
+        $supplier->status = 'inactive';
+        }
+        if ($supplier->save()) {
+            return redirect()->back()->with('success','Data Berhasil disimpan');
+        } else {
+            return redirect()->back()->with('danger','Ups... Maaf');
+        }
     }
 
     /**
@@ -119,6 +147,20 @@ class SupplierController extends Controller
     public function exportCsv() {
         $namafile = 'Supplier'.date('Y-m-d_H-i-s').'.csv';
         return Excel::download(new ExportSupplier, $namafile);
+    }
+
+
+    public function getIndexApi(){
+
+        $supp = Supplier::all();
+        if(count($supp)>1){
+            $res['message']="Sukses!";
+            $res['value']=$supp;
+            return response($res);
+        }else{
+            $res['message']= "Kosong!";
+            return response(json_encode($res));
+        }
     }
 
 }

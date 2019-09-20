@@ -17,11 +17,13 @@ class CreateSupplier extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->softDeletes();
+            $table->string('photo')->nullable();
             $table->string('nama')->nullable();
             $table->string('alamat')->nullable();
             $table->string('email')->nullable();
+            $table->string('website')->nullable();
             $table->string('telepon')->nullable();
-            $table->string('status')->default('active');
+            $table->enum('status', ['inactive', 'active'])->default('active');
         });
     }
 

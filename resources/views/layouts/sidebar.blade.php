@@ -31,22 +31,34 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Main Menu</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{url('admin')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li ><a href="{{url('admin/supplier')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
-        <li ><a href="{{url('admin/leads')}}"><i class="fa fa-paper-plane-o"></i> <span>Leads</span></a></li>
-        <li class="treeview ">
+        <li class="{{set_active('dashboard')}}"><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="{{set_active('suppliers')}} "><a href="{{route('suppliers')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
+        <li class="{{set_active('leads')}}"><a href="{{route('leads')}}"><i class="fa fa-paper-plane-o"></i> <span>Leads</span></a></li>
+        {{-- <li class="treeview ">
                 <a href="#"><i class="fa fa-cube"></i> <span>Part</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu ">
-                  {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-                  <li><a href="{{url('admin/part')}}"><i class="fa fa-cubes"></i> <span>Daftar Part</span></a></li>
+                  <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li>
+                  <li class="active"><a href="{{url('admin/part')}}"><i class="fa fa-cubes"></i> <span>Daftar Part</span></a></li>
                   <li><a href="{{url('admin/part/kategori')}}"><i class="fa fa-filter"></i> <span>Part Kategori</span></a></li>
 
               </ul>
-        </li>
+        </li> --}}
+        <li class="treeview {{set_active(['parts','kats'])}}">
+                <a href="#">
+                  <i class="fa fa-cube"></i> <span>Part</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li class="{{set_active('parts')}} "><a href="{{route('parts')}}"><i class="fa fa fa-cubes"></i> Daftar Part</a></li>
+                  <li class="{{set_active('kats')}}"><a href="{{route('kats')}}"><i class="fa fa-circle-o"></i> Part Kategori</a></li>
+                </ul>
+              </li>
         <li class="treeview ">
                 <a href="#"><i class="fa fa-briefcase"></i> <span>Jasa</span>
                   <span class="pull-right-container">
@@ -133,7 +145,7 @@
         </li>
         {{-- <li><a href="#"><i class="fa fa-database"></i> <span>Master</span></a></li> --}}
         @if (Auth::user()->role_id == null)
-        <li class="treeview ">
+        <li class="treeview {{set_active(['users','roles'])}}">
           <a href="#"><i class="fa fa-gears"></i> <span>Setting</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -141,9 +153,8 @@
           </a>
           <ul class="treeview-menu ">
             {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-            <li><a href="{{url('admin/users')}}"><i class="fa fa-group"></i> <span>Pengguna</span></a></li>
-            <li><a href="{{url('admin/roles')}}"><i class="fa fa-unlock-alt"></i> <span>Role</span></a></li>
-            <li><a href="{{url('admin/users')}}"><i class="fa fa-check"></i> <span>Permissions</span></a></li>
+            <li class="{{set_active('users')}} "><a href="{{route('users')}}"><i class="fa fa-group"></i> <span>Pengguna</span></a></li>
+            <li class="{{set_active('roles')}} "><a href="{{route('roles')}}"><i class="fa fa-unlock-alt"></i> <span>Role</span></a></li>
 
         </ul>
         </li>

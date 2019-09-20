@@ -11,8 +11,8 @@
     </h1>
     <ol class="breadcrumb">
     <li>
-            <a href="{{ route('exporte') }}" class="btn-sm btn-success"><span class="fa fa-file-excel-o"></span> Export Excel</a>
-            <a href="{{ route('exports') }}" class="btn-sm btn-success"><span class="fa fa-file"></span> Export Csv</a>
+            <a href="{{ route('exporte') }}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file-excel-o" style="color:white"></span> Export Excel</a>
+            <a href="{{ route('exports') }}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file" style="color:white"></span> Export Csv</a>
     </li>
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class="active">Supplier</li>
@@ -44,7 +44,7 @@
                                 <div class="box box-warning">
                                         @if ($message = Session::get('info'))
                                         <div class="alert alert-info alert-block">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <button type="button" class="close" data-dismiss="alert">X</button>
                                             <strong>{{ $message }}</strong>
                                         </div>
                                         @endif
@@ -151,7 +151,7 @@
                                         <div class="modal-header">
                                         <h3 class="modal-title" id="myModalLabel">Detail Supplier <strong>{{$jn->name}}</strong> Kode : {{$jn->kode_supplier}} <span style="margin: 19px;"></h3>
                                                 <div class="box box-warning">
-                                                        <div class="text-center"><img src="{{asset('image/'.$jn->logo)}}" style="width:300px;padding:10px;height:100px;margin-top:10px";><br><br></div><!--text-center -->
+                                                        <div class="text-center"><img src="{{asset('image/'.$jn->photo)}}" style="width:300px;padding:10px;height:100px;margin-top:10px";><br><br></div><!--text-center -->
                                                     <div class="modal-body">
                                                         <div class="box-body">
                                                             <table class="table table-bordered">
@@ -201,46 +201,33 @@
                                                     {{method_field('patch')}}
                                                     {{csrf_field()}}
                                                     <div class="box-body">
-                                                        <div class="form-group col-md-6 required ">
+                                                        <div class="form-group col-md-6 ">
                                                             <label for="name" class="control-label">Nama Supplier</label><br>
                                                                 <div class="input-group">
                                                                     <div class="input-group-addon"><i class="fa fa-user"></i></div>
                                                                     <input class="form-control" placeholder="Masukkan Nama" required="required" name="nama" type="text" value="{{$jn->nama}}" id="nama">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group col-md-6 required ">
+                                                        <div class="form-group col-md-6">
                                                             <label for="name" class="control-label">Alamat Supplier</label><br>
                                                                 <div class="input-group">
                                                                     <div class="input-group-addon"><i class="fa fa-filter"></i></div>
                                                                     <input class="form-control" placeholder="Masukkan Nama" required="required" name="alamat" type="text" value="{{$jn->alamat}}" id="alamat">
                                                             </div>
                                                         </div>
-                                                        <br><div class="form-group col-md-6 required ">
+                                                        <br><div class="form-group col-md-6 ">
                                                             <label for="name" class="control-label">Telepon Supplier</label><br>
                                                                 <div class="input-group">
                                                                     <div class="input-group-addon"><i class="fa fa-user"></i></div>
                                                                     <input class="form-control" placeholder="Masukkan Nama" required="required" name="telepon" type="text" value="{{$jn->telepon}}" id="telepon">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group col-md-6 required ">
+                                                        <div class="form-group col-md-6 ">
                                                             <label for="name" class="control-label">Email Supplier</label><br>
                                                                 <div class="input-group">
                                                                     <div class="input-group-addon"><i class="fa fa-filter"></i></div>
                                                                     <input class="form-control" placeholder="Masukkan Nama" required="required" name="email" type="email" value="{{$jn->email}}" id="email">
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- radio -->
-                                                    <div class="form-group">
-                                                        <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="active" checked>
-                                                            Active
-                                                        </label>
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="inactive">
-                                                            Inactive
-                                                        </label>
                                                         </div>
                                                     </div>
                                                         <!-- /.box-body -->

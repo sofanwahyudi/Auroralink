@@ -17,7 +17,7 @@ class CreatePart extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('part_kategori_id')->nullable();
+            $table->integer('kategori_id')->nullable();
             $table->integer('supplier_id')->nullable();
             $table->string('nama')->nullable();
             $table->string('sku');
@@ -27,13 +27,6 @@ class CreatePart extends Migration
             $table->double('harga_beli');
             $table->double('harga_jual');
             $table->integer('stock')->default(0);
-        });
-        Schema::create('part_kategori', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->string('nama')->nullable();
-            $table->text('deskripsi')->nullable();
         });
     }
 
@@ -45,6 +38,5 @@ class CreatePart extends Migration
     public function down()
     {
         Schema::dropIfExists('part');
-        Schema::dropIfExists('part_kategori');
     }
 }
