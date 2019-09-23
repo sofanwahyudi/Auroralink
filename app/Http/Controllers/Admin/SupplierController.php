@@ -16,7 +16,7 @@ class SupplierController extends Controller
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
-                // 'url_show' => route('supplier.detail', $data->id),
+                'url_show' => route('supplier.show', $data->id),
                 'url_edit' => route('supplier.edit', $data->id),
                 'url_destroy' => route('supplier.destroy', $data->id),
             ]);
@@ -45,7 +45,8 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Supplier();
+        return view('admin.supplier.form', compact('model'));
     }
 
     /**
@@ -69,6 +70,8 @@ class SupplierController extends Controller
     {
         $this->validate($request,[
             'nama' => 'required|max:255',
+            'alamat' => 'required|max:255',
+            'telepon' => 'required',
             'email' => 'required|email|unique:users'
             ]);
 
@@ -90,7 +93,8 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Supplier::findOrFail($id);
+        return view('admin.supplier.form', compact('model'));
     }
 
     /**
@@ -113,24 +117,15 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-        ]);
-        $supplier = Supplier::findOrFail($id);
-        $supplier->nama = $request->nama;
-        $supplier->alamat = $request->alamat;
-        $supplier->telepon = $request->telepon;
-        $supplier->email = $request->email;
-        $supplier->website = $request->website;
-        if ($supplier->status == 'active') {
-        $supplier->status = 'active';
-        }else{
-        $supplier->status = 'inactive';
-        }
-        if ($supplier->save()) {
-            return redirect()->back()->with('success','Data Berhasil disimpan');
-        } else {
-            return redirect()->back()->with('danger','Ups... Maaf');
-        }
+        $this->validate($request,[
+            'nama' => 'required|max:255',
+            'alamat' => 'required|max:255',
+            'telepon' => 'required',
+            'email' => 'required|string|max:255|email|unique:users,email'
+            ]);
+
+            $model = Supplier::findOrFail($id);
+            $model->update($request->all());
     }
 
     /**
@@ -139,14 +134,10 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $supplier = Supplier::find($request->input('id'));
-        if ($supplier->delete()) {
-            return redirect()->back()->with('success','Data Berhasil dihapus');
-        } else {
-            return redirect()->back()->with('danger','Ups...');
-        }
+        $model = Supplier::findOrFail($id);
+        $model->delete();
 
     }
     public function deleteMultiple(Request $request){

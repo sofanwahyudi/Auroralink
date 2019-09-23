@@ -122,16 +122,13 @@ desired effect
 <script type="text/javascript" src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script type="text/javascript" src="{{url('assets/dist/js/adminlte.min.js')}}"></script>
+<script type="text/javascript" src="{{url('assets/dist/js/app.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script type="text/javascript" src="{{url('assets/dist/js/demo.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript">
-$(document).on('click','.create-modal', function(){
-    $('#create').modal('show');
-    $('.form-horizontal').show();
-    $('.modal-title').text('Add Suplier');
-});
+<script>
+
 </script>
 </body>
 @yield('footer')

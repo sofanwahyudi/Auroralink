@@ -1,31 +1,22 @@
 <!-- Ini awalan modal tambah -->
 <div  id="modal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header" id="modal-header">
-                <h3 class="modal-title" id="myModalLabel">Tambah Data <span style="margin: 19px;"></h3>
+                <h3 class="modal-title" id="modal-title">Tambah Data <span style="margin: 19px;"></h3>
                     <div class="box box-warning">
-                            @if ($message = Session::get('info'))
-                            <div class="alert alert-info alert-block">
-                                <button type="button" class="close" data-dismiss="alert">X</button>
-                                <strong>{{ $message }}</strong>
-                            </div>
-                            @endif
-
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                              <ul>
-                                  @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                  @endforeach
-                              </ul>
-                            </div>
-                          @endif
-                        <div class="modal-body">
-                            <div class="box-body">
-
-                            </div><!-- box-body-->
+                        <div class="modal-body" id="modal-body">
                         </div><!-- modal-body-->
+                        <!-- box-footer -->
+                        <div class="box-footer">
+                        <div class="col-md-12">
+                            <div class="form-group no-margin">
+                            <button type="button" class="btn btn-success"  id="modal-btn-save"><span class="fa fa-save"></span> Simpan</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- /.box-footer -->
                     </div><!-- box-warning-->
             </div><!--md-header-->
         </div><!--md-content-->

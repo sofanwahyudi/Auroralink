@@ -68,8 +68,8 @@ Route::group(['middleware' => ['auth']], function() {
             ]);
             Route::get('/supplier', 'SupplierController@index')->name('suppliers');
             Route::get('supplier/json','SupplierController@dataTable')->name('supplier.json');
-            Route::get('supplier/show','SupplierController@show');
-            Route::get('supplier/destroy','SupplierController@destroy')->name('supplier.destroy');
+            Route::get('supplier/show','SupplierController@show')->name('supplier.show');
+            Route::delete('supplier/destroy','SupplierController@destroy')->name('supplier.destroy');
             Route::post('delete-multiple-category', ['as'=>'supplier.multiple-delete','uses'=>'SupplierController@deleteMultiple']);
             Route::get('supplier/export_excel', 'SupplierController@exportExcel')->name('exporte');
             Route::get('supplier/export_csv', 'SupplierController@exportCsv')->name('exports');
