@@ -63,9 +63,9 @@ class RoleController extends Controller
         $roles = new Role();
         $roles->name = $request->name;
         if ($roles->save()) {
-            return redirect()->route('roles.index')->with('success','Data Berhasil disimpan');
+            return redirect()->back()->with('success','Data Berhasil disimpan');
         } else {
-            return redirect()->route('roles.create')->with('danger','Ups... Maaf');
+            return redirect()->back()->with('danger','Ups... Maaf');
         }
     }
 

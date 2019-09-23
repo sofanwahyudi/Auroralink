@@ -91,11 +91,12 @@ desired effect
         | Your Page Content Here |
         -------------------------->
 
+
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  @include('layouts._modal')
   <!-- Main Footer -->
 @include('layouts.footer')
 

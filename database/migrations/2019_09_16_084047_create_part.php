@@ -17,16 +17,16 @@ class CreatePart extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->softDeletes();
-            $table->integer('kategori_id')->nullable();
-            $table->integer('supplier_id')->nullable();
+            $table->unsignedInteger('supplier_id')->nullable();
+            $table->unsignedInteger('kategori_id')->nullable();
             $table->string('nama')->nullable();
+            $table->string('gambar');
             $table->string('sku');
             $table->string('barcode');
             $table->text('deskripsi')->nullable();
             $table->double('berat')->default(0);
             $table->double('harga_beli');
             $table->double('harga_jual');
-            $table->integer('stock')->default(0);
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Part;
 use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
@@ -14,5 +15,10 @@ class Supplier extends Model
      * @var array
      */
     protected $fillable = ['nama', 'email'];
+
+    public function part()
+    {
+        return $this->hasOne(Part::class);
+    }
 
 }

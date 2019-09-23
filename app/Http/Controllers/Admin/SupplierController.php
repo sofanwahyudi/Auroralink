@@ -10,6 +10,22 @@ use Excel;
 
 class SupplierController extends Controller
 {
+    public function dataTable(){
+        $data = Supplier::query();
+        return DataTables::of($data)
+        ->addColumn('action', function($data){
+            return view('layouts._action', [
+                'model' => $data,
+                // 'url_show' => route('supplier.detail', $data->id),
+                'url_edit' => route('supplier.edit', $data->id),
+                'url_destroy' => route('supplier.destroy', $data->id),
+            ]);
+        })
+        ->addIndexColumn()
+        ->rawColumns(['checkbox','action'])
+        ->make(true);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +33,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier = Supplier::all();
-        return view('admin.supplier.index')->withSupplier($supplier);
+        // $supplier = Supplier::all();
+        // return view('admin.supplier.index')->withSupplier($supplier);
+        return view('admin.supplier.index');
     }
 
     /**
@@ -26,20 +43,20 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addApi(Request $request)
+    public function create()
     {
-        $this->validate($request,[
-            'nama' => 'required|max:255',
-            'email' => 'required|email|unique:users'
-            ]);
+        //
+    }
 
-            $supplier = new Supplier();
-            $supplier->nama = $request->nama;
-            $supplier->alamat = $request->alamat;
-            $supplier->telepon = $request->telepon;
-            $supplier->email = $request->email;
-            $supplier->save();
-            return 'Data Berhasil disimpan';
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -66,14 +83,14 @@ class SupplierController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateApi(Request $request)
+    public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -122,9 +139,9 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $supplier = Supplier::find($id);
+        $supplier = Supplier::find($request->input('id'));
         if ($supplier->delete()) {
             return redirect()->back()->with('success','Data Berhasil dihapus');
         } else {
@@ -135,8 +152,10 @@ class SupplierController extends Controller
     public function deleteMultiple(Request $request){
 
         $ids = $request->ids;
-        Supplier::whereIn('id',explode(",",$ids))->delete();
+       $supp = Supplier::whereIn('id',explode("id",$ids));
+       if($supp->delete()){
         return response()->json(['success'=>"Data Berhasil Di Hapus."]);
+       }
 
     }
     public function exportExcel() {

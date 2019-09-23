@@ -49,22 +49,32 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('/', 'ProdukController');
             Route::resource('/kategori', 'KategoriProdukController');
         });
-        Route::group(['prefix' => 'part'], function () {
-            Route::resource('/', 'PartController');
-            Route::get('/', 'PartController@index')->name('parts');
+            Route::resource('/part', 'PartController')->except([
+                'show'
+            ]);
+            Route::get('part', 'PartController@index')->name('parts');
+            Route::get('excel', 'PartController@exportExcel')->name('export_part_xls');
+            Route::get('csv', 'PartController@exportCsv')->name('export_part_csv');
+            Route::post('part/delete-multiple', ['as'=>'part.multiple-delete','uses'=>'PartController@deleteMultiple']);
             Route::resource('/kategori', 'KategoriPartController');
-            Route::get('/kategori', 'KategoriPartController@index')->name('kats');
-            Route::get('export_excel', 'KategoriPartController@exportExcel')->name('export_kategori_xls');
-            Route::get('export_csv', 'KategoriPartController@exportCsv')->name('export_kategori_csv');
-            Route::post('delete-multiple', ['as'=>'kategori.multiple-delete','uses'=>'KategoriPartController@deleteMultiple']);
-        });
+            Route::get('part/kategori', 'KategoriPartController@index')->name('kats');
+            Route::get('/part/kategori/export_excel', 'KategoriPartController@exportExcel')->name('export_kategori_xls');
+            Route::get('part/kategori/export_csv', 'KategoriPartController@exportCsv')->name('export_kategori_csv');
+            Route::post('part/kategori/delete-multiple', ['as'=>'kategori.multiple-delete','uses'=>'KategoriPartController@deleteMultiple']);
+
+
             Route::resource('supplier', 'SupplierController')->except([
                 'show'
             ]);
             Route::get('/supplier', 'SupplierController@index')->name('suppliers');
+            Route::get('supplier/json','SupplierController@dataTable')->name('supplier.json');
+            Route::get('supplier/show','SupplierController@show');
+            Route::get('supplier/destroy','SupplierController@destroy')->name('supplier.destroy');
             Route::post('delete-multiple-category', ['as'=>'supplier.multiple-delete','uses'=>'SupplierController@deleteMultiple']);
             Route::get('supplier/export_excel', 'SupplierController@exportExcel')->name('exporte');
             Route::get('supplier/export_csv', 'SupplierController@exportCsv')->name('exports');
+
+
             Route::resource('leads', 'LeadsController')->except([
                 'show'
             ]);

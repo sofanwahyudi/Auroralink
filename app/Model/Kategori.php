@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Part;
 use Illuminate\Database\Eloquent\Model;
 
 class Kategori extends Model
@@ -14,4 +15,9 @@ class Kategori extends Model
       * @var array
       */
      protected $fillable = ['nama', 'deskripsi'];
+
+     public function part()
+     {
+         return $this->hasOne(Part::class);
+     }
 }

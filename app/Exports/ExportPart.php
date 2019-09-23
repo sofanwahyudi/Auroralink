@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Model\Kategori;
+use App\Model\Part;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -15,20 +15,28 @@ class ExportPart implements FromCollection,   WithHeadings, WithMapping
     */
     public function collection()
     {
-        return Kategori::all();
+        return Part::all();
     }
     public function map($kat): array{
         return[
+            $kat->sku,
             $kat->nama,
-            $kat->telepon,
+            $kat->harga_jual,
+            $kat->harga_beli,
+            $kat->supplier['nama'],
+            $kat->kategori['nama'],
         ];
     }
 
     public function headings(): array
     {
         return [
+            'Sku',
             'Nama',
-            'Deskripsi',
+            'Harga Jual',
+            'Harga Beli',
+            'Supplier',
+            'Kategori',
         ];
     }
 }
