@@ -57,7 +57,8 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = Supplier::findOrFail($id);
+        return view('admin.supplier.show', compact('model'));
     }
 
     /**
@@ -136,8 +137,9 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $model = Supplier::findOrFail($id);
-        $model->delete();
+        // $model = Supplier::findOrFail($id);
+        // $model->delete();
+        Supplier::destroy($id);
 
     }
     public function deleteMultiple(Request $request){

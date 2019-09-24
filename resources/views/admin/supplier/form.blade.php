@@ -1,6 +1,6 @@
 {!!Form::model($model, [
     'route' => $model->exists ? ['supplier.update', $model->id] :'supplier.store',
-    'method' => $model->exists ? 'PUT':'POST',
+    'method' => $model->exists ? 'PUT':'POST','delete',
 ])!!}
 <div class="box-body">
     <div class="form-group col-md-6">
