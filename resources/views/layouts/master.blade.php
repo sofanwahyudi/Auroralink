@@ -126,7 +126,8 @@ desired effect
 <!-- AdminLTE for demo purposes -->
 <script type="text/javascript" src="{{url('assets/dist/js/demo.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="{{url('assets/dist/js/sweetalert.js')}}"></script>
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script>
 
 </script>

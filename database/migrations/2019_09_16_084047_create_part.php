@@ -20,7 +20,7 @@ class CreatePart extends Migration
             $table->unsignedInteger('supplier_id')->nullable();
             $table->unsignedInteger('kategori_id')->nullable();
             $table->string('nama')->nullable();
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->string('sku');
             $table->string('barcode');
             $table->text('deskripsi')->nullable();

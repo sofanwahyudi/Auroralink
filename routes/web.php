@@ -49,44 +49,35 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('/', 'ProdukController');
             Route::resource('/kategori', 'KategoriProdukController');
         });
-            Route::resource('/part', 'PartController')->except([
-                'show'
-            ]);
+
+            Route::resource('/part', 'PartController');
             Route::get('part', 'PartController@index')->name('parts');
+            Route::get('json/part', 'PartController@dataTable')->name('part.json');
             Route::get('excel', 'PartController@exportExcel')->name('export_part_xls');
             Route::get('csv', 'PartController@exportCsv')->name('export_part_csv');
             Route::post('part/delete-multiple', ['as'=>'part.multiple-delete','uses'=>'PartController@deleteMultiple']);
-            Route::resource('/kategori', 'KategoriPartController');
-            Route::get('part/kategori', 'KategoriPartController@index')->name('kats');
-            Route::get('/part/kategori/export_excel', 'KategoriPartController@exportExcel')->name('export_kategori_xls');
-            Route::get('part/kategori/export_csv', 'KategoriPartController@exportCsv')->name('export_kategori_csv');
+
+//Route Kategori Part
+            Route::resource('kategori', 'KategoriController');
+            Route::get('/part/kategori/list_part', 'KategoriController@index')->name('kats');
+            Route::get('part/kategori/json', 'KategoriController@dataTable')->name('kats.json');
+            Route::get('/part/kategori/export_excel', 'KategoriController@exportExcel')->name('export_kategori_xls');
+            Route::get('part/kategori/export_csv', 'KategoriController@exportCsv')->name('export_kategori_csv');
             Route::post('part/kategori/delete-multiple', ['as'=>'kategori.multiple-delete','uses'=>'KategoriPartController@deleteMultiple']);
 
-
-            Route::resource('supplier', 'SupplierController')->except([
-                'show',''
-            ]);
+//Route Supplier
+            Route::resource('/supplier', 'SupplierController');
             Route::get('/supplier', 'SupplierController@index')->name('suppliers');
-            Route::get('supplier/json','SupplierController@dataTable')->name('supplier.json');
-            // Route::get('supplier/create','SupplierController@create')->name('supplier.create');
-            // Route::post('supplier/store','SupplierController@store')->name('supplier.store');
-            Route::get('supplier/show/{id}','SupplierController@show')->name('supplier.show');
-            // Route::get('supplier/edit/{id}','SupplierController@edit')->name('supplier.edit');
-            // Route::post('supplier/{id}/update/','SupplierController@edit')->name('supplier.update');
-            Route::delete('supplier/destroy','SupplierController@destroy')->name('supplier.destroy');
-            Route::post('delete-multiple-category', ['as'=>'supplier.multiple-delete','uses'=>'SupplierController@deleteMultiple']);
-            Route::get('supplier/export_excel', 'SupplierController@exportExcel')->name('exporte');
-            Route::get('supplier/export_csv', 'SupplierController@exportCsv')->name('exports');
+            Route::get('/json/supplier', 'SupplierController@dataTable')->name('supplier.json');
+            Route::get('export_excel/supplier', 'SupplierController@exportExcel')->name('exportExcelSupplier');
+            Route::get('export_csv/supplier', 'SupplierController@exportCsv')->name('exportCsvSupplier');
+//Route Leads
+            Route::resource('/leads', 'LeadsController');
+            Route::get('/leads', 'LeadsController@index')->name('leads');
+            Route::get('/json/leads', 'LeadsController@dataTable')->name('lead.json');
+            Route::get('export_excel/leads', 'LeadsController@exportExcel')->name('exportExcelLeads');
+            Route::get('export_csv/leads', 'LeadsController@exportCsv')->name('exportCsvLeads');
 
-
-            Route::resource('leads', 'LeadsController')->except([
-                'show'
-            ]);
-            Route::get('leads', 'LeadsController@index')->name('leads');
-            Route::post('delete-multiple', ['as'=>'leads.multiple-delete','uses'=>'LeadsController@deleteMultiple']);
-            Route::get('leads/export_excel', 'LeadsController@exportExcel')->name('export_Leads_xls');
-            Route::get('leads/export_csv', 'LeadsController@exportCsv')->name('export_Leads_csv');
-            });
-
-});
+    });  //End Route Admin Prefix
+}); //End Route Auth Midleware
 Route::get('/home', 'HomeController@index')->name('home');

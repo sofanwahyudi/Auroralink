@@ -12,8 +12,8 @@
                         <div class="box-footer">
                         <div class="col-md-12">
                             <div class="form-group no-margin">
-                            <button type="button" class="btn btn-success"  id="modal-btn-save"><span class="fa fa-save"></span> Simpan</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span aria-hidden="true" class="fa fa-reply"></span> Tutup</button>
+                            <button type="button" class="btn btn-success"  id="modal-btn-save"><span class="fa fa-check"></span> Simpan</button>
                             </div>
                         </div>
                         </div>

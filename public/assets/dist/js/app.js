@@ -7,9 +7,7 @@ $('body').on('click', '.modal-show', function(event) {
         title = me.attr('title');
 
         $('#modal-title').text(title);
-        $('#modal-btn-save').text(me.hasClass('edit') ? 'Update' : 'Tambah');
-        $('#modal-btn-save').removeClass('hide')
-        .text(me.hasClass('edit') ? 'Update' : 'Tambah');
+        $('#modal-btn-save').removeClass('hide').text(me.hasClass('edit') ? 'Update' : 'Tambah');
 
         $.ajax({
             url: url,
@@ -44,7 +42,7 @@ $('#modal-btn-save').click(function (event) {
 
             swal({
                 title: "Berhasil!",
-                text: "Data berhasil di simpan",
+                text: "Data berhasil di Update",
                 icon: "success",
                 button: "Tutup",
               });
@@ -66,47 +64,82 @@ $('#modal-btn-save').click(function (event) {
 
 
 //AJAX DELETE
-$('body').on('click', '.btn-delete', function(event) {
-    event.preventDefault();
+// $('body').on('click', '.btn-delete', function (event) {
+//     event.preventDefault();
 
+//     var me = $(this),
+//         url = me.attr('href'),
+//         title = me.attr('title'),
+//         csrf_token = $('meta[name="csrf-token"]').attr('content');
 
-    var me = $(this),
+//     swal({
+//         title: 'Are you sure want to delete ' + title + ' ?',
+//         text: 'You won\'t be able to revert this!',
+//         buttons: true,
+//         icon: 'warning',
+//     }).then((result) => {
+//         if (result.value) {
+//             $.ajax({
+//                 url: url,
+//                 type: "POST",
+//                 data: {
+//                     '_method': 'DELETE',
+//                     '_token': csrf_token
+//                 },
+//                 success: function (response) {
+//                     $('#datatable').DataTable().ajax.reload();
+//                     swal({
+//                         type: 'success',
+//                         title: 'Success!',
+//                         text: 'Data has been deleted!'
+//                     });
+//                 },
+//                 error: function (xhr) {
+//                     swal({
+//                         type: 'error',
+//                         title: 'Oops...',
+//                         text: 'Something went wrong!'
+//                     });
+//                 }
+//             });
+//         }
+//     });
+// });
+
+    //Fungsi Delete
+    $('body').on('click', '.btn-delete', function (event){
+        event.preventDefault();
+
+        var me = $(this),
         url = me.attr('href'),
         title = me.attr('title'),
-        headers = $('meta[name="csrf-token"]').attr('content');
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
 
-        swal({
-            title: title,
-            text: "Apa kamu yakin?, Silahkan koreksi kembali !!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-                $.ajax({
-                url:url,
-                type:"POST",
-                data:{
-                '_method':'delete',
-                '_token':headers
-            },
-            success: function (response) {
-                $('#datatable').DataTable().ajax.reload();
-                swal("Berhasil! Data Berhasil dihapus!", {
-                icon: "success",
-              });
-            },
-            error: function (xhr) {
-            swal ("Oops" , "Something went wrong!" , "error" )
+
+        if (confirm("Apa Anda Yakin ???")) {
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    '_method': 'DELETE',
+                    '_token': csrf_token
+                },
+                success:function(data){
+                        swal({
+                        type: 'success',
+                        title: 'Berhasil !',
+                        text: 'Data berhasil di hapus   !'
+                    });
+                    $('#datatable').DataTable().ajax.reload();
                 }
-            });
-            }
-          });
-});
+            })
+        } else {
+            return false;
+        }
+    });
 
 //AJAX SHOW
-$('body').on('click', '.btn-show', function(event) {
+$('body').on('click', '.btn-show ', function (event) {
     event.preventDefault();
 
     var me = $(this),
@@ -116,13 +149,13 @@ $('body').on('click', '.btn-show', function(event) {
     $('#modal-title').text(title);
     $('#modal-btn-save').addClass('hide');
 
-
     $.ajax({
-        url:url,
+        url: url,
         dataType: 'html',
         success: function (response) {
             $('#modal-body').html(response);
         }
     });
-    $('#modal').modal('show')
+
+    $('#modal').modal('show');
 });

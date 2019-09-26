@@ -9,5 +9,6 @@ $factory->define(App\Model\Kategori::class, function (Faker $faker) {
     return [
         'nama' => $faker->name,
         'deskripsi' =>  $faker->jobTitle,
+        'warna' => $faker->hexcolor,
     ];
 });

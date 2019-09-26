@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ExportSupplier;
 use App\Supplier;
 use Illuminate\Http\Request;
 use DataTables;
 use Excel;
+use App\Exports\ExportSupplier;
 
 class SupplierController extends Controller
 {
@@ -24,7 +24,6 @@ class SupplierController extends Controller
         ->addIndexColumn()
         ->rawColumns(['checkbox','action'])
         ->make(true);
-
     }
     /**
      * Display a listing of the resource.
@@ -33,8 +32,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        // $supplier = Supplier::all();
-        // return view('admin.supplier.index')->withSupplier($supplier);
+        // $data = Supplier::query();
+        // dd($data);
         return view('admin.supplier.index');
     }
 
@@ -50,6 +49,32 @@ class SupplierController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'nama' => 'required|max:25',
+            'alamat' => 'required',
+            'telepon' => 'required|max:13',
+            'website' => 'required',
+            'email' => 'required|email|unique:users',
+            ]);
+
+            $data = new Supplier();
+            $data->nama = $request->nama;
+            $data->alamat = $request->alamat;
+            $data->telepon = $request->telepon;
+            $data->email = $request->email;
+            $data->website = $request->website;
+            $data->save();
+            return redirect()->back()->with('success','Data Berhasil disimpan');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -59,31 +84,6 @@ class SupplierController extends Controller
     {
         $model = Supplier::findOrFail($id);
         return view('admin.supplier.show', compact('model'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request,[
-            'nama' => 'required|max:255',
-            'alamat' => 'required|max:255',
-            'telepon' => 'required',
-            'email' => 'required|email|unique:users'
-            ]);
-
-            $supplier = new Supplier();
-            $supplier->nama = $request->nama;
-            $supplier->alamat = $request->alamat;
-            $supplier->telepon =$request->telepon;
-            $supplier->email = $request->email;
-            $supplier->website = $request->website;
-            $supplier->save();
-            return redirect()->back()->with('success','Data Berhasil disimpan');
     }
 
     /**
@@ -99,17 +99,6 @@ class SupplierController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteApi($id)
-    {
-
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -119,14 +108,15 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nama' => 'required|max:255',
-            'alamat' => 'required|max:255',
-            'telepon' => 'required',
-            'email' => 'required|string|max:255|email|unique:users,email'
+            'nama' => 'required|max:25',
+            'alamat' => 'required',
+            'telepon' => 'required|max:13',
+            'website' => 'required',
+            'email' => 'required|email|unique:users',
             ]);
 
-            $model = Supplier::findOrFail($id);
-            $model->update($request->all());
+        $model = Supplier::findOrFail($id);
+        $model->update($request->all());
     }
 
     /**
@@ -137,42 +127,16 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        // $model = Supplier::findOrFail($id);
-        // $model->delete();
-        Supplier::destroy($id);
-
-    }
-    public function deleteMultiple(Request $request){
-
-        $ids = $request->ids;
-       $supp = Supplier::whereIn('id',explode("id",$ids));
-       if($supp->delete()){
-        return response()->json(['success'=>"Data Berhasil Di Hapus."]);
-       }
-
+        $model = Supplier::findOrFail($id);
+        $model->delete();
     }
     public function exportExcel() {
         $namafile = 'Supplier'.date('Y-m-d_H-i-s').'.xlsx';
         return Excel::download(new ExportSupplier, $namafile);
     }
-
     public function exportCsv() {
         $namafile = 'Supplier'.date('Y-m-d_H-i-s').'.csv';
         return Excel::download(new ExportSupplier, $namafile);
-    }
-
-
-    public function getIndexApi(){
-
-        $supp = Supplier::all();
-        if(count($supp)>1){
-            $res['message']="Sukses!";
-            $res['value']=$supp;
-            return response($res);
-        }else{
-            $res['message']= "Kosong!";
-            return response(json_encode($res));
-        }
     }
 
 }

@@ -14,9 +14,9 @@ $factory->define(\App\Model\Part::class, function (Faker $faker) {
         'barcode' => $faker->macAddress,
         'deskripsi' => $faker->catchPhrase,
         'berat' => $faker->randomDigit,
-        'harga_beli' => 0,
-        'harga_jual' => 0,
-        'kategori_id' =>0,
+        'harga_beli' => 1000,
+        'harga_jual' => 2000,
+        'kategori_id' => 0,
         'supplier_id' => 0,
     ];
 });

@@ -6,9 +6,25 @@ use App\Model\Part;
 use Illuminate\Http\Request;
 use Excel;
 use App\Exports\ExportPart;
+use DataTables;
 
 class PartController extends Controller
 {
+    public function dataTable(){
+        $data = Part::query();
+        return DataTables::of($data)
+        ->addColumn('action', function($data){
+            return view('layouts._action', [
+                'model' => $data,
+                'url_show' => route('part.show', $data->id),
+                'url_edit' => route('part.edit', $data->id),
+                'url_destroy' => route('part.destroy', $data->id),
+            ]);
+        })
+        ->rawColumns(['index','action'])
+        ->addIndexColumn()
+        ->make(true);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +32,9 @@ class PartController extends Controller
      */
     public function index()
     {
-        $data = Part::all();
-        return view('admin.part.index')->withData($data);
+        // $data = Part::all();
+        // dd($data);
+        return view('admin.part.index');
     }
 
     /**
@@ -27,7 +44,8 @@ class PartController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Part();
+        return view('admin.part.form', compact('model'));
     }
 
     /**
@@ -41,7 +59,7 @@ class PartController extends Controller
         $this->validate($request, [
             'nama' => 'required|max:255',
             'deskripsi' => 'required|max:255',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = new Part();
@@ -53,13 +71,13 @@ class PartController extends Controller
         $data->kategori_id = $request->kategori_id;
         $data->supplier_id = $request->supplier_id;
         $sku = \DB::table('part')->max('id') + 1;
-        $sku = str_pad($sku, 6, 0 , STR_PAD_LEFT);
+        $sku = str_pad('S'. $sku, 6, 0 , STR_PAD_LEFT);
          $data->sku = $sku;
          $data->barcode = $sku;
 
-         if($request->hasFile('gambar'));
-             $request->file('gambar')->move('image/', $request->file('gambar')->getClientOriginalName());
-             $data->gambar = $request->file('gambar')->getClientOriginalName();
+        //  if($request->hasFile('gambar'));
+        //      $request->file('gambar')->move('image/', $request->file('gambar')->getClientOriginalName());
+        //      $data->gambar = $request->file('gambar')->getClientOriginalName();
 
 
          if ($data->save()) {
@@ -77,7 +95,8 @@ class PartController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = Part::findOrFail($id);
+        return view('admin.part.show', compact('model'));
     }
 
     /**
@@ -88,7 +107,8 @@ class PartController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Part::findOrFail($id);
+        return view('admin.part.form', compact('model'));
     }
 
     /**
@@ -100,38 +120,14 @@ class PartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'nama' => 'required|max:25',
-        //     'deskripsi' => 'required|max:255',
-        //     'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //    ]);
+        $this->validate($request, [
+            'nama' => 'required|max:255',
+            'deskripsi' => 'required|max:255',
+            // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-            $data = Part::findOrFail($id);
-            $data->nama = $request->nama;
-            $data->deskripsi = $request->deskripsi;
-            $data->harga_jual = $request->harga_jual;
-            $data->harga_beli = $request->harga_beli;
-            $data->berat = $request->berat;
-            $data->kategori_id = $request->kategori_id;
-            $data->supplier_id = $request->supplier_id;
-            $image = $request->file('gambar');
-
-         if ($image != '') {
-             $image->move('image/', $image->getClientOriginalName());
-             $data->gambar = $image->getClientOriginalName();
-         } else {
-            //  $request->validate([
-            //      'nama' => 'required|max:25',
-            //      'deskripsi' => 'required|max:255',
-            //  ]);
-         }
-
-
-         if ($data->save()) {
-             return redirect()->back()->with('success','Data Berhasil disimpan');
-         } else {
-             return redirect()->back()->with('danger','Ups... Maaf');
-         }
+        $model = Part::findOrFail($id);
+        $model->update($request->all());
     }
 
     /**

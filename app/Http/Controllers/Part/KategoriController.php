@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ExportLeads;
-use App\Model\Leads;
+use App\Model\Kategori;
 use Illuminate\Http\Request;
 use DataTables;
-use Excel;
 
-class LeadsController extends Controller
+class KategoriController extends Controller
 {
     public function dataTable(){
-        $data = Leads::query();
+        $data = Kategori::query();
         return DataTables::of($data)
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
-                'url_show' => route('leads.show', $data->id),
-                'url_edit' => route('leads.edit', $data->id),
-                'url_destroy' => route('leads.destroy', $data->id),
+                'url_show' => route('kategori.show', $data->id),
+                'url_edit' => route('kategori.edit', $data->id),
+                'url_destroy' => route('kategori.destroy', $data->id),
             ]);
         })
         ->addIndexColumn()
@@ -32,7 +30,7 @@ class LeadsController extends Controller
      */
     public function index()
     {
-        return view('admin.leads.index');
+        return view('admin.part.kategori.index');
     }
 
     /**
@@ -42,8 +40,8 @@ class LeadsController extends Controller
      */
     public function create()
     {
-        $model = new Leads();
-        return view('admin.leads.form', compact('model'));
+        $model = new Kategori();
+        return view('admin.part.kategori.form', compact('model'));
     }
 
     /**
@@ -54,19 +52,16 @@ class LeadsController extends Controller
      */
     public function store(Request $request)
     {
-    $this->validate($request,[
-        'nama' => 'required|max:25',
-        'telepon' => 'required|max:13',
-        'komentar' => 'required|max:255',
-        'email' => 'required|email|unique:users',
-        ]);
-        $data = new Leads();
-        $data->nama = $request->nama;
-        $data->telepon = $request->telepon;
-        $data->email = $request->email;
-        $data->komentar = $request->komentar;
-        $data->save();
-        return redirect()->back()->with('success','Data Berhasil disimpan');
+        $this->validate($request,[
+            'nama' => 'required|max:255',
+            'deskripsi' => 'required|max:255',
+            ]);
+
+            $data = new Kategori();
+            $data->nama = $request->nama;
+            $data->deskripsi = $request->deskripsi;
+            $data->save();
+            return redirect()->back()->with('success','Data Berhasil disimpan');
     }
 
     /**
@@ -77,8 +72,8 @@ class LeadsController extends Controller
      */
     public function show($id)
     {
-        $model = Leads::findOrFail($id);
-        return view('admin.leads.show', compact('model'));
+        $model = Kategori::findOrFail($id);
+        return view('admin.part.kategori.show', compact('model'));
     }
 
     /**
@@ -89,8 +84,8 @@ class LeadsController extends Controller
      */
     public function edit($id)
     {
-        $model = Leads::findOrFail($id);
-        return view('admin.leads.form', compact('model'));
+        $model = Kategori::findOrFail($id);
+        return view('admin.part.kategori.form', compact('model'));
     }
 
     /**
@@ -103,13 +98,12 @@ class LeadsController extends Controller
     public function update(Request $request, $id)
     {
     $this->validate($request,[
-        'nama' => 'required|max:25',
-        'telepon' => 'required|max:13',
-        'komentar' => 'required|max:255',
-        'email' => 'required|email|unique:users',
+        'nama' => 'required|max:255',
+        'deskripsi' => 'required|max:255',
         ]);
-    $model = Leads::findOrFail($id);
-    $model->update($request->all());
+
+        $model = Kategori::findOrFail($id);
+        $model->update($request->all());
     }
 
     /**
@@ -120,15 +114,7 @@ class LeadsController extends Controller
      */
     public function destroy($id)
     {
-        $model = Leads::findOrFail($id);
+        $model = Kategori::findOrFail($id);
         $model->delete();
-    }
-    public function exportExcel() {
-        $namafile = 'Leads'.date('Y-m-d_H-i-s').'.xlsx';
-        return Excel::download(new ExportLeads, $namafile);
-    }
-    public function exportCsv() {
-        $namafile = 'Leads'.date('Y-m-d_H-i-s').'.csv';
-        return Excel::download(new ExportLeads, $namafile);
     }
 }

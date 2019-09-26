@@ -32,7 +32,7 @@
         <li class="header">Main Menu</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="{{set_active('dashboard')}}"><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="{{set_active('suppliers')}} "><a href="{{route('suppliers')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
+        <li class="{{set_active('suppliers')}}"><a href="{{route('suppliers')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
         <li class="{{set_active('leads')}}"><a href="{{route('leads')}}"><i class="fa fa-paper-plane-o"></i> <span>Leads</span></a></li>
         {{-- <li class="treeview ">
                 <a href="#"><i class="fa fa-cube"></i> <span>Part</span>
