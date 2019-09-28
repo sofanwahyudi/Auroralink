@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Devisi;
+use App\Model\Categories;
 use Illuminate\Http\Request;
 use DataTables;
 
-class DevisiController extends Controller
+class CategoriesController extends Controller
 {
     public function dataTable(){
-        $data = Devisi::query();
+        $data = Categories::query();
         return DataTables::of($data)
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
-                'url_show' => route('devisi.show', $data->id),
-                'url_edit' => route('devisi.edit', $data->id),
-                'url_destroy' => route('devisi.destroy', $data->id),
+                'url_show' => route('categories.show', $data->id),
+                'url_edit' => route('categories.edit', $data->id),
+                'url_destroy' => route('categories.destroy', $data->id),
             ]);
         })
         ->addIndexColumn()
@@ -30,9 +30,7 @@ class DevisiController extends Controller
      */
     public function index()
     {
-        // $data = Devisi::all();
-        // dd($data);
-        return view('admin.team.devisi.index');
+        return view('admin.jasa.categories.index');
     }
 
     /**
@@ -42,8 +40,8 @@ class DevisiController extends Controller
      */
     public function create()
     {
-        $model = new Devisi();
-        return view('admin.team.devisi.form', compact('model'));
+        $model = new Categories();
+        return view('admin.jasa.categories.form', compact('model'));
     }
 
     /**
@@ -55,13 +53,15 @@ class DevisiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
+            'nama' => 'required|max:255',
             'keterangan' => 'required|max:255',
-
+            'biaya' => 'required|max:25',
             ]);
-            $data = new Devisi();
-            $data->name = $request->name;
+
+            $data = new Categories();
+            $data->nama = $request->nama;
             $data->keterangan = $request->keterangan;
+            $data->biaya = $request->biaya;
             $data->save();
             return redirect()->back()->with('success','Data Berhasil disimpan');
     }
@@ -74,8 +74,8 @@ class DevisiController extends Controller
      */
     public function show($id)
     {
-        $model = Devisi::findOrFail($id);
-        return view('admin.team.devisi.show', compact('model'));
+        $model = Categories::findOrFail($id);
+        return view('admin.jasa.categories.show', compact('model'));
     }
 
     /**
@@ -86,8 +86,8 @@ class DevisiController extends Controller
      */
     public function edit($id)
     {
-        $model = Devisi::findOrFail($id);
-        return view('admin.team.devisi.form', compact('model'));
+        $model = Categories::findOrFail($id);
+        return view('admin.jasa.categories.form', compact('model'));
     }
 
     /**
@@ -100,11 +100,12 @@ class DevisiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
+            'nama' => 'required|max:255',
             'keterangan' => 'required|max:255',
+            'biaya' => 'required|max:25',
             ]);
 
-            $model = Devisi::findOrFail($id);
+            $model = Categories::findOrFail($id);
             $model->update($request->all());
     }
 
@@ -116,7 +117,7 @@ class DevisiController extends Controller
      */
     public function destroy($id)
     {
-        $model = Devisi::findOrFail($id);
+        $model = Categories::findOrFail($id);
         $model->delete();
     }
 }

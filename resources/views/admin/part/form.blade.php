@@ -38,33 +38,33 @@
             {!! Form::text('berat', null, ['class' => 'form-control', 'id' => 'berat', 'placeholder' => 'Masukan Berat dalam satuan gram']) !!}
         </div>
     </div>
-    <div class="form-group col-md-6 ">
+    <div class="form-group col-md-6 required " enctype="multipart/form-data">
     <label for="name" class="control-label">Gambar <i> (ukuran gambar maksimal adalah 300 X 200)</i></label>
         <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-image"></i></div>
-            <input class="form-control" placeholder="Upload Gambar Produk"  name="gambar" type="file" id="gambar"  enctype="multipart/form-data">
+            <input class="form-control" placeholder="Upload Gambar Part" required="required" name="gambar" type="file" id="gambar" enctype="multipart/form-data">
         </div>
     </div>
-    <div class="form-group col-md-3 required ">
+    <div class="form-group col-md-6 required ">
     <label for="name" class="control-label">Supplier</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-        <select id="group_id" class="form-control select2" name="group_id">
+        <select id="supplier_id" class="form-control select2" name="supplier_id">
             <option value="#">-- Pilih Supplier --</option>
             @foreach (\App\Supplier::all() as $jp)
-            <option value="{{$jp->id}}">{{$jp->nama}}</option>
+            <option value="{{$jp->id}}" selected="selected">{{$jp->nama}}</option>
             @endforeach
         </select>
         </div>
     </div>
-    <div class="form-group col-md-3 required ">
+    <div class="form-group col-md-6 required ">
     <label for="name" class="control-label">Kategori</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-        <select id="group_id" class="form-control select2" name="group_id">
+        <select id="kategori_id" class="form-control select2" name="kategori_id">
             <option value="#">-- Pilih Kategori --</option>
             @foreach (\App\Model\Kategori::all() as $jp)
-            <option value="{{$jp->id}}">{{$jp->nama}}</option>
+            <option value="{{$jp->id}}" selected="selected" >{{$jp->nama}}</option>
             @endforeach
         </select>
         </div>

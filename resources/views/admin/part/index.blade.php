@@ -68,7 +68,11 @@ $(document).ready(function(){
     columns: [
         { data: 'sku', name: 'sku' },
         { data: 'gambar', name: 'gambar', render: function( data, type, full, meta ) {
-                        return "<img src=\"/path/" + data + "\" height=\"50\"/>";
+            if (data == null) {
+                return "<img src=\"/image/default.png\" height=\"50\"/>";
+            } else {
+                return "<img src=\"/path/" + data + "\" height=\"50\"/>";
+            }
                     } },
         { data: 'nama', name: 'nama' },
         { data: 'berat', name: 'berat',  render: function ( data, type, row ) {

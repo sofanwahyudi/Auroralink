@@ -29,16 +29,6 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('/tags', 'TagsController');
             Route::resource('/kategori', 'KategoriPostController');
         });
-        Route::group(['prefix' => 'team'], function () {
-            Route::resource('/', 'TeamController');
-            Route::resource('/departemen', 'DeptController');
-            Route::resource('/devisi', 'DevisiController');
-        });
-        Route::group(['prefix' => 'jasa'], function () {
-            Route::resource('/', 'JasaController');;
-            Route::resource('/job', 'JobController');
-            Route::resource('/kategori_servis', 'KategoriServisController');
-        });
         Route::group(['prefix' => 'task'], function () {
             Route::resource('/', 'TaskController');
             Route::resource('/project', 'ProjectController');
@@ -50,12 +40,40 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('/kategori', 'KategoriProdukController');
         });
 
-            Route::resource('/part', 'PartController');
+            Route::resource('part', 'PartController');
             Route::get('part', 'PartController@index')->name('parts');
             Route::get('json/part', 'PartController@dataTable')->name('part.json');
             Route::get('excel', 'PartController@exportExcel')->name('export_part_xls');
             Route::get('csv', 'PartController@exportCsv')->name('export_part_csv');
             Route::post('part/delete-multiple', ['as'=>'part.multiple-delete','uses'=>'PartController@deleteMultiple']);
+
+
+//Route Team
+            Route::resource('team', 'TeamController');
+            Route::get('team', 'TeamController@index')->name('teams');
+            Route::get('json/team', 'TeamController@dataTable')->name('team.json');
+//Route Departemen
+            Route::resource('dept', 'DeptController');
+            Route::get('/team/dept/list_dept', 'DeptController@index')->name('depts');
+            Route::get('/team/json/dept', 'DeptController@dataTable')->name('dept.json');
+//Route Devisi
+            Route::resource('devisi', 'DevisiController');
+            Route::get('/team/devisi/list-divs', 'DevisiController@index')->name('divs');
+            Route::get('/team/json/div', 'DevisiController@dataTable')->name('div.json');
+
+//Route Jasa
+            Route::resource('jasa', 'JasaController');
+            Route::get('jasa', 'JasaController@index')->name('jasas');
+
+//Route Job
+            Route::resource('job', 'JobController');
+            Route::get('/jasa/job/list_job', 'JobController@index')->name('jobs');
+            Route::get('/jasa/json/job', 'JobController@dataTable')->name('job.json');
+
+//Route Categories
+            Route::resource('categories', 'CategoriesController');
+            Route::get('/jasa/categories/list_categories', 'CategoriesController@index')->name('cats');
+            Route::get('/jasa/categories/json', 'CategoriesController@dataTable')->name('cats.json');
 
 //Route Kategori Part
             Route::resource('kategori', 'KategoriController');
@@ -66,13 +84,13 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('part/kategori/delete-multiple', ['as'=>'kategori.multiple-delete','uses'=>'KategoriPartController@deleteMultiple']);
 
 //Route Supplier
-            Route::resource('/supplier', 'SupplierController');
+            Route::resource('supplier', 'SupplierController');
             Route::get('/supplier', 'SupplierController@index')->name('suppliers');
             Route::get('/json/supplier', 'SupplierController@dataTable')->name('supplier.json');
             Route::get('export_excel/supplier', 'SupplierController@exportExcel')->name('exportExcelSupplier');
             Route::get('export_csv/supplier', 'SupplierController@exportCsv')->name('exportCsvSupplier');
 //Route Leads
-            Route::resource('/leads', 'LeadsController');
+            Route::resource('leads', 'LeadsController');
             Route::get('/leads', 'LeadsController@index')->name('leads');
             Route::get('/json/leads', 'LeadsController@dataTable')->name('lead.json');
             Route::get('export_excel/leads', 'LeadsController@exportExcel')->name('exportExcelLeads');

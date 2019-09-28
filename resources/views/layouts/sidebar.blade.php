@@ -59,7 +59,7 @@
                   <li class="{{set_active('kats')}}"><a href="{{route('kats')}}"><i class="fa fa-circle-o"></i> Part Kategori</a></li>
                 </ul>
               </li>
-        <li class="treeview ">
+        <li class="treeview {{set_active(['jobs','jasas','cats'])}}">
                 <a href="#"><i class="fa fa-briefcase"></i> <span>Jasa</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -67,9 +67,9 @@
                 </a>
                 <ul class="treeview-menu ">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-                  <li><a href="{{url('admin/jasa')}}"><i class="fa fa-list"></i> <span>Daftar Jasa</span></a></li>
-                  <li><a href="{{url('admin/jasa/job')}}"><i class="fa  fa-thumb-tack"></i> <span>Job</span></a></li>
-                  <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa  fa-thumb-tack"></i> <span>Kategori Servis</span></a></li>
+                  <li class="{{set_active('jasas')}}"><a href="{{route('jasas')}}"><i class="fa fa-list"></i> <span>Daftar Jasa</span></a></li>
+                  <li class="{{set_active('jobs')}}"><a href="{{route('jobs')}}"><i class="fa  fa-thumb-tack"></i> <span>Job</span></a></li>
+                  <li class="{{set_active('cats')}}"><a href="{{route('cats')}}"><i class="fa  fa-thumb-tack"></i> <span>Kategori Servis</span></a></li>
 
               </ul>
         </li>
@@ -129,7 +129,7 @@
 
               </ul>
         </li>
-        <li class="treeview ">
+        <li class="treeview {{set_active(['teams','depts','divs'])}}">
                 <a href="#"><i class="fa  fa-user-md"></i> <span>Team</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -137,9 +137,9 @@
                 </a>
                 <ul class="treeview-menu ">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-                  <li><a href="{{url('admin/team')}}"><i class="fa fa-users"></i> <span>Daftar Team</span></a></li>
-                  <li><a href="{{url('admin/team/departemen')}}"><i class="fa fa-user-secret"></i> <span>Departemen</span></a></li>
-                  <li><a href="{{url('admin/team/devisi')}}"><i class="fa  fa-user-plus"></i> <span>Devisi</span></a></li>
+                  <li class="{{set_active('teams')}}"><a href="{{route('teams')}}"><i class="fa fa-users"></i> <span>Daftar Team</span></a></li>
+                  <li class="{{set_active('depts')}}"><a href="{{route('depts')}}"><i class="fa fa-user-secret"></i> <span>Departemen</span></a></li>
+                  <li class="{{set_active('divs')}}"><a href="{{route('divs')}}"><i class="fa  fa-user-plus"></i> <span>Devisi</span></a></li>
 
               </ul>
         </li>
