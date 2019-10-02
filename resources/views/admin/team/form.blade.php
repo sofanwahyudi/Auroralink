@@ -55,5 +55,17 @@
         </select>
         </div>
     </div>
+    <div class="form-group col-md-6 required ">
+    <label for="name" class="control-label">User</label>
+    <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+        <select id="users_id" class="form-control select2" name="users_id">
+            <option value="#">-- Pilih User --</option>
+            @foreach (\App\User::all() as $jp)
+            <option value="{{$jp->id}}" selected="selected" >{{$jp->name}}</option>
+            @endforeach
+        </select>
+        </div>
+    </div>
 </div>
 {!! Form::close() !!}

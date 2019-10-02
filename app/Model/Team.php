@@ -2,12 +2,13 @@
 
 namespace App\Model;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Team extends Model
 {
-    use HasRoles;
+    use SoftDeletes;
        //
        protected $table = 'team';
        /**
@@ -24,6 +25,7 @@ class Team extends Model
         'telepon',
         'dept_id',
         'devisi_id',
+        'users_id',
     ];
 
        public function getGambar(){
@@ -39,5 +41,13 @@ class Team extends Model
        public function devisi()
        {
            return $this->belongsTo(Devisi::class);
+       }
+       public function users()
+       {
+           return $this->belongsTo(User::class);
+       }
+       public function jasa()
+       {
+           return $this->hasOne(Jasa::class);
        }
 }

@@ -1,6 +1,6 @@
 {!!Form::model($model, [
     'route' => $model->exists ? ['part.update', $model->id] :'part.store',
-    'method' => $model->exists ? 'PUT':'POST',
+    'method' => $model->exists ? 'PUT':'POST', 'files' => true,
 ])!!}
 <div class="box-body">
     <div class="form-group col-md-6">

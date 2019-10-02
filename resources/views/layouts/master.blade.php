@@ -25,6 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{url('assets/dist/css/skins/_all-skins.min.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -127,9 +128,10 @@ desired effect
 <script type="text/javascript" src="{{url('assets/dist/js/demo.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script type="text/javascript" src="{{url('assets/dist/js/sweetalert.js')}}"></script>
-{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+<script src="{{url('assets/bower_components/ckeditor/ckeditor.js')}}"></script>
+<script src="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <script>
-
+    $('.textarea').wysihtml5()
 </script>
 </body>
 @yield('footer')

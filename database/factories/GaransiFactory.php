@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Model\Garansi::class, function (Faker $faker) {
     return [
-        'nama' => 'Bergaransi',
+        'nama' => 'Tidak Bergaransi',
     ];
 });

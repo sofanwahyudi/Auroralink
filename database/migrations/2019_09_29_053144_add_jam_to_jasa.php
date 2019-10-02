@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRoleToTeam extends Migration
+class AddJamToJasa extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddRoleToTeam extends Migration
      */
     public function up()
     {
-        Schema::table('team', function (Blueprint $table) {
-            $table->integer('role_id')->nullable()->after('telepon');
+        Schema::table('jasa', function (Blueprint $table) {
+            $table->integer('jam_id')->unsigned()->nullable()->after('deskripsi');
         });
     }
 
@@ -25,8 +25,8 @@ class AddRoleToTeam extends Migration
      */
     public function down()
     {
-        Schema::table('team', function (Blueprint $table) {
-            $table->dropColumn('role_id');
+        Schema::table('jasa', function (Blueprint $table) {
+            $table->dropColumn('jam_id');
         });
     }
 }

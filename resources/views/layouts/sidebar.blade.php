@@ -59,7 +59,7 @@
                   <li class="{{set_active('kats')}}"><a href="{{route('kats')}}"><i class="fa fa-circle-o"></i> Part Kategori</a></li>
                 </ul>
               </li>
-        <li class="treeview {{set_active(['jobs','jasas','cats'])}}">
+        <li class="treeview {{set_active(['jobs','jasas','cats','jams'])}}">
                 <a href="#"><i class="fa fa-briefcase"></i> <span>Jasa</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -70,6 +70,7 @@
                   <li class="{{set_active('jasas')}}"><a href="{{route('jasas')}}"><i class="fa fa-list"></i> <span>Daftar Jasa</span></a></li>
                   <li class="{{set_active('jobs')}}"><a href="{{route('jobs')}}"><i class="fa  fa-thumb-tack"></i> <span>Job</span></a></li>
                   <li class="{{set_active('cats')}}"><a href="{{route('cats')}}"><i class="fa  fa-thumb-tack"></i> <span>Kategori Servis</span></a></li>
+                  <li class="{{set_active('jams')}}"><a href="{{route('jams')}}"><i class="fa  fa-hourglass-2"></i> <span>Jam Layanan</span></a></li>
 
               </ul>
         </li>

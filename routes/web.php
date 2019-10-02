@@ -64,6 +64,12 @@ Route::group(['middleware' => ['auth']], function() {
 //Route Jasa
             Route::resource('jasa', 'JasaController');
             Route::get('jasa', 'JasaController@index')->name('jasas');
+            Route::get('/json/jasa', 'JasaController@dataTable')->name('jasa.json');
+
+//Route Jam
+            Route::resource('jam', 'JamController');
+            Route::get('/jasa/jam/list_jam', 'JamController@index')->name('jams');
+            Route::get('jasa/json/jam', 'JamController@dataTable')->name('jam.json');
 
 //Route Job
             Route::resource('job', 'JobController');

@@ -69,6 +69,7 @@ class TeamController extends Controller
             'email' => 'required|email|unique:users',
             'dept_id' => 'required',
             'devisi_id' => 'required',
+            'users_id' => 'required',
             // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -79,6 +80,7 @@ class TeamController extends Controller
         $data->telepon = $request->telepon;
         $data->dept_id = $request->dept_id;
         $data->devisi_id = $request->devisi_id;
+        $data->users_id = $request->users_id;
         $nik = \DB::table('team')->max('id');
         $th = Carbon::now();
         $tahun = $th->format('Y');
@@ -144,6 +146,7 @@ class TeamController extends Controller
             'email' => 'required|email|unique:users',
             'dept_id' => 'required',
             'devisi_id' => 'required',
+            'users_id' => 'required',
             // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
