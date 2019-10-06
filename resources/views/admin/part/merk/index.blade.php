@@ -1,22 +1,22 @@
 @extends('layouts.master')
 @section('title')
-    Departemen | Auroralink
-@endsection
+Merk Part | Auroralink
+@stop
 @section('content_header')
     <h1>
-        <span class="fa fa-user-secret"></span> Departemen
-        <a href="{{route('dept.create')}}" class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
-        {{-- <a href="#" data-url="" class="btn-sm btn-danger delete-all"><span class="fa fa-trash"></span> Hapus Data Terpilih</a> --}}
+        <span class="fa fa-filter"></span> Merk Part
+        <a href="{{route('merk.create')}}"  class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
+        <a href="#" data-url="" class="btn-sm btn-danger delete-all"><span class="fa fa-trash"></span> Hapus Data Terpilih</a>
     {{-- <button style="margin: 5px;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button> --}}
     </h1>
     <ol class="breadcrumb">
     <li>
-    {{-- <a href="{{route('export_part_xls')}}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file-excel-o" style="color:white"></span> Export Excel</a>
-    <a href="{{route('export_part_csv')}}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file" style="color:white"></span> Export Csv</a> --}}
+    <a href="{{route('export_kategori_xls')}}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file-excel-o" style="color:white"></span> Export Excel</a>
+    <a href="{{route('export_kategori_csv')}}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file" style="color:white"></span> Export Csv</a>
     </li>
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li>Team</li>
-      <li class="active">Departemen</li>
+      <li>Part</li>
+      <li class="active">Merk/li>
     </ol>
 @endsection
 @section('content')
@@ -41,13 +41,11 @@
                 <thead>
                 <tr role="row">
                     {{-- <th class="sorting_asc"> <input type="checkbox" id="check_all"></th> --}}
-                    {{-- <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
-                    <th>No</th> --}}
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
+
                 </tbody>
         </table>
         </div>
@@ -61,12 +59,13 @@ $(document).ready(function(){
     {
     processing: true,
     serverSide: true,
-    ajax: "{{route('dept.json')}}",
+    ajax: "{{route('merk.json')}}",
     columns: [
-        { data: 'name', name: 'name' },
-        { data: 'keterangan', name: 'keterangan' },
+        // { data: 'checkbox', orderable:false, searchable:false },
+        // { data: 'id', name: 'id' },
+        { data: 'nama', name: 'nama' },
         { data: 'action', orderable:false, searchable:false },
-    ],
+    ]
     }
     );
 });

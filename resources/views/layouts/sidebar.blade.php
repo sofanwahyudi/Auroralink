@@ -47,7 +47,7 @@
 
               </ul>
         </li> --}}
-        <li class="treeview {{set_active(['parts','kats'])}}">
+        <li class="treeview {{set_active(['parts','kats','merks'])}}">
                 <a href="#">
                   <i class="fa fa-cube"></i> <span>Part</span>
                   <span class="pull-right-container">
@@ -57,6 +57,7 @@
                 <ul class="treeview-menu">
                   <li class="{{set_active('parts')}} "><a href="{{route('parts')}}"><i class="fa fa fa-cubes"></i> Daftar Part</a></li>
                   <li class="{{set_active('kats')}}"><a href="{{route('kats')}}"><i class="fa fa-circle-o"></i> Part Kategori</a></li>
+                  <li class="{{set_active('merks')}}"><a href="{{route('merks')}}"><i class="fa fa-circle-o"></i> Merk Part</a></li>
                 </ul>
               </li>
         <li class="treeview {{set_active(['jobs','jasas','cats','jams'])}}">
@@ -130,7 +131,7 @@
 
               </ul>
         </li>
-        <li class="treeview {{set_active(['teams','depts','divs'])}}">
+        <li class="treeview {{set_active(['teams','divs','bagians'])}}">
                 <a href="#"><i class="fa  fa-user-md"></i> <span>Team</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -139,9 +140,8 @@
                 <ul class="treeview-menu ">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li class="{{set_active('teams')}}"><a href="{{route('teams')}}"><i class="fa fa-users"></i> <span>Daftar Team</span></a></li>
-                  <li class="{{set_active('depts')}}"><a href="{{route('depts')}}"><i class="fa fa-user-secret"></i> <span>Departemen</span></a></li>
                   <li class="{{set_active('divs')}}"><a href="{{route('divs')}}"><i class="fa  fa-user-plus"></i> <span>Devisi</span></a></li>
-
+                  <li class="{{set_active('bagians')}}"><a href="{{route('bagians')}}"><i class="fa  fa-user-plus"></i> <span>Bagian</span></a></li>
               </ul>
         </li>
         {{-- <li><a href="#"><i class="fa fa-database"></i> <span>Master</span></a></li> --}}

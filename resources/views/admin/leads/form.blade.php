@@ -24,12 +24,14 @@
             {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Masukan Email']) !!}
         </div>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group">
         <label for="" class="control-label">Komentar</label>
         <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-commenting"></i></div>
-            {!! Form::textarea('komentar', null, ['class' => 'form-control', 'id' => 'komentar', 'placeholder' => 'Masukan Komentar Anda']) !!}
+            <textarea class="textarea form" id="komentar" name="komentar" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
         </div>
     </div>
 </div>
 {!! Form::close() !!}
+<script>
+$('.textarea').wysihtml5()
+</script>

@@ -44,7 +44,6 @@
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Alamat</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Telepon</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Website</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Status</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
@@ -72,7 +71,6 @@
             { data: 'alamat', name: 'alamat' },
             { data: 'telepon', name: 'telepon' },
             { data: 'email', name: 'email' },
-            { data: 'website', name: 'website' },
             { data: 'status', name: 'status' },
             { data: 'action', orderable:false, searchable:false },
         ]

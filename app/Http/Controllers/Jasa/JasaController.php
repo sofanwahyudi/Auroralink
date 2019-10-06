@@ -62,7 +62,7 @@ class JasaController extends Controller
         'benefit' => 'required|max:500',
         'harga' => 'required',
         'job_id' => 'required',
-        'gambar' => 'required',
+        // 'gambar' => 'required',
         ]);
 
         $data = new Jasa();
@@ -74,11 +74,11 @@ class JasaController extends Controller
         $data->jam_id = $request->jam_id;
         $data->job_id = $request->job_id;
 
-        $file=$request->file('image');
-        $path='image/upload';
-        $filename=$file->getClientOriginalName();
-        $success=$file->move($path,$filename);
-        $data->gambar = $filename;
+            // $file=$request->file('image');
+            // $path='image/upload';
+            // $filename=$file->getClientOriginalName();
+            // $success=$file->move($path,$filename);
+            // $data->gambar = $filename;
 
         // if($request->file('gambar'));
         //     $request->file('gambar')->move('image/', $request->file('gambar')->getClientOriginalName());
@@ -131,7 +131,7 @@ class JasaController extends Controller
             'benefit' => 'required|max:5000',
             'harga' => 'required',
             'job_id' => 'required',
-            'gambar' => 'required',
+            // 'gambar' => 'required',
             ]);
 
             $model = Jasa::findOrFail($id);

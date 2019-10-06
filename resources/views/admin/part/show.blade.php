@@ -42,6 +42,10 @@
                             <td><b>Kategori </b></td>
                             <td>{{ $model->kategori['nama'] }}</td>
                         </tr>
+                        <tr>
+                            <td><b>Merk </b></td>
+                            <td>{{ $model->merk['nama'] }}</td>
+                        </tr>
                     </table>
                 </div>
     </div><!-- box-body-->

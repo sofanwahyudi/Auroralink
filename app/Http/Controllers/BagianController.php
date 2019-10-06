@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Devisi;
 use App\Model\Bagian;
 use Illuminate\Http\Request;
 use DataTables;
 
-class DevisiController extends Controller
+class BagianController extends Controller
 {
     public function dataTable(){
-        $data = Devisi::query();
+        $data = Bagian::query();
         return DataTables::of($data)
-        ->addColumn('bagian', function($d){
-            return $d->bagian->count();
+        ->addColumn('devisi', function($d){
+            return $d->devisi->name;
         })
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
-                'url_show' => route('devisi.show', $data->id),
-                'url_edit' => route('devisi.edit', $data->id),
-                'url_destroy' => route('devisi.destroy', $data->id),
+                'url_show' => route('bagian.show', $data->id),
+                'url_edit' => route('bagian.edit', $data->id),
+                'url_destroy' => route('bagian.destroy', $data->id),
             ]);
         })
         ->addIndexColumn()
@@ -34,9 +33,7 @@ class DevisiController extends Controller
      */
     public function index()
     {
-        // $data = Devisi::all();
-        // dd($data);
-        return view('admin.team.devisi.index');
+        return view('admin.team.bagian.index');
     }
 
     /**
@@ -46,8 +43,8 @@ class DevisiController extends Controller
      */
     public function create()
     {
-        $model = new Devisi();
-        return view('admin.team.devisi.form', compact('model'));
+        $model = new Bagian();
+        return view('admin.team.bagian.form', compact('model'));
     }
 
     /**
@@ -59,17 +56,19 @@ class DevisiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
-            'keterangan' => 'required|max:255',
+            'nama' => 'required|max:255',
+            'devisi_id' => 'required',
 
             ]);
 
-            $data = new Devisi();
-            $data->name = $request->name;
-            $data->keterangan = $request->keterangan;
 
+            $data = new Bagian();
+            $data->nama = $request->nama;
+            $data->devisi_id = $request->devisi_id;
+            // $data->devisi()->associate($devisi);
             $data->save();
             return redirect()->back()->with('success','Data Berhasil disimpan');
+
     }
 
     /**
@@ -80,9 +79,8 @@ class DevisiController extends Controller
      */
     public function show($id)
     {
-        $model = Devisi::findOrFail($id);
-        $dev = Devisi::find(1);
-        return view('admin.team.devisi.show', compact('model'));
+        $model = Bagian::findOrFail($id);
+        return view('admin.team.bagian.show', compact('model'));
     }
 
     /**
@@ -93,8 +91,8 @@ class DevisiController extends Controller
      */
     public function edit($id)
     {
-        $model = Devisi::findOrFail($id);
-        return view('admin.team.devisi.form', compact('model'));
+        $model = Bagian::findOrFail($id);
+        return view('admin.team.bagian.form', compact('model'));
     }
 
     /**
@@ -107,15 +105,11 @@ class DevisiController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
-            'keterangan' => 'required|max:255',
+            'nama' => 'required|max:255',
             ]);
 
-            $model = Devisi::findOrFail($id);
-            $model->name = $request->name;
-            $model->keterangan = $request->keterangan;
-            $model->bagian(explode(',', $request->bagian_id));
-            $model->update();
+            $model = Bagian::findOrFail($id);
+            $model->update($request->all());
     }
 
     /**
@@ -126,7 +120,7 @@ class DevisiController extends Controller
      */
     public function destroy($id)
     {
-        $model = Devisi::findOrFail($id);
+        $model = Bagian::findOrFail($id);
         $model->delete();
     }
 }

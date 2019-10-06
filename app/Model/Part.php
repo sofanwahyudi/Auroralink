@@ -28,6 +28,10 @@ class Part extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+    public function merk()
+    {
+        return $this->belongsTo(Merk::class);
+    }
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }

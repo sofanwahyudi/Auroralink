@@ -70,16 +70,17 @@ class PartController extends Controller
         $data->berat = $request->berat;
         $data->kategori_id = $request->kategori_id;
         $data->supplier_id = $request->supplier_id;
+        $data->merk_id = $request->merk_id;
         $sku = \DB::table('part')->max('id') + 1;
         $sku = str_pad('S'. $sku, 6, 0 , STR_PAD_LEFT);
         $data->sku = $sku;
         $data->barcode = $sku;
         $data->gambar = null;
 
-         if($request->hasFile( 'gambar')){
-             $data->gambar = '/image/upload/'.str_slug($data->nama).'.'.$request->gambar->getClienOriginalExtension();
-             $request->gambar->move(public_path('/image/upload'), $data->gambar);
-         }
+        //  if($request->hasFile( 'gambar')){
+        //      $data->gambar = '/image/upload/'.str_slug($data->nama).'.'.$request->gambar->getClienOriginalExtension();
+        //      $request->gambar->move(public_path('/image/upload'), $data->gambar);
+        //  }
         //  ;
         //      $request->file('gambar')->move('image/', $request->file('gambar')->getClientOriginalName());
         //      $data->gambar = $request->file('gambar')->getClientOriginalName();

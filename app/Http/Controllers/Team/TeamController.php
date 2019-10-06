@@ -67,7 +67,6 @@ class TeamController extends Controller
             'alamat' => 'required|max:125',
             'telepon' => 'required|max:13',
             'email' => 'required|email|unique:users',
-            'dept_id' => 'required',
             'devisi_id' => 'required',
             'users_id' => 'required',
             // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -78,7 +77,6 @@ class TeamController extends Controller
         $data->alamat = $request->alamat;
         $data->email = $request->email;
         $data->telepon = $request->telepon;
-        $data->dept_id = $request->dept_id;
         $data->devisi_id = $request->devisi_id;
         $data->users_id = $request->users_id;
         $nik = \DB::table('team')->max('id');

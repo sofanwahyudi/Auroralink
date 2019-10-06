@@ -69,5 +69,17 @@
         </select>
         </div>
     </div>
+    <div class="form-group col-md-6 required ">
+    <label for="name" class="control-label">Merk</label>
+    <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+        <select id="merk_id" class="form-control select2" name="merk_id">
+            <option value="#">-- Pilih Merk --</option>
+            @foreach (\App\Model\Merk::all() as $jp)
+            <option value="{{$jp->id}}" selected="selected" >{{$jp->nama}}</option>
+            @endforeach
+        </select>
+        </div>
+    </div>
 </div>
 {!! Form::close() !!}

@@ -4,7 +4,7 @@
 @endsection
 @section('content_header')
     <h1>
-        <span class="fa fa-thumb-tack"></span>Kategori Servis
+        <span class="fa fa-thumb-tack"></span> Kategori Servis
         <a href="{{route('categories.create')}}" class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
         {{-- <a href="#" data-url="" class="btn-sm btn-danger delete-all"><span class="fa fa-trash"></span> Hapus Data Terpilih</a> --}}
     {{-- <button style="margin: 5px;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button> --}}
@@ -67,11 +67,18 @@ $(document).ready(function(){
         { data: 'nama', name: 'nama' },
         { data: 'keterangan', name: 'keterangan' },
         { data: 'biaya', name: 'biaya', render: function ( data, type, row ) {
-                return "Rp. " + data;
+                return commaSeparateNumber("Rp. " + data);
                 }  },
         { data: 'action', orderable:false, searchable:false },
     ],
     }
     );
 });
+function commaSeparateNumber(val) {
+    while (/(\d+)(\d{3})/.test(val.toString())) {
+        val = val.toString().replace(/(\d+)(\d{3})/, '$1' + '.' + '$2');
+    }
+    return val;
+}
+
 </script>

@@ -18,4 +18,8 @@ class Devisi extends Model
     {
         return $this->hasOne(Team::class);
     }
+    public function bagian()
+    {
+        return $this->hasMany(Bagian::class);
+    }
 }

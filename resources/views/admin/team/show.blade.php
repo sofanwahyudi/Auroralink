@@ -30,10 +30,6 @@
                             <td>{{$model->telepon}}</td>
                         </tr>
                         <tr>
-                            <td><b>Supplier </b></td>
-                            <td>{{ $model->dept['name'] }}</td>
-                        </tr>
-                        <tr>
                             <td><b>Kategori </b></td>
                             <td>{{ $model->devisi['name'] }}</td>
                         </tr>

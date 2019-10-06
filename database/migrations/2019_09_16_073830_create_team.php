@@ -26,13 +26,6 @@ class CreateTeam extends Migration
             $table->integer('dept_id')->unsigned();
             $table->integer('devisi_id')->unsigned();
         });
-        Schema::create('dept', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->text('keterangan');
-            $table->timestamps();
-            $table->softDeletes();
-        });
         Schema::create('devisi', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -50,7 +43,6 @@ class CreateTeam extends Migration
     public function down()
     {
         Schema::dropIfExists('team');
-        Schema::dropIfExists('dept');
         Schema::dropIfExists('devisi');
     }
 }

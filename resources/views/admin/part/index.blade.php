@@ -79,14 +79,20 @@ $(document).ready(function(){
                 return  data + " gram ";
                 }  },
         { data: 'harga_jual', name: 'harga_jual',  render: function ( data, type, row ) {
-                return "Rp. " + data;
+                return commaSeparateNumber("Rp. " + data);
                 } },
         { data: 'harga_beli', name: 'harga_beli',  render: function ( data, type, row ) {
-                return "Rp. " + data;
+                return commaSeparateNumber("Rp. " + data);
                 }  },
         { data: 'action', orderable:false, searchable:false },
     ],
     }
     );
 });
+function commaSeparateNumber(val) {
+    while (/(\d+)(\d{3})/.test(val.toString())) {
+        val = val.toString().replace(/(\d+)(\d{3})/, '$1' + '.' + '$2');
+    }
+    return val;
+}
 </script>

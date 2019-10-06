@@ -53,9 +53,9 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('team', 'TeamController@index')->name('teams');
             Route::get('json/team', 'TeamController@dataTable')->name('team.json');
 //Route Departemen
-            Route::resource('dept', 'DeptController');
-            Route::get('/team/dept/list_dept', 'DeptController@index')->name('depts');
-            Route::get('/team/json/dept', 'DeptController@dataTable')->name('dept.json');
+            Route::resource('bagian', 'BagianController');
+            Route::get('/team/bagian/list_bagian', 'BagianController@index')->name('bagians');
+            Route::get('/team/json/bagian', 'BagianController@dataTable')->name('bag.json');
 //Route Devisi
             Route::resource('devisi', 'DevisiController');
             Route::get('/team/devisi/list-divs', 'DevisiController@index')->name('divs');
@@ -88,6 +88,11 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/part/kategori/export_excel', 'KategoriController@exportExcel')->name('export_kategori_xls');
             Route::get('part/kategori/export_csv', 'KategoriController@exportCsv')->name('export_kategori_csv');
             Route::post('part/kategori/delete-multiple', ['as'=>'kategori.multiple-delete','uses'=>'KategoriPartController@deleteMultiple']);
+
+//Merk Part
+            Route::resource('merk', 'MerkController');
+            Route::get('/part/merk/list_merk', 'MerkController@index')->name('merks');
+            Route::get('part/merk/json', 'MerkController@dataTable')->name('merk.json');
 
 //Route Supplier
             Route::resource('supplier', 'SupplierController');

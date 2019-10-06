@@ -32,18 +32,6 @@
         </div>
     </div>
     <div class="form-group col-md-6 required ">
-    <label for="name" class="control-label">Departemen</label>
-    <div class="input-group">
-        <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-        <select id="dept_id" class="form-control select2" name="dept_id">
-            <option value="#">-- Pilih Departemen --</option>
-            @foreach (\App\Model\Dept::all() as $jp)
-            <option value="{{$jp->id}}" selected="selected">{{$jp->name}}</option>
-            @endforeach
-        </select>
-        </div>
-    </div>
-    <div class="form-group col-md-6 required ">
     <label for="name" class="control-label">Devisi</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
@@ -51,6 +39,20 @@
             <option value="#">-- Pilih Devisi --</option>
             @foreach (\App\Model\Devisi::all() as $jp)
             <option value="{{$jp->id}}" selected="selected" >{{$jp->name}}</option>
+            @endforeach
+        </select>
+        </div>
+    </div>
+    <div class="form-group col-md-6 required ">
+    <label for="name" class="control-label">Bagian</label>
+    <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+        <select id="devisi_id" class="form-control select2" name="devisi_id">
+            <option value="#">-- Pilih Bagian --</option>
+            @foreach (\App\Model\Devisi::all() as $jp)
+                @foreach($jp->bagian as $b)
+                <option value="{{$b->id}}" selected="selected" >{{$b->nama}}</option>
+                @endforeach
             @endforeach
         </select>
         </div>

@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Dept;
+use App\Model\Merk;
 use Illuminate\Http\Request;
 use DataTables;
 
-class DeptController extends Controller
+class MerkController extends Controller
 {
     public function dataTable(){
-        $data = Dept::query();
+        $data = Merk::query();
         return DataTables::of($data)
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
-                'url_show' => route('dept.show', $data->id),
-                'url_edit' => route('dept.edit', $data->id),
-                'url_destroy' => route('dept.destroy', $data->id),
+                'url_show' => route('merk.show', $data->id),
+                'url_edit' => route('merk.edit', $data->id),
+                'url_destroy' => route('merk.destroy', $data->id),
             ]);
         })
         ->addIndexColumn()
         ->rawColumns(['checkbox','action'])
         ->make(true);
-        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,9 +30,7 @@ class DeptController extends Controller
      */
     public function index()
     {
-        // $data = Dept::all();
-        // dd($data);
-        return view('admin.team.departemen.index');
+        return view('admin.part.merk.index');
     }
 
     /**
@@ -42,8 +40,8 @@ class DeptController extends Controller
      */
     public function create()
     {
-        $model = new Dept();
-        return view('admin.team.departemen.form', compact('model'));
+        $model = new Merk();
+        return view('admin.part.merk.form', compact('model'));
     }
 
     /**
@@ -55,13 +53,11 @@ class DeptController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
-            'keterangan' => 'required|max:255',
-
+            'nama' => 'required|max:255',
             ]);
-            $data = new Dept();
-            $data->name = $request->name;
-            $data->keterangan = $request->keterangan;
+
+            $data = new Merk();
+            $data->nama = $request->nama;
             $data->save();
             return redirect()->back()->with('success','Data Berhasil disimpan');
     }
@@ -74,8 +70,8 @@ class DeptController extends Controller
      */
     public function show($id)
     {
-        $model = Dept::findOrFail($id);
-        return view('admin.team.departemen.show', compact('model'));
+        $model = Merk::findOrFail($id);
+        return view('admin.part.merk.show', compact('model'));
     }
 
     /**
@@ -86,8 +82,8 @@ class DeptController extends Controller
      */
     public function edit($id)
     {
-        $model = Dept::findOrFail($id);
-        return view('admin.team.departemen.form', compact('model'));
+        $model = Merk::findOrFail($id);
+        return view('admin.part.merk.form', compact('model'));
     }
 
     /**
@@ -100,11 +96,10 @@ class DeptController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
-            'keterangan' => 'required|max:255',
+            'nama' => 'required|max:255',
             ]);
-
-            $model = Dept::findOrFail($id);
+    
+            $model = Merk::findOrFail($id);
             $model->update($request->all());
     }
 
@@ -116,7 +111,7 @@ class DeptController extends Controller
      */
     public function destroy($id)
     {
-        $model = Dept::findOrFail($id);
+        $model = Merk::findOrFail($id);
         $model->delete();
     }
 }

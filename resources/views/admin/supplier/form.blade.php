@@ -35,7 +35,7 @@
         <label for="" class="control-label">Alamat</label>
         <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-map"></i></div>
-            {!! Form::textarea('alamat', null, ['class' => 'form-control', 'id' => 'alamat', 'placeholder' => 'Masukan Alamat']) !!}
+            {!! Form::text('alamat', null, ['class' => 'form-control', 'id' => 'alamat', 'placeholder' => 'Masukan Alamat']) !!}
         </div>
     </div>
 </div>

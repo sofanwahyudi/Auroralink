@@ -34,10 +34,6 @@ class Team extends Model
            }
            return asset('image/' .$this->gambar);
        }
-       public function dept()
-       {
-           return $this->belongsTo(Dept::class);
-       }
        public function devisi()
        {
            return $this->belongsTo(Devisi::class);

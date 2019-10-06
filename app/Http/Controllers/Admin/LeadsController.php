@@ -13,6 +13,7 @@ class LeadsController extends Controller
     public function dataTable(){
         $data = Leads::query();
         return DataTables::of($data)
+        ->escapeColumns('komentar')
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,

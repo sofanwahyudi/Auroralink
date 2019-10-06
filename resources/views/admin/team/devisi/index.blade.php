@@ -11,8 +11,8 @@
     </h1>
     <ol class="breadcrumb">
     <li>
-    {{-- <a href="{{route('export_part_xls')}}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file-excel-o" style="color:white"></span> Export Excel</a>
-    <a href="{{route('export_part_csv')}}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file" style="color:white"></span> Export Csv</a> --}}
+    <a href="#" class="btn-sm btn-success" style="color:white"><span class="fa fa-file-excel-o" style="color:white"></span> Export Excel</a>
+    <a href="#" class="btn-sm btn-success" style="color:white"><span class="fa fa-file" style="color:white"></span> Export Csv</a>
     </li>
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li>Team</li>
@@ -45,6 +45,7 @@
                     <th>No</th> --}}
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total Bagian</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -65,6 +66,9 @@ $(document).ready(function(){
     columns: [
         { data: 'name', name: 'name' },
         { data: 'keterangan', name: 'keterangan' },
+        { data: 'bagian', name: 'bagian' , render : function(data, type, row) {
+              return '<span class="badge bg-green">'+data+'</span>'
+          }  },
         { data: 'action', orderable:false, searchable:false },
     ],
     }
