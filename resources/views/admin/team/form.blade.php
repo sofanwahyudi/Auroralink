@@ -32,13 +32,13 @@
         </div>
     </div>
     <div class="form-group col-md-6 required ">
-    <label for="name" class="control-label">Devisi</label>
+    <label for="name" class="control-label">Bagian</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
         <select id="devisi_id" class="form-control select2" name="devisi_id">
-            <option value="#">-- Pilih Devisi --</option>
+            <option value="#">-- Pilih Bagian --</option>
             @foreach (\App\Model\Devisi::all() as $jp)
-            <option value="{{$jp->id}}" selected="selected" >{{$jp->name}}</option>
+            <option value="{{$jp->id}}" >{{$jp->name}}</option>
             @endforeach
         </select>
         </div>
@@ -47,12 +47,10 @@
     <label for="name" class="control-label">Bagian</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-        <select id="devisi_id" class="form-control select2" name="devisi_id">
+        <select id="bagian_id" class="form-control select2" name="bagian_id">
             <option value="#">-- Pilih Bagian --</option>
-            @foreach (\App\Model\Devisi::all() as $jp)
-                @foreach($jp->bagian as $b)
-                <option value="{{$b->id}}" selected="selected" >{{$b->nama}}</option>
-                @endforeach
+            @foreach (\App\Model\Bagian::all() as $b)
+                <option value="{{$b->id}}" >{{$b->nama}}</option>
             @endforeach
         </select>
         </div>
@@ -64,10 +62,29 @@
         <select id="users_id" class="form-control select2" name="users_id">
             <option value="#">-- Pilih User --</option>
             @foreach (\App\User::all() as $jp)
-            <option value="{{$jp->id}}" selected="selected" >{{$jp->name}}</option>
+            <option value="{{$jp->id}}" >{{$jp->name}}</option>
             @endforeach
         </select>
         </div>
     </div>
 </div>
 {!! Form::close() !!}
+{{--  <script>
+$(document).ready(function () {
+            $('#category').on('change',function(e){
+            console.log(e);
+            var cat_id = e.target.value;
+            //console.log(cat_id);
+            //ajax
+            $.get('/team?cat_id='+ cat_id,function(data){
+                //success data
+               //console.log(data);
+                var subcat =  $('#subcategory').empty();
+                $.each(data,function(create,subcatObj){
+                    var option = $('<option/>', {id:create, value:subcatObj});
+                    subcat.append('<option value ="'+subcatObj+'">'+subcatObj+'</option>');
+                });
+            });
+        });
+    });
+</script>  --}}

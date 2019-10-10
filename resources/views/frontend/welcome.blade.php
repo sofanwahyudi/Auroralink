@@ -79,149 +79,54 @@
   </section>
 @stop
 
-
+ {{--  ======================================================About Section========================================================   --}}
 @section('about')
     <section id="about-us" class="about-us padd-section wow fadeInUp">
     <div class="container">
       <div class="row justify-content-center">
 
-        <div class="col-md-5 col-lg-3">
-          <img src="asset/img/about-img.png" alt="About">
-        </div>
-
-        <div class="col-md-7 col-lg-5">
-          <div class="about-content">
-
-            <h2><span>eStartup</span>UI Design Mobile </h2>
-            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-            </p>
-
-            <ul class="list-unstyled">
-              <li><i class="fa fa-angle-right"></i>Creative Design</li>
-              <li><i class="fa fa-angle-right"></i>Retina Ready</li>
-              <li><i class="fa fa-angle-right"></i>Easy to </li>
-              <li><i class="fa fa-angle-right"></i>Unlimited Features</li>
-              <li><i class="fa fa-angle-right"></i>Unlimited Features</li>
-            </ul>
-
-          </div>
-        </div>
+@include('frontend.about')
 
       </div>
     </div>
   </section>
 @stop
 
+{{--  ======================================================Services Section========================================================   --}}
 
 @section('services')
       <section id="features" class="padd-section text-center wow fadeInUp">
-
+      <h1>Services </h1>
     <div class="container">
       <div class="section-title text-center">
-        <h2>Amazing Features.</h2>
-        <p class="separator">Integer cursus bibendum augue ac cursus .</p>
+        <p class="separator"> Our Services </p>
       </div>
     </div>
-
     <div class="container">
       <div class="row">
 
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/paint-palette.svg" alt="img" class="img-fluid">
-            <h4>creative design</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/vector.svg" alt="img" class="img-fluid">
-            <h4>Retina Ready</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/design-tool.svg" alt="img" class="img-fluid">
-            <h4>easy to </h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/asteroid.svg" alt="img" class="img-fluid">
-            <h4>Free Updates</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/asteroid.svg" alt="img" class="img-fluid">
-            <h4>Free Updates</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/cloud-computing.svg" alt="img" class="img-fluid">
-            <h4>App store support</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/pixel.svg" alt="img" class="img-fluid">
-            <h4>Perfect Pixel</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="feature-block">
-            <img src="asset/img/svg/code.svg" alt="img" class="img-fluid">
-            <h4>clean codes</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-          </div>
-        </div>
+@include('frontend.services')
 
       </div>
     </div>
   </section>
 @stop
 
+{{--  ======================================================Portofolio Section========================================================   --}}
 
 @section('portofolio')
     <section id="screenshots" class="padd-section text-center wow fadeInUp">
-
-    <div class="container">
-      <div class="section-title text-center">
-        <h2>App Gallery</h2>
-        <p class="separator">Integer cursus bibendum augue ac cursus .</p>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="owl-carousel owl-theme">
-
-        <div><img src="asset/img/screen/1.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/2.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/3.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/4.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/5.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/6.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/7.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/8.jpg" alt="img"></div>
-        <div><img src="asset/img/screen/9.jpg" alt="img"></div>
-
-      </div>
-    </div>
-
+        <div class="container-fluid container-full">
+            <div class="section-title text-center">
+                <h3>Portofolio</h3>
+                <p class="separator"> Click for Watch Detail </p>
+            </div>
+        </div>
+        <div class="container">
+                <div class="owl-carousel owl-theme">
+                @include('frontend.portofolio')
+            </div>
+        </div>
   </section>
 
 @stop
@@ -249,8 +154,8 @@
     <div class="container">
       <div class="section-title text-center">
 
-        <h2>Team Member</h2>
-        <p class="separator">Integer cursus bibendum augue ac cursus .</p>
+        <h2>Our Teams</h2>
+        <p class="separator">   .</p>
 
       </div>
     </div>
@@ -258,65 +163,7 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-md-6 col-md-4 col-lg-3">
-          <div class="team-block bottom">
-            <img src="asset/img/team/1.jpg" class="img-responsive" alt="img">
-            <div class="team-content">
-              <ul class="list-unstyled">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-              <span>manager</span>
-              <h4>Kimberly Tran</h4>
-            </div>
-          </div>
-        </div>
-
-       <div class="col-md-6 col-md-4 col-lg-3">
-          <div class="team-block bottom">
-            <img src="asset/img/team/2.jpg" class="img-responsive" alt="img">
-            <div class="team-content">
-              <ul class="list-unstyled">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-              <span>manager</span>
-              <h4>Kimberly Tran</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-md-4 col-lg-3">
-          <div class="team-block bottom">
-            <img src="asset/img/team/3.jpg" class="img-responsive" alt="img">
-            <div class="team-content">
-              <ul class="list-unstyled">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-              <span>manager</span>
-              <h4>Kimberly Tran</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-md-4 col-lg-3">
-          <div class="team-block bottom">
-            <img src="asset/img/team/4.jpg" class="img-responsive" alt="img">
-            <div class="team-content">
-              <ul class="list-unstyled">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-              <span>manager</span>
-              <h4>Kimberly Tran</h4>
-            </div>
-          </div>
-        </div>
+@include('frontend.team')
 
       </div>
     </div>
@@ -341,7 +188,7 @@
                 <div class="carousel-item  active">
                   <div class="top-top">
 
-                    <h2>Our Users Speack volumes us</h2>
+                    <h2>Judul Testimoni</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
                       specimen book. It has survived not only five centuries.</p>
                     <h4>Kimberly Tran<span>manager</span></h4>
@@ -400,8 +247,8 @@
         <div class="container">
         <div class="section-title text-center">
 
-            <h2>Meet With Price</h2>
-            <p class="separator">Integer cursus bibendum augue ac cursus .</p>
+            <h2>Judul List Harga</h2>
+            <p class="separator">   .</p>
 
         </div>
         </div>
@@ -499,7 +346,7 @@
         <div class="section-title text-center">
 
             <h2>Latest posts</h2>
-            <p class="separator">Integer cursus bibendum augue ac cursus .</p>
+            <p class="separator">   .</p>
 
         </div>
         </div>
@@ -583,7 +430,7 @@
     <div class="container">
       <div class="section-title text-center">
         <h2>Contact</h2>
-        <p class="separator">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+        <p class="separator">  </p>
       </div>
     </div>
 
@@ -592,22 +439,7 @@
 
         <div class="col-lg-3 col-md-4">
 
-          <div class="info">
-            <div>
-              <i class="fa fa-map-marker"></i>
-              <p>A108 Adam Street<br>New York, NY 535022</p>
-            </div>
-
-            <div class="email">
-              <i class="fa fa-envelope"></i>
-              <p>info@example.com</p>
-            </div>
-
-            <div>
-              <i class="fa fa-phone"></i>
-              <p>+1 5589 55488 55s</p>
-            </div>
-          </div>
+          @include('frontend.contact')
 
           <div class="social-links">
             <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>

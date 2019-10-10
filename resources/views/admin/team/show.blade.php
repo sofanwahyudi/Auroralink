@@ -30,8 +30,12 @@
                             <td>{{$model->telepon}}</td>
                         </tr>
                         <tr>
-                            <td><b>Kategori </b></td>
+                            <td><b>Devisi </b></td>
                             <td>{{ $model->devisi['name'] }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Bagian</b></td>
+                            <td>{{ $model->bagian['nama'] }}</td>
                         </tr>
                         <tr>
                             <td><b>User </b></td>

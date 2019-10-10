@@ -47,6 +47,17 @@
 
               </ul>
         </li> --}}
+        <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-edit"></i> <span>Section</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li class=""><a href="#"><i class="fa fa fa-list"></i> Daftar Section</a></li>
+                </ul>
+              </li>
         <li class="treeview {{set_active(['parts','kats','merks'])}}">
                 <a href="#">
                   <i class="fa fa-cube"></i> <span>Part</span>

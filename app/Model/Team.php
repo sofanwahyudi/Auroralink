@@ -23,7 +23,7 @@ class Team extends Model
         'alamat',
         'email',
         'telepon',
-        'dept_id',
+        'bagain_id',
         'devisi_id',
         'users_id',
     ];
@@ -37,6 +37,10 @@ class Team extends Model
        public function devisi()
        {
            return $this->belongsTo(Devisi::class);
+       }
+       public function bagian()
+       {
+           return $this->belongsTo(Bagian::class);
        }
        public function users()
        {

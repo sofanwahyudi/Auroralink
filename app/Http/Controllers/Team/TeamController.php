@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Devisi;
 use App\Model\Team;
 use Illuminate\Http\Request;
 use DataTables;
@@ -51,6 +52,7 @@ class TeamController extends Controller
     public function create()
     {
         $model = new Team();
+        $s = Devisi::all()->where('bagian_id','=','0');
         return view('admin.team.form', compact('model'));
     }
 
@@ -68,6 +70,7 @@ class TeamController extends Controller
             'telepon' => 'required|max:13',
             'email' => 'required|email|unique:users',
             'devisi_id' => 'required',
+            'bagian_id' => 'required',
             'users_id' => 'required',
             // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -78,6 +81,7 @@ class TeamController extends Controller
         $data->email = $request->email;
         $data->telepon = $request->telepon;
         $data->devisi_id = $request->devisi_id;
+        $data->bagian_id = $request->bagian_id;
         $data->users_id = $request->users_id;
         $nik = \DB::table('team')->max('id');
         $th = Carbon::now();
@@ -91,17 +95,7 @@ class TeamController extends Controller
              $request->foto->move(public_path('/image/upload'), $data->foto);
          }
          $data->save();
-         return redirect()->back()->with('success','Data Berhasil disimpan');
-        //  ;
-        //      $request->file('gambar')->move('image/', $request->file('gambar')->getClientOriginalName());
-        //      $data->gambar = $request->file('gambar')->getClientOriginalName();
-
-
-        //  if ($data->save()) {
-        //      return redirect()->back()->with('success','Data Berhasil disimpan');
-        //  } else {
-        //      return redirect()->back()->with('danger','Ups... Maaf');
-        //  }
+         return redirect()->back();
     }
 
     /**
@@ -113,7 +107,7 @@ class TeamController extends Controller
     public function show($id)
     {
         $model = Team::findOrFail($id);
-        return view('admin.team.show', compact('model'));
+              return view('admin.team.show', compact('model'));
     }
 
     /**
@@ -142,9 +136,9 @@ class TeamController extends Controller
             'alamat' => 'required|max:125',
             'telepon' => 'required|max:13',
             'email' => 'required|email|unique:users',
-            'dept_id' => 'required',
             'devisi_id' => 'required',
             'users_id' => 'required',
+            'bagian_id' => 'required',
             // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

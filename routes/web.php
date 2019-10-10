@@ -13,7 +13,15 @@
 
 Route::get('/', function () {
     return view('frontend.welcome');
+
+
 });
+Route::get('/', 'FrontController@index');
+Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
+Route::get('/services', 'FrontController@sectionServices')->name('section.services');
+// Route::get('/', 'FrontController@section');
+//Route::get('/services', 'FrontController@sectionOurServices');
+//Route::get('/portofolio', 'FrontController@sectionPortofolio');
 
 Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
@@ -47,6 +55,18 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('csv', 'PartController@exportCsv')->name('export_part_csv');
             Route::post('part/delete-multiple', ['as'=>'part.multiple-delete','uses'=>'PartController@deleteMultiple']);
 
+
+//Route Portofolio
+
+            Route::resource('portofolio', 'PortofolioController');
+            Route::get('portofolio', 'PortofolioController@index')->name('portofolio');
+            Route::get('json/portofolio', 'PortofolioController@dataTable')->name('portofolio.json');
+
+//Route Sections
+
+            Route::resource('sections', 'SectionController');
+            Route::get('sections', 'SectionController@index')->name('sections');
+            Route::get('json/sections', 'SectionController@dataTable')->name('sections.json');
 
 //Route Team
             Route::resource('team', 'TeamController');

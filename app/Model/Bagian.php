@@ -18,4 +18,8 @@ class Bagian extends Model
     {
         return $this->belongsTo(Devisi::class);
     }
+    public function team()
+    {
+        return $this->hasMany(Team::class);
+    }
 }
