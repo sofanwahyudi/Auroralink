@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('frontend.welcome');
 
@@ -54,6 +55,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('excel', 'PartController@exportExcel')->name('export_part_xls');
             Route::get('csv', 'PartController@exportCsv')->name('export_part_csv');
             Route::post('part/delete-multiple', ['as'=>'part.multiple-delete','uses'=>'PartController@deleteMultiple']);
+
 
 
 //Route Portofolio

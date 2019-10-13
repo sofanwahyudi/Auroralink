@@ -25,14 +25,14 @@
 @stop
 
 
-@section('start')
+{{--  @section('start')
     <section id="get-started" class="padd-section text-center wow fadeInUp">
 
     <div class="container">
       <div class="section-title text-center">
 
-        <h2>simple systeme fordiscount </h2>
-        <p class="separator">Integer cursus bibendum augue ac cursus .</p>
+        <h2>IT Partners Solutions </h2>
+        <p class="separator">Join Us .</p>
 
       </div>
     </div>
@@ -40,44 +40,13 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-block">
-
-            <img src="asset/img/svg/cloud.svg" alt="img" class="img-fluid">
-            <h4>introducing whatsapp</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-            <a href="#">read more</a>
-
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-block">
-
-            <img src="asset/img/svg/planet.svg" alt="img" class="img-fluid">
-            <h4>user friendly interface</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-            <a href="#">read more</a>
-
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-block">
-
-            <img src="asset/img/svg/asteroid.svg" alt="img" class="img-fluid">
-            <h4>build the app everyone love</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-            <a href="#">read more</a>
-
-          </div>
-        </div>
+@include('frontend.start')
 
       </div>
     </div>
 
   </section>
-@stop
+@stop  --}}
 
  {{--  ======================================================About Section========================================================   --}}
 @section('about')
@@ -132,7 +101,7 @@
 @stop
 
 
-@section('video')
+{{--  @section('video')
 <section id="video" class="text-center wow fadeInUp">
     <div class="overlay">
       <div class="container-fluid container-full">
@@ -145,7 +114,7 @@
     </div>
 </section>
 
-@stop
+@stop  --}}
 
 
 @section('team')
@@ -172,7 +141,7 @@
 @stop
 
 
-@section('testimoni')
+{{--  @section('testimoni')
 
   <section id="testimonials" class="padd-section text-center wow fadeInUp">
     <div class="container">
@@ -185,38 +154,7 @@
 
               <div class="carousel-inner" role="listbox">
 
-                <div class="carousel-item  active">
-                  <div class="top-top">
-
-                    <h2>Judul Testimoni</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries.</p>
-                    <h4>Kimberly Tran<span>manager</span></h4>
-
-                  </div>
-                </div>
-
-                <div class="carousel-item ">
-                  <div class="top-top">
-
-                    <h2>Our Users Speack volumes us</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries.</p>
-                    <h4>Henderson<span>manager</span></h4>
-
-                  </div>
-                </div>
-
-                <div class="carousel-item ">
-                  <div class="top-top">
-
-                    <h2>Our Users Speack volumes us</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries.</p>
-                    <h4>David Spark<span>manager</span></h4>
-
-                  </div>
-                </div>
+@include('frontend.testimoni')
 
               </div>
 
@@ -238,104 +176,29 @@
     </div>
   </section>
 
-@stop
+@stop  --}}
 
 
-@section('price')
+{{--  @section('price')
         <section id="pricing" class="padd-section text-center wow fadeInUp">
 
         <div class="container">
         <div class="section-title text-center">
 
-            <h2>Judul List Harga</h2>
+            <h2>Pricelist</h2>
             <p class="separator">   .</p>
 
         </div>
         </div>
 
         <div class="container">
-        <div class="row">
-
-            <div class="col-md-6 col-lg-3">
-            <div class="block-pricing">
-                <div class="table">
-                <h4>basic</h4>
-                <h2>$29</h2>
-                <ul class="list-unstyled">
-                    <li><b>4 GB</b> Ram</li>
-                    <li><b>7/24</b> Tech Support</li>
-                    <li><b>40 GB</b> SSD Cloud Storage</li>
-                    <li>Monthly Backups</li>
-                    <li>Palo Protection</li>
-                </ul>
-                <div class="table_btn">
-                    <a href="#" class="btn"><i class="fa fa-shopping-cart"></i> Buy Now</a>
-                </div>
-                </div>
+                <div class="owl-carousel owl-theme">
+@include('frontend.price')
             </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-            <div class="block-pricing">
-                <div class="table">
-                <h4>PERSONAL</h4>
-                <h2>$29</h2>
-                <ul class="list-unstyled">
-                    <li><b>4 GB</b> Ram</li>
-                    <li><b>7/24</b> Tech Support</li>
-                    <li><b>40 GB</b> SSD Cloud Storage</li>
-                    <li>Monthly Backups</li>
-                    <li>Palo Protection</li>
-                </ul>
-                <div class="table_btn">
-                    <a href="#" class="btn"><i class="fa fa-shopping-cart"></i> Buy Now</a>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-            <div class="block-pricing">
-                <div class="table">
-                <h4>BUSINESS</h4>
-                <h2>$29</h2>
-                <ul class="list-unstyled">
-                    <li><b>4 GB</b> Ram</li>
-                    <li><b>7/24</b> Tech Support</li>
-                    <li><b>40 GB</b> SSD Cloud Storage</li>
-                    <li>Monthly Backups</li>
-                    <li>Palo Protection</li>
-                </ul>
-                <div class="table_btn">
-                    <a href="#" class="btn"><i class="fa fa-shopping-cart"></i> Buy Now</a>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-            <div class="block-pricing">
-                <div class="table">
-                <h4>profeesional</h4>
-                <h2>$29</h2>
-                <ul class="list-unstyled">
-                    <li><b>4 GB</b> Ram</li>
-                    <li><b>7/24</b> Tech Support</li>
-                    <li><b>40 GB</b> SSD Cloud Storage</li>
-                    <li>Monthly Backups</li>
-                    <li>Palo Protection</li>
-                </ul>
-                <div class="table_btn">
-                    <a href="#" class="btn"><i class="fa fa-shopping-cart"></i> Buy Now</a>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
         </div>
     </section>
 
-@stop
+@stop  --}}
 
 
 {{--  ======================================================blog Section========================================================  --}}
@@ -412,10 +275,12 @@
         </div>
 
           <ul class="list-unstyled">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://twitter.com/id_auroralink" class="twitter"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/AuroralinkDotID" class="facebook"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/auroralinkid/" class="instagram"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="https://wa.me/628113190408" class="whatsapp"><i class="fa fa-whatsapp"></i></a></li>
+            <li><a href="https://t.me/auroralink" class="telegram"><i class="fa fa-telegram"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/auroralink-id-0a0908171/" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
           </ul>
 
 
@@ -441,23 +306,23 @@
 
           @include('frontend.contact')
 
-          <div class="social-links">
-            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-          </div>
+          {{--  <div class="social-links">
+            <a href="https://twitter.com/id_auroralink" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.facebook.com/AuroralinkDotID" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/auroralinkid/" class="instagram"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="whatsapp"><i class="fa fa-whatsapp"></i></a>
+            <a href="#" class="telegram"><i class="fa fa-telegram"></i></a>
+            <a href="https://www.linkedin.com/in/auroralink-id-0a0908171/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+          </div>  --}}
 
         </div>
 
         <div class="col-lg-5 col-md-8">
           <div class="form">
-            <div id="sendmessage">Your message has been sent. Thank you!</div>
-            <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
+            <form action="{{ route('leads.store') }}" method="post" role="form" class="contactForm">
+            {{ csrf_field() }}
               <div class="form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <input type="text" name="nama" class="form-control" id="nama" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                 <div class="validation"></div>
               </div>
               <div class="form-group">
@@ -465,11 +330,11 @@
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <input type="number" class="form-control" name="telepon" id="telepon" placeholder="Phone" data-rule="minlen:4" data-msg="Please enter your phone" />
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <textarea class="form-control" name="komentar" id="komentar" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                 <div class="validation"></div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
