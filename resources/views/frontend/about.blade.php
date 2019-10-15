@@ -1,6 +1,6 @@
 
-        <div class="col-md-5 col-lg-3">
-          <img src="asset/img/Auroralink_about.jpg" alt="About">
+        <div class="col-md-5 col-lg-3 top_left_cont zoomIn wow animated animated">
+          <img src="image/bo.png" alt="About" class="img-about">
         </div>
 
         <div class="col-md-7 col-lg-5">
@@ -8,7 +8,7 @@
 
 
 
-            <h2><span><u>Auroralink</u></span>About Us </h2>
+            <h2><span></span>About Us </h2>
             {!! $about->content !!}
             <p>
 

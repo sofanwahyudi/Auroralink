@@ -1,16 +1,13 @@
 @foreach ($team as $data)
-        <div class="col-md-6 col-md-4 col-lg-3">
-          <div class="team-block bottom">
-            <img src="{{$data->getGambar()}}" class="img-responsive" alt="img">
-            <div class="team-content">
-              <ul class="list-unstyled">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              </ul>
-              <span>{{ $data->bagian['nama'] }}</span>
-              <h4>{{ $data->nama }}</h4>
-            </div>
-          </div>
+   <div class="top_left_cont zoomIn wow animated animated">
+            <img src="http://bit.ly/2B0Uxlj" class="rounded-circle" alt="img">
+            <span>{{ $data->bagian['nama'] }}</span>
+            <p>{{ $data->nama }}</p>
         </div>
 @endforeach
+
+{{--  <div tabindex="-1" style="width: 100%; display: inline-block;">
+<div class="d-flex flex-column">
+<img src="http://bit.ly/2B0Uxlj" alt="">
+<div class="mt-3 Name">Andree Wijaya</div>
+<div class="Posisi">CEO/CTO</div></div></div>  --}}

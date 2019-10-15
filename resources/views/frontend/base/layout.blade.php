@@ -115,13 +115,13 @@
         <div class="col-sm-6 col-md-3 col-lg-2">
           <div class="list-menu">
 
-            <h4>Abou Us</h4>
+            <h4>Demo Apps</h4>
 
             <ul class="list-unstyled">
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Features item</a></li>
-              <li><a href="#">Live streaming</a></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Point Of Sale</a></li>
+              <li><a href="#">WMS</a></li>
+              <li><a href="#">School App</a></li>
+              <li><a href="#">HR App</a></li>
             </ul>
 
           </div>
@@ -130,13 +130,13 @@
         <div class="col-sm-6 col-md-3 col-lg-2">
           <div class="list-menu">
 
-            <h4>Abou Us</h4>
+            <h4>Proposal</h4>
 
             <ul class="list-unstyled">
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Features item</a></li>
-              <li><a href="#">Live streaming</a></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">MOU</a></li>
+              <li><a href="#">Form Request</a></li>
+              <li><a href="#">Form Example</a></li>
+              <li><a href="#">Proposal</a></li>
             </ul>
 
           </div>
@@ -145,13 +145,13 @@
         <div class="col-sm-6 col-md-3 col-lg-2">
           <div class="list-menu">
 
-            <h4>Support</h4>
+            <h4>Support Center</h4>
 
             <ul class="list-unstyled">
               <li><a href="#">faq</a></li>
-              <li><a href="#">Editor help</a></li>
-              <li><a href="#">Contact us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Remote Support</a></li>
+              <li><a href="#">Onsite Support</a></li>
+              <li><a href="#">Contact Team</a></li>
             </ul>
 
           </div>
@@ -160,12 +160,12 @@
         <div class="col-sm-6 col-md-3 col-lg-2">
           <div class="list-menu">
 
-            <h4>Abou Us</h4>
+            <h4>Term Of Services</h4>
 
             <ul class="list-unstyled">
-              <li><a href="#">About us</a></li>
+              {{--  <li><a href="#">Privacy</a></li>
               <li><a href="#">Features item</a></li>
-              <li><a href="#">Live streaming</a></li>
+              <li><a href="#">Live streaming</a></li>  --}}
               <li><a href="#">Privacy Policy</a></li>
             </ul>
 

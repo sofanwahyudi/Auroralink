@@ -1,0 +1,40 @@
+.Background-Top {
+    background: url("/public/img/background1.png") no-repeat !important;
+    background-position: right top !important;
+    background-size: 80% 95% !important;
+    @media (max-width: 768px) {
+      background-size: 65% 60% !important;
+    }
+  }
+  .Background-Mid {
+    background: url("/public/img/Home/background_tengah.png") no-repeat !important;
+    background-position: 0% 40% !important;
+    background-size: 100% 60% !important;
+    @media (max-width: 768px) {
+      background-size: 100% 25% !important;
+    }
+  }
+  .Background-Bot {
+    background: url("/public/img/Home/background_bawah.png") no-repeat !important;
+    background-position: 0% 100% !important;
+    background-size: 100% 100% !important;
+    @media (max-width: 768px) {
+      background-size: 100% 20% !important;
+    }
+  }
+  .Background-Contact-Top {
+    background: url("/public/img/Home/background2.png") no-repeat !important;
+    background-position: right top !important;
+    background-size: 80% 30% !important;
+    @media (max-width: 768px) {
+      background-size: 65% 10% !important;
+    }
+  }
+  .Background-Contact-Bottom {
+    background: url("/public/img/Home/background_bawah.png") no-repeat !important;
+    background-position: 0% 100% !important;
+    background-size: 100% 80% !important;
+    @media (max-width: 768px) {
+      background-size: 100% 60% !important;
+    }
+  }

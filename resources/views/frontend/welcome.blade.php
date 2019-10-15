@@ -8,10 +8,10 @@
 
 @section('hero')
 <section id="hero" class="wow fadeIn">
-    <div class="hero-container">
+    <div class="hero-container top_left_cont zoomIn wow animated animated">
       <h1>Welcome to Auroralink</h1>
       <h2>Reliable IT Support Patners</h2>
-      <img src="asset/img/hero-img.png" alt="Hero Imgs">
+      <img src="image/dis.png" alt="Hero Imgs">
       <a href="#get-started" class="btn-get-started scrollto">Get Started</a>
       <div class="btns">
         <a href="#"><i class="fa fa-laptop fa-3x"></i> Laptop Repair</a>
@@ -25,20 +25,20 @@
 @stop
 
 
-{{--  @section('start')
+@section('start')
     <section id="get-started" class="padd-section text-center wow fadeInUp">
 
     <div class="container">
       <div class="section-title text-center">
 
         <h2>IT Partners Solutions </h2>
-        <p class="separator">Join Us .</p>
+        <p class="separator">How To Work ? .</p>
 
       </div>
     </div>
 
     <div class="container">
-      <div class="row">
+      <div class="row " >
 
 @include('frontend.start')
 
@@ -46,7 +46,7 @@
     </div>
 
   </section>
-@stop  --}}
+@stop
 
  {{--  ======================================================About Section========================================================   --}}
 @section('about')
@@ -66,7 +66,7 @@
 @section('services')
       <section id="features" class="padd-section text-center wow fadeInUp">
       <h1>Services </h1>
-    <div class="container">
+    <div class="container-fluid container-full">
       <div class="section-title text-center">
         <p class="separator"> Our Services </p>
       </div>
@@ -119,23 +119,17 @@
 
 @section('team')
     <section id="team" class="padd-section text-center wow fadeInUp">
-
-    <div class="container">
-      <div class="section-title text-center">
-
-        <h2>Our Teams</h2>
-        <p class="separator">   .</p>
-
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-
-@include('frontend.team')
-
-      </div>
-    </div>
+<div class="container-fluid container-full">
+            <div class="section-title text-center">
+                <h3>Team</h3>
+                <p class="separator"> Our teams has grown and delivered numerous masterpiece. </p>
+            </div>
+        </div>
+        <div class="container">
+                <div class="owl-carousel owl-theme">
+                @include('frontend.team')
+            </div>
+        </div>
   </section>
 
 @stop
@@ -217,38 +211,7 @@
         <div class="container">
         <div class="row">
 
-            <div class="col-md-6 col-lg-4">
-            <div class="block-blog text-left">
-                <a href="#"><img src="asset/img/blog/blog-image-1.jpg" alt="img"></a>
-                <div class="content-blog">
-                <h4><a href="#">whats isthe difference between good and bat typography</a></h4>
-                <span>05, juin 2017</span>
-                <a class="pull-right readmore" href="#">read more</a>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-            <div class="block-blog text-left">
-                <a href="#"><img src="asset/img/blog/blog-image-2.jpg" class="img-responsive" alt="img"></a>
-                <div class="content-blog">
-                <h4><a href="#">whats isthe difference between good and bat typography</a></h4>
-                <span>05, juin 2017</span>
-                <a class="pull-right readmore" href="#">read more</a>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-            <div class="block-blog text-left">
-                <a href="#"><img src="asset/img/blog/blog-image-3.jpg" class="img-responsive" alt="img"></a>
-                <div class="content-blog">
-                <h4><a href="#">whats isthe difference between good and bat typography</a></h4>
-                <span>05, juin 2017</span>
-                <a class="pull-right readmore" href="#">read more</a>
-                </div>
-            </div>
-            </div>
+@include('frontend.blog')
 
         </div>
         </div>

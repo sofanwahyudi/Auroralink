@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.post.index');
+        $post = Post::all();
+        dd($post);
+        return view('admin.post.index', compact('post'));
     }
 
     /**
