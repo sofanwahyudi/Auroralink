@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function() {
 //Route Post
             Route::resource('/post', 'PostController');
             Route::get('post', 'PostController@index')->name('posts');
+            Route::get('json/posts', 'PostController@dataTable')->name('posts.json');
 
 
 //Route Tags

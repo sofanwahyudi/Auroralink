@@ -18,11 +18,6 @@ class CreateTablePostCategories extends Migration
             $table->string('category')->unique();
             $table->timestamps();
         });
-        Schema::create('post_categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('category')->unique();
-            $table->timestamps();
-        });
     }
 
     /**
@@ -33,6 +28,5 @@ class CreateTablePostCategories extends Migration
     public function down()
     {
         Schema::dropIfExists('category');
-        Schema::dropIfExists('post_categories');
     }
 }

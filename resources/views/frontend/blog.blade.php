@@ -5,7 +5,8 @@
         <a href="#"><img src="asset/img/blog/blog-image-1.jpg" alt="img"></a>
         <div class="content-blog">
         <h4>{{ $post->title }}</h4>
-        <span>{{date('d M Y',strtotime($post->created_at))}}</span>
+        {{ dd($post) }}
+        <span class="badge badge-light">{{date('d M Y',strtotime($post->created_at))}}</span>
         <a class="pull-right btn btn-primary " href="#">read more</a>
         </div>
     </div>
