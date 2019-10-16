@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Jasa;
 use App\Model\Portofolio;
+use App\Model\Post;
 use App\Model\Section;
 use App\Model\Team;
 use Illuminate\Http\Request;
@@ -16,8 +17,10 @@ class FrontController extends Controller
         $services = Jasa::all();
         $team   = Team::all();
         $portofolio = Portofolio::all();
+        $blog = Post::all()->take(3);
         $contact = DB::table('section')->where('id', 11)->first();
-
-        return view('frontend.welcome', compact('services', 'team', 'about','portofolio','contact'));
+        $start = DB::table('section')->whereIn('id', array(2, 3, 4))->get();
+// dd($start);
+        return view('frontend.welcome', compact('services', 'team', 'about','portofolio','contact','blog','start'));
     }
 }

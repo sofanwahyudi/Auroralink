@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Category;
 use Illuminate\Http\Request;
+use DB;
 
 class KategoriPostController extends Controller
 {
@@ -14,6 +15,8 @@ class KategoriPostController extends Controller
      */
     public function index()
     {
+        $postcategory = DB::table('category')->get();
+        dd($postcategory);
         return view('admin.post.kategori');
     }
 
