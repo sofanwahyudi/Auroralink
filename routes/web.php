@@ -33,11 +33,27 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('users', 'UserController@index')->name('users');
             Route::resource('dashboard', 'AdminController');
             Route::get('dashboard', 'AdminController@index')->name('dashboard');
-        Route::group(['prefix' => 'post'], function () {
-            Route::resource('/', 'PostController');
-            Route::resource('/tags', 'TagsController');
-            Route::resource('/kategori', 'KategoriPostController');
-        });
+
+//Route Post
+            Route::resource('/post', 'PostController');
+            Route::get('post', 'PostController@index')->name('posts');
+
+
+//Route Tags
+            Route::resource('tags', 'TagsController');
+            Route::get('/post/tags/list_tags', 'TagsController@index')->name('tags');
+            Route::get('/post/json/tags', 'TagsController@dataTable')->name('tags.json');
+
+
+
+//Route Category
+            Route::resource('postkategori', 'KategoriPostController');
+            Route::get('/post/kategori/list_kategori_post', 'KategoriPostController@index')->name('categorys');
+            Route::get('/post/json/kategori', 'KategoriPostController@dataTable')->name('category.json');
+
+
+
+
         Route::group(['prefix' => 'task'], function () {
             Route::resource('/', 'TaskController');
             Route::resource('/project', 'ProjectController');

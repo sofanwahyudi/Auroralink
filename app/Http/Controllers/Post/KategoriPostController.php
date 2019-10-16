@@ -5,9 +5,26 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use DB;
+use DataTables;
 
 class KategoriPostController extends Controller
 {
+
+    public function dataTable(){
+        $data = Category::query();
+        return DataTables::of($data)
+        ->addColumn('action', function($data){
+            return view('layouts._action', [
+                'model' => $data,
+                'url_show' => route('postkategori.show', $data->id),
+                'url_edit' => route('postkategori.edit', $data->id),
+                'url_destroy' => route('postkategori.destroy', $data->id),
+            ]);
+        })
+        ->addIndexColumn()
+        ->rawColumns(['checkbox','action'])
+        ->make(true);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +32,9 @@ class KategoriPostController extends Controller
      */
     public function index()
     {
-        $postcategory = DB::table('category')->get();
-        dd($postcategory);
-        return view('admin.post.kategori');
+        // $postcategory = DB::table('category')->get();
+        // dd($postcategory);
+        return view('admin.post.kategori.index');
     }
 
     /**
@@ -27,7 +44,8 @@ class KategoriPostController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Category();
+        return view('admin.post.kategori.form', compact('model'));
     }
 
     /**
@@ -38,7 +56,14 @@ class KategoriPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'category' => 'required|string|min:5|unique:category',
+            ]);
+
+            $data = new Category();
+            $data->category = $request->category;
+            $data->save();
+            return redirect()->back()->with('success','Data Berhasil disimpan');
     }
 
     /**
@@ -49,7 +74,8 @@ class KategoriPostController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = Category::findOrFail($id);
+        return view('admin.post.kategori.show', compact('model'));
     }
 
     /**
@@ -60,7 +86,8 @@ class KategoriPostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Category::findOrFail($id);
+        return view('admin.post.kategori.form', compact('model'));
     }
 
     /**
@@ -72,7 +99,12 @@ class KategoriPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'category' => 'required|string|min:5|unique:category',
+            ]);
+
+            $model = Category::findOrFail($id);
+            $model->update($request->all());
     }
 
     /**
@@ -83,6 +115,7 @@ class KategoriPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Category::findOrFail($id);
+        $model->delete();
     }
 }

@@ -119,7 +119,7 @@
 
               </ul>
         </li>
-        <li class="treeview ">
+        <li class="treeview {{set_active(['posts','tags','categorys'])}}">
                 <a href="#"><i class="fa fa-wordpress"></i> <span>Post</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -127,8 +127,9 @@
                 </a>
                 <ul class="treeview-menu ">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-                  <li><a href="{{url('admin/post')}}"><i class="fa fa-list"></i> <span>Daftar Post</span></a></li>
-                  <li><a href="{{url('admin/post/kategori')}}"><i class="fa fa-filter"></i> <span>Kategori</span></a></li>
+                  <li {{set_active('posts')}}><a href="{{route('posts')}}"><i class="fa fa-list"></i> <span>Daftar Post</span></a></li>
+                  <li {{set_active('categorys')}}><a href="{{route('categorys')}}"><i class="fa fa-filter"></i> <span>Kategori</span></a></li>
+                  <li {{set_active('tags')}}><a href="{{route('tags')}}"><i class="fa fa-tags"></i> <span> Tags</span></a></li>
 
               </ul>
         </li>
