@@ -14,6 +14,7 @@ $('body').on('click', '.modal-show', function(event) {
             dataType: 'html',
             success: function(response) {
                 $('#modal-body').html(response);
+                $('#image').html(data.image);
                 $('#datatable').DataTable().ajax.reload();
             }
         });

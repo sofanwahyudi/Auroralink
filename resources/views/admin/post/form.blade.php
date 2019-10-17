@@ -1,7 +1,9 @@
 {!!Form::model($model, [
     'route' => $model->exists ? ['post.update', $model->id] :'post.store',
     'method' => $model->exists ? 'PUT':'POST',
+    'files' => true
 ])!!}
+
 <div class="box-body">
     <div class="form-group">
         <label for="" class="control-label">Title</label>
@@ -35,27 +37,25 @@
         </select>
         </div>
     </div>
-    <div class="form-group col-md-6 required " enctype="multipart/form-data">
+    <div class="form-group col-md-6 required ">
     <label for="name" class="control-label">Gambar <i> (ukuran gambar maksimal adalah 300 X 200)</i></label>
         <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-image"></i></div>
-            <input class="form-control" placeholder="Upload Gambar Part" required="required" name="image" type="file" id="image" enctype="multipart/form-data">
+            <input type="file" class="form-control" name="image" id="image" {{ $errors->has('image') ? 'class=has-error' : '' }} value="{{ $model->image }}">
         </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="" class="control-label">Tags</label>
-        <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-tags"></i></div>
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-info btn-flat">Go!</button>
-            </span>
-        </div>
-        <p class="margin">tags : <code>#technology #tutorial</code></p>
-    </div>
+<div class="form-group">
+                <label>Multiple</label>
+                <select class="form-control select2" name="tags[]" multiple="multiple" data-placeholder="Masukan kata kunci"
+                        style="width: 100%;">
+            @foreach ($tags as $item)
+                  <option value="{{ $item->id }}">{{ $item->tags }}</option>
+            @endforeach
+                </select>
+              </div>
 </div>
-{!! Form::close() !!}
+{{--  {!! Form::close() !!}  --}}
 <script>
 $('.textarea').wysihtml5()
-document.getElementById('#content').value
+$('.select2').select2().val({!! json_encode($model->tags()->getRelatedids() !!}).trigger('change');
 </script>

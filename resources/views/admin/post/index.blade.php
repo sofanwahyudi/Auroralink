@@ -4,7 +4,7 @@ Post | Auroralink
 @stop
 @section('content_header')
     <h1>
-        <span class="fa fa-tags"></span> Kategori Post
+        <span class="fa fa-list"></span> Daftar Post
         <a href="{{ route('post.create') }}"  class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
         <a href="#" data-url="" class="btn-sm btn-danger delete-all"><span class="fa fa-trash"></span> Hapus Data Terpilih</a>
     {{-- <button style="margin: 5px;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button> --}}
@@ -44,7 +44,9 @@ Post | Auroralink
                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Title</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Slug</th>
-
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tags</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Kategori</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Author</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -67,7 +69,18 @@ $(document).ready(function(){
         // { data: 'checkbox', orderable:false, searchable:false },
         { data: 'id', name: 'id' },
         { data: 'title', name: 'title'},
-        { data: 'slug', name: 'slug'},
+        { data: 'slug', name: 'slug' , render : function(data, type, row) {
+              return '<span class="badge bg-green">'+data+'</span>'
+          }  },
+        { data: 'tags', name: 'tags' , render : function(data, type, row) {
+              return '<span class="badge bg-blue">'+data+'</span>'
+          }  },
+          { data: 'kategori', name: 'kategori' , render : function(data, type, row) {
+              return '<span class="badge bg-red">'+data+'</span>'
+          }  },
+          { data: 'author', name: 'author' , render : function(data, type, row) {
+              return '<span class="badge bg-grey">'+data+'</span>'
+          }  },
         { data: 'action', orderable:false, searchable:false },
     ]
     }

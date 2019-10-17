@@ -3,14 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Model\Post;
+use App\Model\Tags;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use Yajra\DataTables\Facades\DataTables;
+use Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function dataTable(){
         $data = Post::query();
         return DataTables::of($data)
+        ->addColumn('tags', function($data){
+            foreach ($data->tags as $tags) {
+                return $tags->tags;
+            }
+        })
+        ->addColumn('kategori', function($data){
+                return $data->kategori['category'];
+        })
+        ->addColumn('author', function($data){
+            return $data->users['name'];
+    })
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
@@ -41,7 +56,8 @@ class PostController extends Controller
     public function create()
     {
         $model = new Post();
-        return view('admin.post.form', compact('model'));
+        $tags = Tags::all();
+        return view('admin.post.form', compact('model','tags'));
     }
 
     /**
@@ -55,19 +71,33 @@ class PostController extends Controller
         $this->validate($request,[
             'title' => 'required|string|min:10',
             'content' => 'required|string|min:30',
-            'slug' => 'required|string|min:5|unique:slug',
+            'slug' => 'required|string|min:5|unique:post',
+            'category_id' => 'required|integer',
+          //  'files' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
-
             $data = new Post();
             $data->title = $request->title;
             $data->content = $request->content;
             $data->slug = $request->slug;
             $data->category_id = $request->category_id;
-            if($request->hasFile( 'image')){
-                $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
-                $request->image->move(public_path('/image/upload'), $data->image);
+            $currentuser = Auth::user()->id;
+            $data->users_id = $currentuser;
+
+            if($request->file( 'image')){
+                $image = $request->file('image');
+                $filename = time() . '.' . $image->getClienOriginalExtension();
+                $location = public_path('/image/upload/' .$filename);
+                Image::make($image)->resize(800, 400)->save($location);
+                // $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
+                // $request->image->move(public_path('/image/upload'), $data->image);
+                $data->image = $filename;
             }
+
             $data->save();
+
+
+            $data->tags()->sync($request->tags, false);
+
             return redirect()->back()->with('success','Data Berhasil disimpan');
     }
 
@@ -80,7 +110,6 @@ class PostController extends Controller
     public function show($id)
     {
         $model = Post::findOrFail($id);
-        dd($model->categories);
         return view('admin.post.show', compact('model'));
     }
 
@@ -93,7 +122,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $model = Post::findOrFail($id);
-        return view('admin.post.form', compact('model'));
+        $tags = Tags::all();
+        return view('admin.post.form', compact('model','tags'));
     }
 
     /**
@@ -108,11 +138,38 @@ class PostController extends Controller
         $this->validate($request,[
             'title' => 'required|string|min:10',
             'content' => 'required|string|min:30',
-            'slug' => 'required|string|min:5|unique:slug',
             ]);
 
         $model = Post::findOrFail($id);
-        $model->update($request->all());
+        $model->title = $request->title;
+        $model->content = $request->content;
+        $model->slug = $request->slug;
+        $model->category_id = $request->category_id;
+        $currentuser = Auth::user()->id;
+        $model->users_id = $currentuser;
+
+        if($request->hasFile( 'feature_image')){
+            $image = $request->file('feature_image');
+            $filename = time() . '.' . $image->getClienOriginalExtension();
+            $location = public_path('/image/upload/' .$filename);
+            Image::make($image)->resize(800, 400)->save($location);
+            $model->image = $filename;
+            $oldFilename = $model->image;
+            //Update Image
+            $model->image;
+            // Delete Image
+            Storage::delete($oldFilename);
+        }
+
+        $model->save();
+
+        if (isset($request->tags)) {
+            $model->tags()->sync($request->tags);
+        } else {
+            $model->tags()->sync(array());
+        }
+
+        // $model->tags()->sync($request->tags, false);
     }
 
     /**
@@ -124,6 +181,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $model = Post::findOrFail($id);
+        // $model->tags()->deatach();
+        // Storrage::delete($model->image);
         $model->delete();
     }
 }

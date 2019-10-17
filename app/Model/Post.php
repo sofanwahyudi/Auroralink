@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\User;
+use App\Model\Category;
 use App\Model\Comment;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,15 +26,15 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
     public function tags(){
-        return $this->belongsToMany(PostTags::class);
+        return $this->belongsToMany(Tags::class);
     }
-    public function categories(){
-        return $this->belongsTo('App\Model\Category');
+    public function kategori(){
+        return $this->belongsTo(Category::class, 'category_id');
     }
     public function getGambar(){
         if(!$this->gambar){
             return asset('image/dash.jpeg');
         }
-        return asset('image/' .$this->gambar);
+        return asset('image/upload' .$this->image);
     }
 }

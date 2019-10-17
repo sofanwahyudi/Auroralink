@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\Model\Post;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -15,6 +17,6 @@ class Category extends Model
     protected $fillable = array('category');
 
     public function post(){
-        return $this->hasMany(Post::class, 'post_id', 'tags_id');
+        return $this->hasMany(Post::class);
     }
 }
