@@ -1,6 +1,7 @@
 {!!Form::model($model, [
     'route' => $model->exists ? ['team.update', $model->id] :'team.store',
     'method' => $model->exists ? 'PUT':'POST',
+    'files' => true,
 ])!!}
 <div class="box-body">
     <div class="form-group col-md-6">
@@ -67,24 +68,12 @@
         </select>
         </div>
     </div>
+    <div class="form-group col-md-6 required ">
+    <label for="name" class="control-label">Gambar <i> (ukuran gambar maksimal adalah 300 X 200)</i></label>
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-image"></i></div>
+            {!! Form::file('foto') !!}
+        </div>
+    </div>
 </div>
 {!! Form::close() !!}
-{{--  <script>
-$(document).ready(function () {
-            $('#category').on('change',function(e){
-            console.log(e);
-            var cat_id = e.target.value;
-            //console.log(cat_id);
-            //ajax
-            $.get('/team?cat_id='+ cat_id,function(data){
-                //success data
-               //console.log(data);
-                var subcat =  $('#subcategory').empty();
-                $.each(data,function(create,subcatObj){
-                    var option = $('<option/>', {id:create, value:subcatObj});
-                    subcat.append('<option value ="'+subcatObj+'">'+subcatObj+'</option>');
-                });
-            });
-        });
-    });
-</script>  --}}

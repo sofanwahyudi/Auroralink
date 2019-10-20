@@ -1,8 +1,10 @@
 @foreach ($team as $data)
    <div class="top_left_cont zoomIn wow animated animated">
-            <img src="http://bit.ly/2B0Uxlj" class="rounded-circle" alt="img">
-            <span>{{ $data->bagian['nama'] }}</span>
-            <p>{{ $data->nama }}</p>
+            <img src="{{$data->getGambar()}}" class="rounded-circle" alt="about" height="200" width="200">
+            <div class="top-top">
+            <span>{{ $data->nama }} </span><br>
+            <span class="badge badge-primary">{{ $data->bagian['nama'] }} </span>
+            </div>
         </div>
 @endforeach
 

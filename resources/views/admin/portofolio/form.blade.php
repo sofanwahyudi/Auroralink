@@ -1,6 +1,7 @@
 {!!Form::model($model, [
     'route' => $model->exists ? ['portofolio.update', $model->id] :'portofolio.store',
     'method' => $model->exists ? 'PUT':'POST',
+    'files' => true,
 ])!!}
 <div class="box-body">
     <div class="form-group ">
@@ -24,11 +25,11 @@
             {!! Form::text('url', null, ['class' => 'form-control', 'id' => 'url', 'placeholder' => 'Masukan Link']) !!}
         </div>
     </div>
-    <div class="form-group col-md-6 required " enctype="multipart/form-data">
+    <div class="form-group col-md-6 required">
     <label for="name" class="control-label">Gambar <i> (ukuran gambar maksimal adalah 300 X 200)</i></label>
         <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-image"></i></div>
-            <input class="form-control" placeholder="Upload Gambar Part" required="required" name="gambar" type="file" id="gambar" enctype="multipart/form-data">
+            {!! Form::file('gambar') !!}
         </div>
     </div>
 </div>

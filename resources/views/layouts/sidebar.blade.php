@@ -34,20 +34,18 @@
         <li class="{{set_active('dashboard')}}"><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class="{{set_active('suppliers')}}"><a href="{{route('suppliers')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
         <li class="{{set_active('leads')}}"><a href="{{route('leads')}}"><i class="fa fa-paper-plane-o"></i> <span>Leads</span></a></li>
-        {{-- <li class="treeview ">
-                <a href="#"><i class="fa fa-cube"></i> <span>Part</span>
+        <li class="treeview {{set_active(['sections','portofolio'])}}">
+                <a href="#">
+                  <i class="fa fa-th-large"></i> <span>Section</span>
                   <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
                 </a>
-                <ul class="treeview-menu ">
-                  <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li>
-                  <li class="active"><a href="{{url('admin/part')}}"><i class="fa fa-cubes"></i> <span>Daftar Part</span></a></li>
-                  <li><a href="{{url('admin/part/kategori')}}"><i class="fa fa-filter"></i> <span>Part Kategori</span></a></li>
-
-              </ul>
-        </li> --}}
-        <li class="{{set_active('sections')}}"><a href="{{route('sections')}}"><i class="fa fa-th-large"></i> <span>Section</span></a></li>
+                <ul class="treeview-menu">
+                  <li class="{{set_active('sections')}} "><a href="{{route('sections')}}"><i class="fa fa-th-large"></i> Section</a></li>
+                  <li class="{{set_active('portofolio')}}"><a href="{{route('portofolio')}}"><i class="fa fa-image"></i> Portofolio</a></li>
+                </ul>
+              </li>
         <li class="treeview {{set_active(['parts','kats','merks'])}}">
                 <a href="#">
                   <i class="fa fa-cube"></i> <span>Part</span>

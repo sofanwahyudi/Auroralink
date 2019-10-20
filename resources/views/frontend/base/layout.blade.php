@@ -108,7 +108,7 @@
           <div class="footer-logo">
 
             <a class="navbar-brand" href="#">AuroralinkID</a>
-            //<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
+            <p>Auroralink is a provider of technical services engaged in information and technology since 2011, starting from making information systems (Website / Application), network and computer maintenance, laptop services and others.</p>
           </div>
         </div>
 

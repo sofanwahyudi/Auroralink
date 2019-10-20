@@ -7,6 +7,8 @@ use App\Model\Team;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
+use Image;
+use Storage;
 
 class TeamController extends Controller
 {
@@ -72,7 +74,8 @@ class TeamController extends Controller
             'devisi_id' => 'required',
             'bagian_id' => 'required',
             'users_id' => 'required',
-            // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'file' => 'foto'
+             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = new Team();
@@ -88,12 +91,18 @@ class TeamController extends Controller
         $tahun = $th->format('Y');
         $nik = str_pad( $tahun . $nik, 8, 0 , STR_PAD_RIGHT);
         $data->nik = $nik;
-        $data->foto = null;
+        // $data->foto = null;
 
-         if($request->hasFile( 'foto')){
-             $data->foto = '/image/upload/'.str_slug($data->nama).'.'.$request->foto->getClienOriginalExtension();
-             $request->foto->move(public_path('/image/upload'), $data->foto);
-         }
+        if($request->file('foto')){
+            $image = $request->file('foto');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('/image/' .$filename);
+            Image::make($image)->resize(500, 300)->save($location);
+            // $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
+            // $request->image->move(public_path('/image/upload'), $data->image);
+            $data->foto = $filename;
+        }
+
          $data->save();
          return redirect()->back();
     }
@@ -132,19 +141,30 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama' => 'required|max:25',
-            'alamat' => 'required|max:125',
-            'telepon' => 'required|max:13',
-            'email' => 'required|email|unique:users',
-            'devisi_id' => 'required',
-            'users_id' => 'required',
-            'bagian_id' => 'required',
-            // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        // 'file' => 'foto'
+        'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-
         $model = Team::findOrFail($id);
-        $model->update($request->all());
+        if($request->file('foto')){
+            $image = $request->file('foto');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('/image/' .$filename);
+            Image::make($image)->resize(800, 400)->save($location);
+
+            $model->foto = $filename;
+
+            $oldFilename = $model->foto;
+            //Update Image
+            $model->foto;
+            // Delete Image
+            Storage::delete($oldFilename);
+        }
+
+        // $model->save();
+        $model->update();
+
     }
 
     /**
@@ -156,6 +176,7 @@ class TeamController extends Controller
     public function destroy($id)
     {
         $model = Team::findOrFail($id);
+        Storage::delete($model->foto);
         $model->delete();
     }
 }

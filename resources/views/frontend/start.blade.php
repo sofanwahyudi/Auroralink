@@ -2,7 +2,7 @@
 @foreach ($start as $data)
 <div class="col-md-6 col-lg-4">
     <div class="feature-block">
-            <img src="image/a.jpg" alt="About" class="img-start">
+            <img src="{{ url('image/'. $data->image) }}" alt="About" class="img-start">
             <h4>{{ $data->title }}</h4>
             <p>{!! $data->content !!}</p>
     </div>

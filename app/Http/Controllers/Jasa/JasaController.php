@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Jasa;
 use Illuminate\Http\Request;
 use DataTables;
+use Image;
 
 class JasaController extends Controller
 {
@@ -62,7 +63,7 @@ class JasaController extends Controller
         'benefit' => 'required|max:500',
         'harga' => 'required',
         'job_id' => 'required',
-        // 'gambar' => 'required',
+        'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = new Jasa();
@@ -74,15 +75,13 @@ class JasaController extends Controller
         $data->jam_id = $request->jam_id;
         $data->job_id = $request->job_id;
 
-            // $file=$request->file('image');
-            // $path='image/upload';
-            // $filename=$file->getClientOriginalName();
-            // $success=$file->move($path,$filename);
-            // $data->gambar = $filename;
-
-        // if($request->file('gambar'));
-        //     $request->file('gambar')->move('image/', $request->file('gambar')->getClientOriginalName());
-        //     $data->gambar = $request->file('gambar')->getClientOriginalName();
+        if($request->file('gambar')){
+            $image = $request->file('gambar');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('/image/' .$filename);
+            Image::make($image)->resize(500, 300)->save($location);
+            $data->gambar= $filename;
+        }
 
 
         $data->save();

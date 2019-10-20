@@ -71,7 +71,7 @@ $(document).ready(function(){
             if (data == null) {
                 return "<img src=\"/image/avatar.jpeg\" height=\"50\"/>";
             } else {
-                return "<img src=\"/path/" + data + "\" height=\"50\"/>";
+                return "<img src=\"/image/" + data + "\" height=\"50\"/>";
             }
                     } },
         { data: 'nik', name: 'nik' },

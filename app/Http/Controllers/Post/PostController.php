@@ -73,7 +73,7 @@ class PostController extends Controller
             'content' => 'required|string|min:30',
             'slug' => 'required|string|min:5|unique:post',
             'category_id' => 'required|integer',
-          //  'files' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
             $data = new Post();
             $data->title = $request->title;
@@ -85,7 +85,7 @@ class PostController extends Controller
 
             if($request->file( 'image')){
                 $image = $request->file('image');
-                $filename = time() . '.' . $image->getClienOriginalExtension();
+                $filename = time() . '.' . $image->getClientOriginalExtension();
                 $location = public_path('/image/upload/' .$filename);
                 Image::make($image)->resize(800, 400)->save($location);
                 // $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
@@ -150,7 +150,7 @@ class PostController extends Controller
 
         if($request->hasFile( 'feature_image')){
             $image = $request->file('feature_image');
-            $filename = time() . '.' . $image->getClienOriginalExtension();
+            $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('/image/upload/' .$filename);
             Image::make($image)->resize(800, 400)->save($location);
             $model->image = $filename;
@@ -181,8 +181,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $model = Post::findOrFail($id);
-        // $model->tags()->deatach();
-        // Storrage::delete($model->image);
+        $model->tags()->deatach();
+        Storrage::delete($model->image);
         $model->delete();
     }
 }

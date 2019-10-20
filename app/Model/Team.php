@@ -29,10 +29,10 @@ class Team extends Model
     ];
 
        public function getGambar(){
-           if(!$this->gambar){
+           if(!$this->foto){
                return asset('image/avatar.jpeg');
            }
-           return asset('image/' .$this->gambar);
+           return asset('image/' .$this->foto);
        }
        public function devisi()
        {

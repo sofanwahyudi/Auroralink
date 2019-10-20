@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Model\Portofolio;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Image;
+use Storage;
+
 
 class PortofolioController extends Controller
 {
@@ -57,6 +60,7 @@ class PortofolioController extends Controller
             'title' => 'required|max:255',
             'deskripsi' => 'required|max:255',
             'url' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
             ]);
 
@@ -65,10 +69,13 @@ class PortofolioController extends Controller
             $data->title = $request->title;
             $data->deskripsi = $request->deskripsi;
             $data->url = $request->url;
-            $data->gambar = $request->gambar;
-            if($request->hasFile( 'gambar')){
-                $data->gambar = '/image/upload/'.str_slug($data->title).'.'.$request->gambar->getClienOriginalExtension();
-                $request->gambar->move(public_path('/image/upload'), $data->gambar);
+
+            if($request->file('gambar')){
+                $image = $request->file('gambar');
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $location = public_path('/image/' .$filename);
+                Image::make($image)->resize(500, 300)->save($location);
+                $data->gambar= $filename;
             }
 
             $data->save();
@@ -114,9 +121,19 @@ class PortofolioController extends Controller
             'title' => 'required|max:255',
             'deskripsi' => 'required|max:255',
             'url' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
             ]);
             $model = Portofolio::findOrFail($id);
+
+            if($request->file('gambar')){
+                $image = $request->file('gambar');
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $location = public_path('/image/' .$filename);
+                Image::make($image)->resize(500, 300)->save($location);
+                $model->gambar= $filename;
+            }
+
             $model->update($request->all());
     }
 

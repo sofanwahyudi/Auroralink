@@ -35,6 +35,6 @@ class Post extends Model
         if(!$this->gambar){
             return asset('image/dash.jpeg');
         }
-        return asset('image/upload' .$this->image);
+        return asset('image/upload/' .$this->image);
     }
 }

@@ -68,7 +68,7 @@ $(document).ready(function(){
             if (data == null) {
                 return "<img src=\"/image/default.png\" height=\"50\"/>";
             } else {
-                return "<img src=\"/image/upload" + data + "\" height=\"50\"/>";
+                return "<img src=\"/image/" + data + "\" height=\"50\"/>";
             }
                     } },
         { data: 'title', name: 'title' },

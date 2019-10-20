@@ -23,7 +23,7 @@ class CreateTeam extends Migration
             $table->string('alamat')->nullable();
             $table->string('email')->nullable();
             $table->string('telepon')->nullable();
-            $table->integer('dept_id')->unsigned();
+            $table->integer('bagian_id')->unsigned();
             $table->integer('devisi_id')->unsigned();
         });
         Schema::create('devisi', function (Blueprint $table) {

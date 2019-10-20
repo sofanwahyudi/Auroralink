@@ -57,5 +57,5 @@
 {{--  {!! Form::close() !!}  --}}
 <script>
 $('.textarea').wysihtml5()
-$('.select2').select2().val({!! json_encode($model->tags()->getRelatedids() !!}).trigger('change');
+$('.select2').select2();
 </script>

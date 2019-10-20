@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Section;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Image;
 
 class SectionController extends Controller
 {
@@ -56,7 +57,7 @@ class SectionController extends Controller
         $this->validate($request,[
             'title' => 'required|max:255',
             'sub_title' => 'required|max:255',
-
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
 
@@ -64,9 +65,14 @@ class SectionController extends Controller
             $data->title = $request->title;
             $data->sub_title = $request->sub_title;
             $data->content = $request->content;
-            if($request->hasFile( 'image')){
-                $data->foto = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
-                $request->foto->move(public_path('/image/upload'), $data->foto);
+            if($request->file('image')){
+                $image = $request->file('image');
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $location = public_path('/image/' .$filename);
+                Image::make($image)->resize(500, 300)->save($location);
+                // $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
+                // $request->image->move(public_path('/image/upload'), $data->image);
+                $data->image = $filename;
             }
 
             $data->save();
