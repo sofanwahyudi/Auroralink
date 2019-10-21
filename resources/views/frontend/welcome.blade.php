@@ -12,7 +12,7 @@
       <h1>Welcome to Auroralink</h1>
       <h2>Reliable IT Support Patners</h2>
       <img src="image/dis.png" alt="Hero Imgs">
-      <a href="#get-started" class="btn-get-started scrollto">Get Started</a>
+      <a href="https://wa.me/628113190408" class="btn-get-started scrollto">Get Started</a>
       <div class="btns">
         <a href="#"><i class="fa fa-laptop fa-3x"></i> Laptop Repair</a>
         <a href="#"><i class="fa fa-support fa-3x"></i> Support Troubleshooting</a>

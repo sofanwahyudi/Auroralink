@@ -107,8 +107,8 @@
         <div class="col-md-12 col-lg-4">
           <div class="footer-logo">
 
-            <a class="navbar-brand" href="#">AuroralinkID</a>
-            <p>Auroralink is a provider of technical services engaged in information and technology since 2011, starting from making information systems (Website / Application), network and computer maintenance, laptop services and others.</p>
+            <a class="navbar-brand" href="#">Comingsoon...</a>
+            <img src="image/comingsoon.png" alt="about" height="150" width="300">
           </div>
         </div>
 

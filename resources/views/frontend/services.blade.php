@@ -4,7 +4,7 @@
             <img src="{{$data->getGambar()}}" alt="About" class="img-fluid">
             <h4>{{ $data->nama }}</h4>
             <p>{!! $data->deskripsi !!}</p>
-            <a class="btn btn-primary " href="#">Let's Start</a>
+            <a class="btn btn-primary " href="https://wa.me/628113190408">Let's Start</a>
           </div>
 
         </div>
