@@ -122,7 +122,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $model = Post::findOrFail($id);
-        $tags = Tags::all();
+        $tags = $model->tags;
+        // dd($tags);
         return view('admin.post.form', compact('model','tags'));
     }
 

@@ -37,9 +37,9 @@
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
         <select id="devisi_id" class="form-control select2" name="devisi_id">
-            <option value="#">-- Pilih Bagian --</option>
+            <option value="$model->devisi->id">-- Pilih Devisi --</option>
             @foreach (\App\Model\Devisi::all() as $jp)
-            <option value="{{$jp->id}}" >{{$jp->name}}</option>
+            <option value="{{$jp->id}}" {{ ( $jp->id == $model->devisi['id']) ? 'selected' : '' }} >{{$jp->name}}</option>
             @endforeach
         </select>
         </div>
@@ -51,7 +51,7 @@
         <select id="bagian_id" class="form-control select2" name="bagian_id">
             <option value="#">-- Pilih Bagian --</option>
             @foreach (\App\Model\Bagian::all() as $b)
-                <option value="{{$b->id}}" >{{$b->nama}}</option>
+                <option value="{{$b->id}}" {{ ( $b->id == $model->bagian['id']) ? 'selected' : '' }} >{{$b->nama}}</option>
             @endforeach
         </select>
         </div>
@@ -63,7 +63,7 @@
         <select id="users_id" class="form-control select2" name="users_id">
             <option value="#">-- Pilih User --</option>
             @foreach (\App\User::all() as $jp)
-            <option value="{{$jp->id}}" >{{$jp->name}}</option>
+            <option value="{{$jp->id}}" {{ ( $jp->id == $model->users['id']) ? 'selected' : '' }}>{{$jp->name}}</option>
             @endforeach
         </select>
         </div>

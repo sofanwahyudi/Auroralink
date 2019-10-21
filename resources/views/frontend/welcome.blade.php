@@ -9,7 +9,8 @@
 @section('hero')
 <section id="hero" class="wow fadeIn">
     <div class="hero-container top_left_cont zoomIn wow animated animated">
-      <h1>Welcome to Auroralink</h1>
+      <h1>Welcome to Website</h1>
+      <h1>Auroralink</h1>
       <h2>Reliable IT Support Patners</h2>
       <img src="image/dis.png" alt="Hero Imgs">
       <a href="https://wa.me/628113190408" class="btn-get-started scrollto">Get Started</a>

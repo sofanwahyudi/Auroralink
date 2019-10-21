@@ -108,6 +108,7 @@
           <div class="footer-logo">
 
             <a class="navbar-brand" href="#">Comingsoon...</a>
+            <p>Auroralink Mobile App</p>
             <img src="image/comingsoon.png" alt="about" height="150" width="300">
           </div>
         </div>

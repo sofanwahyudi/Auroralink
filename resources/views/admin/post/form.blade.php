@@ -32,7 +32,7 @@
         <select id="category_id" class="form-control select2" name="category_id">
             <option value="#">-- Pilih Kategori --</option>
             @foreach (\App\Model\Category::all() as $jp)
-            <option value="{{$jp->id}}">{{$jp->category}}</option>
+            <option value="{{$jp->id}}" {{ ( $jp->id == $model->kategori['id']) ? 'selected' : '' }}>{{$jp->category}}</option>
             @endforeach
         </select>
         </div>
@@ -56,6 +56,6 @@
 </div>
 {{--  {!! Form::close() !!}  --}}
 <script>
-$('.textarea').wysihtml5()
-$('.select2').select2();
+$('.textarea').wysihtml5().val('ini parameter editor').trigger('change')
+$('.select2').select2().val('ini parameter select2').trigger('change');
 </script>

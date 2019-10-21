@@ -31,7 +31,7 @@
         <select id="jam_id" class="form-control select2" name="jam_id">
             <option value="#">-- Pilih Jam --</option>
             @foreach (\App\Model\Jam::all() as $jp)
-            <option value="{{$jp->id}}" >{{$jp->nama}} - {{$jp->jam_start}} s/d {{$jp->jam_end}}</option>
+            <option value="{{$jp->id}}" {{ ( $jp->id == $model->jam['id']) ? 'selected' : '' }}>{{$jp->nama}} - {{$jp->jam_start}} s/d {{$jp->jam_end}} </option>
             @endforeach
         </select>
         </div>
@@ -43,7 +43,7 @@
             <select id="job_id" class="form-control select2" name="job_id">
                 <option value="#">-- Pilih Kategori Jasa--</option>
                 @foreach (\App\Model\Job::all() as $jp)
-                <option value="{{$jp->id}}" >{{$jp->nama}}</option>
+                <option value="{{$jp->id}}" {{ ( $jp->id == $model->job['id']) ? 'selected' : '' }}>{{$jp->nama}}</option>
                 @endforeach
             </select>
             </div>
