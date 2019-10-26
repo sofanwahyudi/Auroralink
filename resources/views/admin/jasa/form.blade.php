@@ -14,7 +14,7 @@
     <div class="form-group">
         <label for="" class="control-label">Deskripsi</label>
         <div class="input-group">
-            <textarea class="textarea form" id="deskripsi" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            {!! Form::textarea('deskripsi', null, ['class' => 'form-control', 'id' => 'deskripsi', 'placeholder' => 'Masukan Deskripsi']) !!}
         </div>
     </div>
     <div class="form-group col-md-6">
@@ -59,19 +59,24 @@
     <div class="form-group">
         <label for="" class="control-label">Fitur</label>
         <div class="input-group">
-            <textarea class="textarea form" id="fitur" name="fitur" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            {!! Form::textarea('fitur', null, ['class' => 'form-control', 'id' => 'fitur', 'placeholder' => 'Masukan Deskripsi']) !!}
         </div>
     </div>
     <div class="form-group">
         <label for="" class="control-label">Benefit</label>
         <div class="input-group">
-            <textarea class="textarea form" id="benefit" name="benefit" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            {!! Form::textarea('benefit', null, ['class' => 'form-control', 'id' => 'benefit', 'placeholder' => 'Masukan Deskripsi']) !!}
         </div>
     </div>
 </div>
 {!! Form::close() !!}
-
 <script>
-$('.textarea').wysihtml5()
+$(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('deskripsi')
+    //bootstrap WYSIHTML5 - text editor
+    //$('.textarea').wysihtml5()
+  })
 </script>
 

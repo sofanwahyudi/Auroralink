@@ -23,4 +23,8 @@ class FrontController extends Controller
 // dd($about);
         return view('frontend.welcome', compact('services', 'team', 'about','portofolio','contact','blog','start'));
     }
+    public function blog(){
+        $blog = Post::all();
+        return view('blog.index')->withBlog($blog);
+    }
 }

@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 });
 Route::get('/', 'FrontController@index');
+Route::get('/blog', 'FrontController@blog');
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
 Route::get('/services', 'FrontController@sectionServices')->name('section.services');
 // Route::get('/', 'FrontController@section');
@@ -61,11 +62,6 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('/servis', 'ServisController');
             Route::resource('/support', 'SupportController');
         });
-        Route::group(['prefix' => 'produk'], function () {
-            Route::resource('/', 'ProdukController');
-            Route::resource('/kategori', 'KategoriProdukController');
-        });
-
             Route::resource('part', 'PartController');
             Route::get('part', 'PartController@index')->name('parts');
             Route::get('json/part', 'PartController@dataTable')->name('part.json');

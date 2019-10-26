@@ -22,6 +22,7 @@ $('body').on('click', '.modal-show', function(event) {
 });
 
 //AJAX UPDATE
+
 $('#modal-btn-save').click(function (event) {
     event.preventDefault();
 
@@ -31,6 +32,8 @@ $('#modal-btn-save').click(function (event) {
 
     form.find('.help-block').remove();
     form.find('.form-group').removeClass('has-error');
+
+
 
     $.ajaxSetup({
         headers: {

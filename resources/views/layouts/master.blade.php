@@ -134,12 +134,18 @@ desired effect
 <script src="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <!-- Select2 -->
 <script src="{{ url('assets/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
-{{--  <script>
-    $('.textarea').wysihtml5()
+<script>
+$(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('content')
+    //bootstrap WYSIHTML5 - text editor
+    //$('.textarea').wysihtml5()
+  })
 </script>
+<script>
 $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
@@ -202,7 +208,7 @@ $(function () {
       showInputs: false
     })
   })
-</script>  --}}
+</script>
 </body>
 @yield('footer')
 </html>

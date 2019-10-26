@@ -75,20 +75,6 @@
               </ul>
         </li>
         <li class="treeview ">
-            <a href="#"><i class="fa fa-cubes"></i> <span>produk</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu ">
-              {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-              <li><a href="{{url('admin/produk')}}"><i class="fa fa-list"></i> <span>Daftar Produk</span></a></li>
-              <li><a href="{{url('admin/produk/kategori')}}"><i class="fa  fa-angle-double-right"></i> <span>Kategori</span></a></li>
-              {{-- <li><a href="{{url('admin/produk/komentar')}}"><i class="fa  fa-angle-double-right"></i> <span>Komentar</span></a></li> --}}
-
-          </ul>
-        </li>
-        <li class="treeview ">
             <a href="#"><i class="fa fa-ticket"></i> <span>Ticket</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>

@@ -21,7 +21,8 @@
     <div class="form-group">
         <label for="" class="control-label">Content</label>
         <div class="input-group">
-            <textarea class="textarea form" id="content" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            {{--  <textarea class="textarea form" id="content" name="content" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>  --}}
+            {!! Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content', 'placeholder' => 'Masukan Konten']) !!}
         </div>
     </div>
     <div class="form-group col-md-6 required ">
@@ -33,6 +34,4 @@
     </div>
 </div>
 {!! Form::close() !!}
-<script>
-$('.textarea').wysihtml5()
-</script>
+

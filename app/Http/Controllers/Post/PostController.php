@@ -9,6 +9,7 @@ use Intervention\Image\Facades\Image;
 use Yajra\DataTables\Facades\DataTables;
 use Storage;
 use Illuminate\Support\Facades\Auth;
+use Purifier;
 
 class PostController extends Controller
 {
@@ -57,7 +58,7 @@ class PostController extends Controller
     {
         $model = new Post();
         $tags = Tags::all();
-        return view('admin.post.form', compact('model','tags'));
+        return view('admin.post.form')->withModel($model)->withTags($tags);
     }
 
     /**
@@ -73,11 +74,11 @@ class PostController extends Controller
             'content' => 'required|string|min:30',
             'slug' => 'required|string|min:5|unique:post',
             'category_id' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        //    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
             $data = new Post();
             $data->title = $request->title;
-            $data->content = $request->content;
+            $data->content = Purifier::clean($request->content);
             $data->slug = $request->slug;
             $data->category_id = $request->category_id;
             $currentuser = Auth::user()->id;
@@ -122,8 +123,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $model = Post::findOrFail($id);
-        $tags = $model->tags;
-        // dd($tags);
+        $tags = Tags::all();
+        // foreach ($tags as $tag) {
+        //     $tags2[$tags] = $tag->tags;
+        // }
+        // dd($tag);
         return view('admin.post.form', compact('model','tags'));
     }
 
@@ -143,7 +147,7 @@ class PostController extends Controller
 
         $model = Post::findOrFail($id);
         $model->title = $request->title;
-        $model->content = $request->content;
+        $model->content = Purifier::clean($request->content);
         $model->slug = $request->slug;
         $model->category_id = $request->category_id;
         $currentuser = Auth::user()->id;
@@ -182,8 +186,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $model = Post::findOrFail($id);
-        $model->tags()->deatach();
-        Storrage::delete($model->image);
+        // $model->tags()->deatach();
+        Storage::delete($model->image);
         $model->delete();
     }
 }
