@@ -1,41 +1,69 @@
-@extends('frontend.base.layout')
-
+@extends('frontend.base.medium')
 
 @section('title')
-    Blog Auroralink
+Auroralink | Blog
 @stop
-@section('blog')
-        <section id="blog" class="padd-section wow fadeInUp">
+@section('nav')
+{{-- @foreach ($categories as $cat)
+<li class="nav-item">
+<a class="nav-link" href='{{url("blog/kategori/$cat->id/".str_slug($cat->name))}}'>{{$cat->name}}</a>
+</li>
+@endforeach --}}
+@endsection
+@section('search')
+                <form class="form-inline my-2 my-lg-0" method="get" action="{{url('blog/search')}}">
+                <input class="form-control mr-sm-2" type="text" name="s" placeholder="Cari disini...">
+                <span class="input-group-button">
+                    <button class="btn btn-default" type="submit">
+                        <span>
+                            <span class="fa fa-search"></span>
+                        </span>
+                    </button>
+                </span>
+            </form>
+@endsection
+@section('categories')
+Index Of Post
+@endsection
 
-        <div class="container">
-        <div class="section-title text-center">
-
-            <h2>Blog Auroralink</h2>
-            <p class="separator">   .</p>
-
-        </div>
-        </div>
-
-        <div class="container">
+@section('content')
+@foreach ($blogs as  $blog)
+<!-- begin post -->
+<div class="card">
         <div class="row">
-        @foreach ($blog as $post)
+            <div class="col-md-5 wrapthumbnail">
+                <a href='#'>
+                        <img class="img-fluid" src="{{ url('image/upload/'. $blog->image) }}" alt="">
+                </a>
+            </div>
+            <div class="col-md-7">
+                <div class="card-block">
+                    <h2 class="card-title"><a href='#'>{{$blog->title}}</a></h2>
+                    <h4 class="card-text">{{str_limit(strip_tags($blog->content),100)}}</h4>
+                    <div class="metafooter">
+                        <div class="wrapfooter">
+                            <span class="author-meta">{{$blog->users['name']}}</span>
+                            @foreach ($blog->tags as $item)
+                            <span class="badge badge-info"> #{{ $item->tags }} </span>
+                            @endforeach
+                            <span class="post-name">{{$blog->sunam}}</span><br/>
+                            <span class="post-date">{{date('M,d,Y',strtotime($blog->created_at))}}</span>
+                            </span>
+                            <span class="post-read-more"><a href='{{url("/blog/post/$blog->slug")}}' title="Selengkapnya">Selengkapnya &raquo;</a></span>
+                        </div>
 
-        <div class="col-md-6 col-lg-4 top_left_cont zoomIn wow animated animated">
-            <div class="block-blog text-left">
-                <a href="#"><img src="{{ url('image/upload/'. $post->image) }}" alt="img"></a>
-                <div class="content-blog">
-                @foreach ($post->tags as $item)
-                <span class="badge badge-info"> #{{ $item->tags }} </span>
-                @endforeach
-                <br><h4>{{ $post->title }}</h4>
-                <span class="badge badge-warning">{{date('d M Y',strtotime($post->created_at))}}</span>
-                <a class="pull-right btn btn-primary " href="#">read more</a>
-
+                    </div>
                 </div>
             </div>
         </div>
-        @endforeach
-        </div>
-        </div>
-    </section>
+    </div>
+
+@endforeach
+   <!-- end post -->
 @stop
+
+{{-- @section('judul_recent')
+Recent Post
+@endsection --}}
+{{-- @section('content_recent')
+@endsection --}}

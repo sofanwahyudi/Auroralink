@@ -281,7 +281,7 @@
 
         </div>
 
-        <div class="col-lg-5 col-md-8">
+         <div class="col-lg-5 col-md-8">
           <div class="form">
             <form action="{{ route('leads.store') }}" method="post" role="form" class="contactForm">
             {{ csrf_field() }}
@@ -301,7 +301,7 @@
                 <textarea class="form-control" name="komentar" id="komentar" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                 <div class="validation"></div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit"> <i class="fa fa-send"></i>  Send Message</button></div>
             </form>
           </div>
         </div>

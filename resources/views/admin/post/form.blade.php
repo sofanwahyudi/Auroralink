@@ -1,3 +1,4 @@
+
 {!!Form::model($model, [
     'route' => $model->exists ? ['post.update', $model->id] :'post.store',
     'method' => $model->exists ? 'PUT':'POST',
@@ -15,9 +16,7 @@
     <div class="form-group">
         <label for="" class="control-label">Content</label>
         <div class="input-group">
-            <div class="box-body pad">
-                {!! Form::textarea('content', null, ['class' => 'form-control', 'id' => 'content', 'placeholder' => 'Masukan Konten']) !!}
-            </div>
+            {!! Form::textarea('content', null, ['placeholder' => 'type here text', 'class' => 'ckeditor']) !!}
         </div>
     </div>
     <div class="form-group col-md-6">
@@ -60,15 +59,6 @@
 </div>
 {!! Form::close() !!}
 <script>
-$(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('content')
-    //bootstrap WYSIHTML5 - text editor
-    //$('.textarea').wysihtml5()
-  })
-</script>
-<script>
 $('.select2').select2();
 $('.select2').select2({
     tags: true,
@@ -76,3 +66,16 @@ $('.select2').select2({
     tokenSeparators: [',']
 });
 </script>
+
+<script>
+var options = {
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_token() }}',
+}
+var content = CKEDITOR.instances.content.getData();
+
+CKEDITOR.replace("content", options, content);
+</script>
+

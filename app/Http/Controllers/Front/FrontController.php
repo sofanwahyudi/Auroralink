@@ -24,7 +24,11 @@ class FrontController extends Controller
         return view('frontend.welcome', compact('services', 'team', 'about','portofolio','contact','blog','start'));
     }
     public function blog(){
-        $blog = Post::all();
-        return view('blog.index')->withBlog($blog);
+        $blogs = Post::all();
+        return view('blog.index')->withBlogs($blogs);
+    }
+    public function post($slug){
+        $blog = DB::table('post')->where('post.slug', $slug)->first();
+        return view('blog.post')->withBlog($blog);
     }
 }

@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 Route::get('/', 'FrontController@index');
 Route::get('/blog', 'FrontController@blog');
+Route::get('/blog/post/{slug}','FrontController@post');
+
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
 Route::get('/services', 'FrontController@sectionServices')->name('section.services');
 // Route::get('/', 'FrontController@section');
@@ -34,6 +36,9 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('users', 'UserController@index')->name('users');
             Route::resource('dashboard', 'AdminController');
             Route::get('dashboard', 'AdminController@index')->name('dashboard');
+
+//Route Comment
+        Route::resource('comments', 'CommentController');
 
 //Route Post
             Route::resource('/post', 'PostController');

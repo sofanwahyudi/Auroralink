@@ -4,9 +4,11 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
+    use SoftDeletes;
     //
     protected $table = 'comment';
     /**
@@ -18,5 +20,9 @@ class Comment extends Model
     public function users()
     {
         return $this->belongsTo(User::class);
+    }
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, 'parent_id');
     }
 }

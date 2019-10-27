@@ -25,6 +25,8 @@
   <link href="asset/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="asset/lib/animate/animate.min.css" rel="stylesheet">
   <link href="asset/lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+    <link href="asset/css/mediumish.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="asset/css/style.css" rel="stylesheet">
