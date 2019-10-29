@@ -213,7 +213,6 @@
         <div class="row">
 
 @include('frontend.blog')
-
         </div>
         </div>
     </section>

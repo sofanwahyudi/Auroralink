@@ -27,8 +27,9 @@ class FrontController extends Controller
         $blogs = Post::all();
         return view('blog.index')->withBlogs($blogs);
     }
-    public function post($slug){
-        $blog = DB::table('post')->where('post.slug', $slug)->first();
+    public function post($id){
+        // $blog = DB::table('post')->where('post.slug', $slug)->first();
+        $blog = Post::findOrFail($id);
         return view('blog.post')->withBlog($blog);
     }
 }

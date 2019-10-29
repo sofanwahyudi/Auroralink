@@ -19,7 +19,13 @@ Route::get('/', function () {
 });
 Route::get('/', 'FrontController@index');
 Route::get('/blog', 'FrontController@blog');
-Route::get('/blog/post/{slug}','FrontController@post');
+Route::get('/blog/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
+
+//Comments
+
+Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
+
+
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
 Route::get('/services', 'FrontController@sectionServices')->name('section.services');

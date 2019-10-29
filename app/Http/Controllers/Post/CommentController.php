@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Comment;
+use App\Model\Post;
+
 class CommentController extends Controller
 {
     /**
@@ -32,18 +34,31 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $post_id )
     {
     	$request->validate([
+            'name' => 'required',
+            'email' => 'required',
             'body'=>'required',
         ]);
 
-        $input = $request->all();
-        $input['user_id'] = auth()->user()->id;
+        $post = Post::find($post_id);
 
-        Comment::create($input);
+        $comment = new Comment();
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->body = $request->body;
+        $currentuser = 1;
+        $comment->users_id = $currentuser;
+        $comment->parent_id = $currentuser;
+        $comment->approved = true;
 
-        return back();
+        $comment->post()->associate($post);
+
+        $comment->save();
+
+        // Sessions::flash('success', 'Comment Added');
+        return redirect()->route('blog.post', $post->id);
     }
 
     /**
@@ -54,7 +69,10 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+
+//         $comments = Comment::findOrFail($id);
+// dd($comments);
+//         return view('blog.comment' , compact('commnets'));
     }
 
     /**

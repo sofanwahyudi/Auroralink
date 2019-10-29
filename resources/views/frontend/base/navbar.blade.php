@@ -6,7 +6,7 @@
     <li><a href="#screenshots">Portofolio</a></li>
     <li><a href="#team">Team</a></li>
     {{--  <li><a href="#pricing">Pricing</a></li>  --}}
-    <li><a href="#blog">Blog</a></li>
+    <li><a href="{{ url('/blog') }}">Blog</a></li>
     <li><a href="#contact">Contact</a></li>
     @auth
     <li><a href="{{ url('/home') }}">Client Area</a></li>

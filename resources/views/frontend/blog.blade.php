@@ -9,7 +9,7 @@
         @endforeach
         <br><h4>{{ $post->title }}</h4>
         <span class="badge badge-warning">{{date('d M Y',strtotime($post->created_at))}}</span>
-        <a class="pull-right btn btn-primary " href="#">read more</a>
+        <a class="pull-right btn btn-primary " href="{{url("/blog/post/$post->slug")}}">read more</a>
 
         </div>
     </div>

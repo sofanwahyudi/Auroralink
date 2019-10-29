@@ -19,7 +19,7 @@ class Post extends Model
     protected $fillable = ['title', 'user_id', 'image', 'content', 'slug', 'category_id'];
     public function comments()
     {
-        return $this->hasMany(Comment::class)->whereNull('parent_id');
+        return $this->hasMany(Comment::class);
     }
     public function users()
     {
