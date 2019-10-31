@@ -2,7 +2,6 @@
 @section('title')
     Auroralink | {{ htmlspecialchars($blog->title) }}
 @endsection
-
 @section('search')
                 <form class="form-inline my-2 my-lg-0" method="get" action="{{url('blog/search')}}">
                 <input class="form-control mr-sm-2" type="text" name="s" placeholder="Search Here...">
@@ -45,31 +44,46 @@
             </ul>
     </div> <!-- End Tags -->
 </div>
+<div class='container'>
+    <div class='text-center'>
+        @if ($message = Session::get('danger'))
+      <div class="alert alert-warning alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+    @endif
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+        <strong>Success: </strong>{{ Session::get('success') }}
+        </div>
+        @endif
+    </div>
+</div>
 <hr>
 @include('blog.share',['url' => '{{url("/blog/post/$blog->slug")}}'])
 <hr>
 <h2 class='comment-title'><span class="fa fa-commenting-o"> {{ $blog->comments()->count() }} Comments</h2>
-@foreach ($blog->comments as $item)
-<div class="comment" @if($item->parent_id != null) style="margin-left:40px;" @endif>
+@forelse ($blog->comments as $item)
+
+<div class="comment">
     <div class="author-info">
         <img src="{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($item->email))) . "?s=50&d=mm" }}" class="author-image">
         <div class="author-name">
-        <h4>{{ $item->name }}</h4>
-        <p class="author-time">{{date('F, nS, Y - g:iA' ,strtotime($item->created_at))}}</p>
+        <h4>{{ $item->users->name }}</h4>
+        <p class="author-time">{{ $item->created_at->diffForHumans() }}</p>
         </div>
     </div>
     <div class="comment-content">
     {{ $item->body }}
     </div>
     <div class="author-button">
-        <div class="comment-content">
-            <a href="#"><span class="fa fa-thumbs-o-up"></span> Like</a>
-            <a href="#"><span class="fa fa-reply" style="margin-left:25px;"></span> Reply</a>
-        </div>
+         @include('blog._formReply')
     </div>
+{{-- @include('blog.reply') --}}
 
-</div>
-@endforeach
+@empty
+<p><span class="w3-tag w3-green"> No Comment</span></p>
+@endforelse
 <hr>
 @include('blog.form')
 <hr>

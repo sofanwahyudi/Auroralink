@@ -24,7 +24,7 @@ Route::get('/blog/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.
 //Comments
 
 Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
-
+Route::post('comments/reply', ['uses' => 'CommentController@reply', 'as' => 'comment.reply']);
 
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
@@ -45,7 +45,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 //Route Comment
         Route::resource('comments', 'CommentController');
-
+        Route::get('/post/comments/list_comments', 'CommentController@index')->name('comments');
+        Route::get('/post/json/comments', 'CommentController@dataTable')->name('comment.json');
 //Route Post
             Route::resource('/post', 'PostController');
             Route::get('post', 'PostController@index')->name('posts');

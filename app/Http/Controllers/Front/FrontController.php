@@ -30,6 +30,7 @@ class FrontController extends Controller
     public function post($id){
         // $blog = DB::table('post')->where('post.slug', $slug)->first();
         $blog = Post::findOrFail($id);
-        return view('blog.post')->withBlog($blog);
+        // dd($blog->comments);
+        return view('blog.post', compact('blog'));
     }
 }

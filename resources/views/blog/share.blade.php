@@ -1,6 +1,6 @@
 <!-- Bootstrap css -->
   <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
-  <link href="asset/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  {{-- <link href="asset/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
 <p> Share Button: </p>
 <div>
     <a  class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($url) }}"
@@ -31,7 +31,7 @@
 
 </div>
 <script src="{{ url('asset/js/jquery.min.js') }}"></script>
-<script>
+{{-- <script>
 var = popupSize ={
     width: 780,
     height: 550
@@ -49,4 +49,4 @@ $($document).on('click', '.btn-social-icon > a', function(e){
         e.preventDefault()
     }
 });
-</script>
+</script> --}}

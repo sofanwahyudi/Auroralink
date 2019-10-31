@@ -15,14 +15,16 @@ a {
 }
 .w3-tag {
     background-color:#000;
-    color:#fff;display:inline-block;
+    color:#fff;
+    display:inline-block;
     padding-left:8px;
     padding-right:8px;
     text-align:center;
+    margin-bottom: 10px;
 }
 .w3-blue,.w3-hover-blue:hover {
     color:#fff!important;
-    background-color:#2196F3!important
+    background-color:rgba(2, 104, 221, 0.678)!important
 }
 a,a:hover {
 	transition:all 0.2s;
@@ -490,3 +492,12 @@ ul.tags li a:hover {
     color: #aaa;
     margin-top: 15px;
 }
+.reply {
+    margin-bottom: 45px;
+    margin-top: 45px;
+}
+#form1 {
+
+    display:none;
+
+    }

@@ -16,17 +16,21 @@ class Comment extends Model
     *
     * @var array
     */
-    protected $fillable = ['email','name','body', 'users_id', 'parent_id'];
+    protected $fillable = ['body', 'users_id'];
     public function users()
     {
         return $this->belongsTo(User::class);
     }
-    public function replies()
-    {
-        return $this->hasMany(Comment::class, 'parent_id');
-    }
+    // public function replies()
+    // {
+    //     return $this->hasMany(Comment::class, 'parent_id');
+    // }
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+    public function commentable()
+    {
+        return $this->morphTo();
     }
 }

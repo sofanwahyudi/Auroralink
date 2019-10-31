@@ -5,9 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Comment;
 use App\Model\Post;
+use DataTables;
+use Auth;
+
 
 class CommentController extends Controller
 {
+
+    public function dataTable(){
+        $data = Comment::query();
+        return DataTables::of($data)
+        ->escapeColumns('komentar')
+        ->addColumn('post', function($data){
+            return $data->post['title'];
+        })
+        ->addColumn('action', function($data){
+            return view('layouts._action', [
+                'model' => $data,
+                'url_show' => route('comments.show', $data->id),
+                'url_edit' => route('comments.edit', $data->id),
+                'url_destroy' => route('comments.destroy', $data->id),
+            ]);
+        })
+        ->addIndexColumn()
+        ->rawColumns(['checkbox','action'])
+        ->make(true);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +38,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.post.comments.index');
     }
 
     /**
@@ -25,7 +48,8 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Comment();
+        return view('admin.post.comments.form', compact('model'));
     }
 
     /**
@@ -36,29 +60,28 @@ class CommentController extends Controller
      */
     public function store(Request $request, $post_id )
     {
+        if (!Auth::check()){
+            $request->session()->flash('login', 'Maaf Anda harus login dulu supaya bisa koment');
+            return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first before you can comment. #cmiw');
+        }
+
+
     	$request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'body'=>'required',
+            // 'name' => 'required',
+            'body' => 'required',
+            // 'email' => 'required|email|unique:users',
         ]);
 
         $post = Post::find($post_id);
 
         $comment = new Comment();
-        $comment->name = $request->name;
-        $comment->email = $request->email;
         $comment->body = $request->body;
-        $currentuser = 1;
-        $comment->users_id = $currentuser;
-        $comment->parent_id = $currentuser;
-        $comment->approved = true;
+        $comment->users_id = Auth::user()->id;
 
-        $comment->post()->associate($post);
-
-        $comment->save();
+        $post->comments()->save($comment);
 
         // Sessions::flash('success', 'Comment Added');
-        return redirect()->route('blog.post', $post->id);
+        return redirect()->back()->with('success','Comment Added Successfully');
     }
 
     /**
@@ -69,10 +92,8 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-
-//         $comments = Comment::findOrFail($id);
-// dd($comments);
-//         return view('blog.comment' , compact('commnets'));
+        $model = Comment::findOrFail($id);
+        return view('admin.post.comments.show', compact('model'));
     }
 
     /**
@@ -83,7 +104,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Comment::findOrFail($id);
+        return view('admin.post.comments.form', compact('model'));
     }
 
     /**
@@ -95,7 +117,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'body' => 'required',
+            'email' => 'required|email|unique:users',
+            ]);
+        $model = Comment::findOrFail($id);
+        $model->update($request->all());
     }
 
     /**
@@ -106,6 +134,23 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Comment::findOrFail($id);
+        $model->delete();
+    }
+    public function reply(Request $request , $post_id)
+    {
+        $post = Post::find($post_id);
+        $users = Auth::user();
+
+
+        $reply = new Comments();
+        $reply->body = $request->get('body');
+        $reply->users_id = $users->id;
+        $reply->parent_id = $request->get('comment_id');
+        $reply->post_id = 5;
+
+        $post->comments()->save($reply);
+
+        return redirect()->route('blog.post', $post->id)->with('success','Comment Added Successfully');
     }
 }
