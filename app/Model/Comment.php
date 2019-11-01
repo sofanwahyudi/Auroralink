@@ -27,10 +27,14 @@ class Comment extends Model
     // }
     public function post()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class, 'post_title');
     }
     public function commentable()
     {
         return $this->morphTo();
+    }
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

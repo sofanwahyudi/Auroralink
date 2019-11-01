@@ -24,7 +24,7 @@ Route::get('/blog/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.
 //Comments
 
 Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
-Route::post('comments/reply', ['uses' => 'CommentController@reply', 'as' => 'comment.reply']);
+Route::post('comments/reply/{comment_id}', ['uses' => 'CommentController@reply', 'as' => 'comment.reply']);
 
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');

@@ -17,7 +17,10 @@ class CommentController extends Controller
         return DataTables::of($data)
         ->escapeColumns('komentar')
         ->addColumn('post', function($data){
-            return $data->post['title'];
+            return $data->commentable_type;
+        })
+        ->addColumn('users', function($data){
+            return $data->users['name'];
         })
         ->addColumn('action', function($data){
             return view('layouts._action', [
@@ -137,20 +140,28 @@ class CommentController extends Controller
         $model = Comment::findOrFail($id);
         $model->delete();
     }
-    public function reply(Request $request , $post_id)
+    public function reply(Request $request , $comment_id)
     {
-        $post = Post::find($post_id);
-        $users = Auth::user();
+        if (!Auth::check()){
+            $request->session()->flash('login', 'Maaf Anda harus login dulu supaya bisa koment');
+            return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first before you can REPLY comment. #cmiw');
+        }
 
 
-        $reply = new Comments();
-        $reply->body = $request->get('body');
-        $reply->users_id = $users->id;
-        $reply->parent_id = $request->get('comment_id');
-        $reply->post_id = 5;
+    	$request->validate([
+            // 'name' => 'required',
+            'body' => 'required',
+            // 'email' => 'required|email|unique:users',
+        ]);
 
-        $post->comments()->save($reply);
+        $comment = Comment::find($comment_id);
 
-        return redirect()->route('blog.post', $post->id)->with('success','Comment Added Successfully');
+        $reply = new Comment();
+        $reply->body = $request->body;
+        $reply->users_id = Auth::user()->id;
+
+        $comment->comments()->save($reply);
+
+        return redirect()->back()->with('success','Comment Reply Successfully');
     }
 }

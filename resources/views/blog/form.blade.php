@@ -1,5 +1,6 @@
-
+<div class="mainheading">
 <i class="fa fa-commenting bg-yellow"> Lets Comments </i>
+</div>
 <hr>
 @auth
     <div class="author-info">

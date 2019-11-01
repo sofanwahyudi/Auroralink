@@ -496,6 +496,12 @@ ul.tags li a:hover {
     margin-bottom: 45px;
     margin-top: 45px;
 }
+.comment-reply {
+    clear: both;
+    margin-left: 65px;
+    font-size: 16px;
+    line-height: 1.3em;
+}
 #form1 {
 
     display:none;

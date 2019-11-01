@@ -66,26 +66,46 @@
 @forelse ($blog->comments as $item)
 
 <div class="comment">
-    <div class="author-info">
-        <img src="{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($item->email))) . "?s=50&d=mm" }}" class="author-image">
-        <div class="author-name">
-        <h4>{{ $item->users->name }}</h4>
-        <p class="author-time">{{ $item->created_at->diffForHumans() }}</p>
+        <div class="author-info">
+            <img src="{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($item->email))) . "?s=50&d=mm" }}" class="author-image">
+                <div class="author-name">
+                    <h4>{{ $item->users->name }}</h4>
+                    <p class="author-time">{{ $item->created_at->diffForHumans() }}</p>
+                </div>
+        </div>
+    <div class="comment-content">
+        {{ $item->body }}
+        <div class="author-button">
+            @include('blog._formReply')
         </div>
     </div>
-    <div class="comment-content">
-    {{ $item->body }}
+</div>
+
+@foreach ($item->comments as $reply)
+<div class="comment-reply">
+    <div class="author-info">
+            <img src="{{ "https://www.gravatar.com/avatar/" . md5(strtolower(trim($reply->email))) . "?s=50&d=mm" }}" class="author-image">
+            <div class="author-name">
+                    <h4> {{ $reply->users->name }}</h4>
+                    <p class="author-time">{{ $reply->created_at->diffForHumans() }}</p>
+             </div>
     </div>
-    <div class="author-button">
-         @include('blog._formReply')
+        <div class="comment-content">
+            {{ $reply->body }}
+        </div>
+    <div class="author-button" style="margin-left:65px">
+        @include('blog._formReply')
     </div>
-{{-- @include('blog.reply') --}}
+</div>
+@endforeach
 
 @empty
 <p><span class="w3-tag w3-green"> No Comment</span></p>
 @endforelse
+
 <hr>
 @include('blog.form')
 <hr>
+
 @endsection
 

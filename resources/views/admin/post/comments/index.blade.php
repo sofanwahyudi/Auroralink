@@ -42,7 +42,6 @@
                     {{-- <th class="sorting_asc"> <input type="checkbox" id="check_all"></th> --}}
                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Email</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Komentar</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Komentar Dari Post</th>
                     <th width="150px">Aksi</th></tr>
@@ -67,8 +66,7 @@
         ajax: "{{route('comment.json')}}",
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
+            { data: 'users', name: 'users' },
             { data: 'body', name: 'body'},
             { data: 'post', name: 'post' , render : function(data, type, row) {
               return '<span class="badge bg-green">'+data+'</span>'
