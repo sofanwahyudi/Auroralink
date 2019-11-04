@@ -1,13 +1,13 @@
 @extends('frontend.base.medium')
 
 @section('title')
-Auroralink | Blog
+Auroralink | Blog Categories
 @stop
 @section('nav')
 <a class="nav-link" href="{{ url('/blog') }}" style="color:grey;">Index Of Blog</a>
 
 
-@foreach ($categories as $blog)
+@foreach ($cats as $blog)
                 {{--  {{ dd($blog->post) }}  --}}
 <a class="nav-link" href="{{url("/blog/categories/$blog->slug")}}" style="color:grey;">{{ $blog->category }}</a>
 @endforeach
@@ -27,7 +27,8 @@ Auroralink | Blog
 @endsection
 
 @section('content')
-@foreach ($blogs as  $blog)
+@foreach ($cats as $cat)
+@foreach ($cat->post as  $blog)
 <!-- begin post -->
 <div class="card">
         <div class="row">
@@ -57,7 +58,7 @@ Auroralink | Blog
             </div>
         </div>
     </div>
-
+@endforeach
 @endforeach
    <!-- end post -->
 @stop

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Category;
 use App\Model\Jasa;
 use App\Model\Portofolio;
 use App\Model\Post;
@@ -25,12 +26,37 @@ class FrontController extends Controller
     }
     public function blog(){
         $blogs = Post::all();
-        return view('blog.index')->withBlogs($blogs);
+        $categories = Category::all();
+        return view('blog.index')->withBlogs($blogs)->withCategories($categories);
     }
-    public function post($id){
+    public function post($slug){
         // $blog = DB::table('post')->where('post.slug', $slug)->first();
-        $blog = Post::findOrFail($id);
+       // $blog = Post::findOrFail($id);
+        $blog = Post::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
         // dd($blog->comments);
         return view('blog.post', compact('blog'));
+    }
+    public function search(Request $request)
+    {
+          $search = $request->get('term');
+
+          $result = Post::where('content', 'LIKE', '%'. $search. '%')->get();
+
+          return response()->json($result);
+
+    }
+    public function kategori($slug){
+        $cat = Category::where('title', $slug)->firstOrFail();
+        return view('blog.index')->withCat($cat);
+    }
+    public function getCategories()
+    {
+        $cats = Category::with('post')->get();
+        // dd($cats);
+        return view('blog.categories')->withCats($cats);
+    }
+    public function tickets()
+    {
+        return view('frontend.tickets');
     }
 }

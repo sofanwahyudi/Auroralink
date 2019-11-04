@@ -2,20 +2,8 @@
 @section('title')
     Auroralink | {{ htmlspecialchars($blog->title) }}
 @endsection
-@section('search')
-                <form class="form-inline my-2 my-lg-0" method="get" action="{{url('blog/search')}}">
-                <input class="form-control mr-sm-2" type="text" name="s" placeholder="Search Here...">
-                <span class="input-group-button">
-                    <button class="btn btn-default" type="submit">
-                        <span>
-                            <span class="fa fa-search"></span>
-                        </span>
-                    </button>
-                </span>
-            </form>
-@endsection
-@section('categories')
-{{--  {{$blog->name_categories}}  --}}
+@section('nav')
+
 @endsection
 @section('article')
 <div class="col-md-12 col-md-offset-2 col-xs-12">
@@ -36,18 +24,18 @@
     <div class="after-post-tags">
             <ul class="tags">
             <p> Tags: </p>
-            @foreach ($blog->tags as $item)
+            {{-- @foreach ($blog->tags as $item)
             <span class="w3-tag w3-blue">
             #{{ $item->tags }}
             </span>
-            @endforeach
+            @endforeach --}}
             </ul>
     </div> <!-- End Tags -->
 </div>
 <div class='container'>
     <div class='text-center'>
         @if ($message = Session::get('danger'))
-      <div class="alert alert-warning alert-block">
+      <div class="alert alert-danger alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong>{{ $message }}</strong>
     </div>
@@ -94,7 +82,7 @@
             {{ $reply->body }}
         </div>
     <div class="author-button" style="margin-left:65px">
-        @include('blog._formReply')
+        @include('blog._ReplyToReply')
     </div>
 </div>
 @endforeach

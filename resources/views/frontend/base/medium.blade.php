@@ -35,9 +35,7 @@
 @include('frontend.base.navblog')
 
             <!-- End Menu -->
-            <!-- Begin Search -->
-            @yield('search')
-            <!-- End Search -->
+
         </div>
     </div>
     </nav>
@@ -60,8 +58,13 @@
 
 	<!-- Begin Featured
 	================================================== -->
+    <br>
 	<section class="featured-posts">
+    <!-- Begin Search -->
+             @yield('search')
+            <!-- End Search -->
 	<div class="section-title">
+
         <h2><span>@yield('categories')</span></h2>
 	</div>
 	<div class="card-columns listfeaturedtag">
@@ -102,5 +105,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="{{ url ('asset/js/bootstrap.min.js') }}"></script>
 <script src="{{ url('asset/js/ie10-viewport-bug-workaround.js') }}"></script>
+<script>
+ $(document).ready(function() {
+    @yield('js')
+});
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
 </body>
 </html>

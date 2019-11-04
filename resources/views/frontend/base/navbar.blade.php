@@ -9,7 +9,7 @@
     <li><a href="{{ url('/blog') }}">Blog</a></li>
     <li><a href="#contact">Contact</a></li>
     @auth
-    <li><a href="{{ url('/home') }}">Client Area</a></li>
+    <li><a href="{{ route('home') }}">Client Area</a></li>
     @else
     <li><a href="{{ route('login') }}"><span class="fa fa-sign-in"></span> Login</a></li>
     @if (Route::has('register'))

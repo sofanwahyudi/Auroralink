@@ -16,14 +16,7 @@
     <div class="form-group">
         <label for="" class="control-label">Content</label>
         <div class="input-group">
-            {!! Form::textarea('content', null, ['placeholder' => 'type here text', 'class' => 'ckeditor']) !!}
-        </div>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="" class="control-label">Slug</label>
-        <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-id-card-o"></i></div>
-            {!! Form::text('slug', null, ['class' => 'form-control', 'id' => 'slug', 'placeholder' => 'Masukan Slug']) !!}
+            {!! Form::textarea('content', null, ['placeholder' => 'type here text', 'id' => 'form', 'class' => 'ckeditor']) !!}
         </div>
     </div>
     <div class="form-group col-md-6 required ">
@@ -75,7 +68,5 @@ var options = {
     filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_token() }}',
 }
 var content = CKEDITOR.instances.content.getData();
-
-CKEDITOR.replace("content", options, content);
+CKEDITOR.replace('content', content);
 </script>
-

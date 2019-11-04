@@ -72,14 +72,16 @@ class PostController extends Controller
         $this->validate($request,[
             'title' => 'required|string|min:10',
             'content' => 'required|string|min:30',
-            'slug' => 'required|string|min:5|unique:post',
+            // 'slug' => 'required|string|min:5|unique:post',
             'category_id' => 'required|integer',
         //    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
             $data = new Post();
             $data->title = $request->title;
             $data->content = Purifier::clean($request->content);
-            $data->slug = $request->slug;
+            $title = $data->title;
+            $slug = str_slug($title,'-');
+            $data->slug = $slug;
             $data->category_id = $request->category_id;
             $currentuser = Auth::user()->id;
             $data->users_id = $currentuser;
@@ -148,7 +150,9 @@ class PostController extends Controller
         $model = Post::findOrFail($id);
         $model->title = $request->title;
         $model->content = Purifier::clean($request->content);
-        $model->slug = $request->slug;
+        $title = $model->title;
+        $slug = str_slug($title,'-');
+        $model->slug = $slug;
         $model->category_id = $request->category_id;
         $currentuser = Auth::user()->id;
         $model->users_id = $currentuser;

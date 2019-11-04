@@ -42,7 +42,9 @@ Kategori Post | Auroralink
                 <tr role="row">
                     {{-- <th class="sorting_asc"> <input type="checkbox" id="check_all"></th> --}}
                     <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama Kategori</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Slug</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Post</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -67,6 +69,12 @@ $(document).ready(function(){
         { data: 'category', name: 'category', render : function(data, type, row) {
               return '<span class="badge bg-red">'+data+'</span>'
           }  },
+        { data: 'slug', name: 'slug' , render : function(data, type, row) {
+        return '<span class="badge bg-green">'+data+'</span>'
+        }  },
+        { data: 'post', name: 'post' , render : function(data, type, row) {
+            return '<span class="badge bg-green">'+data+'</span>'
+        }  },
         { data: 'action', orderable:false, searchable:false },
     ]
     }

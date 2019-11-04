@@ -5,8 +5,10 @@ $('body').on('click', '.modal-show', function(event) {
     var me = $(this),
         url = me.attr('href'),
         title = me.attr('title');
+        // content = me.attr(ckeditor.instances.content.getData());
 
         $('#modal-title').text(title);
+        // CKEDITOR.replace(content);
         $('#modal-btn-save').removeClass('hide').text(me.hasClass('edit') ? 'Update' : 'Tambah');
 
         $.ajax({
@@ -14,7 +16,6 @@ $('body').on('click', '.modal-show', function(event) {
             dataType: 'html',
             success: function(response) {
                 $('#modal-body').html(response);
-                // $('#foto').html(data.foto);
                 $('#datatable').DataTable().ajax.reload();
             }
         });
@@ -29,6 +30,7 @@ $('#modal-btn-save').click(function (event) {
     var form = $('#modal-body form'),
         url = form.attr('action'),
         method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
+        formData = new FormData($(form)[0]);
 
     form.find('.help-block').remove();
     form.find('.form-group').removeClass('has-error');
@@ -44,10 +46,10 @@ $('#modal-btn-save').click(function (event) {
     $.ajax({
         url : url,
         method : method,
-        data : form.serialize(),
-    //    data: new FormData($('#modal-body form')[0]),
-    //    contentType: false,
-    //    processData: false,
+         data : form.serialize(),
+        // data: formData,
+        // contentType: false,
+        // processData: false,
         success: function (response) {
             form.trigger('reset');
             $('#modal').modal('hide');

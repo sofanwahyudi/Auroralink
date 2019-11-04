@@ -18,8 +18,11 @@ Route::get('/', function () {
 
 });
 Route::get('/', 'FrontController@index');
+Route::get('/tickets', 'FrontController@tickets');
 Route::get('/blog', 'FrontController@blog');
-Route::get('/blog/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
+Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
+Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
+Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories', 'as' => 'cat.post']);
 
 //Comments
 
@@ -156,4 +159,4 @@ Route::group(['middleware' => ['auth']], function() {
 
     });  //End Route Admin Prefix
 }); //End Route Auth Midleware
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/clientarea', 'HomeController@index')->name('home');

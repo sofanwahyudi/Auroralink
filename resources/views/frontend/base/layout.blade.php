@@ -151,7 +151,7 @@
             <h4>Support Center</h4>
 
             <ul class="list-unstyled">
-              <li><a href="#">faq</a></li>
+              <li><a href="{{ url('tickets') }}">Tickets</a></li>
               <li><a href="#">Remote Support</a></li>
               <li><a href="#">Onsite Support</a></li>
               <li><a href="#">Contact Team</a></li>

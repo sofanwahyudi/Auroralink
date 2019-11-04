@@ -13,6 +13,9 @@ class KategoriPostController extends Controller
     public function dataTable(){
         $data = Category::query();
         return DataTables::of($data)
+        ->addColumn('post', function($d){
+            return $d->post->count();
+        })
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
@@ -62,6 +65,9 @@ class KategoriPostController extends Controller
 
             $data = new Category();
             $data->category = $request->category;
+            $title = $data->category;
+            $slug = str_slug($title,'-');
+            $data->slug = $slug;
             $data->save();
             return redirect()->back()->with('success','Data Berhasil disimpan');
     }
@@ -104,6 +110,11 @@ class KategoriPostController extends Controller
             ]);
 
             $model = Category::findOrFail($id);
+            $model->category = $request->category;
+            $title = $model->category;
+            $slug = str_slug($title,'-');
+            $model->slug = $slug;
+
             $model->update($request->all());
     }
 
