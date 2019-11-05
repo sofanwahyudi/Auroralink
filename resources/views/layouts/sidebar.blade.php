@@ -59,7 +59,7 @@
                   <li class="{{set_active('merks')}}"><a href="{{route('merks')}}"><i class="fa fa-circle-o"></i> Merk Part</a></li>
                 </ul>
               </li>
-        <li class="treeview {{set_active(['jobs','jasas','cats','jams'])}}">
+        <li class="treeview {{set_active(['jobs','jasas','catrs','jams'])}}">
                 <a href="#"><i class="fa fa-briefcase"></i> <span>Jasa</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -69,23 +69,24 @@
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li class="{{set_active('jasas')}}"><a href="{{route('jasas')}}"><i class="fa fa-list"></i> <span>Daftar Jasa</span></a></li>
                   <li class="{{set_active('jobs')}}"><a href="{{route('jobs')}}"><i class="fa  fa-thumb-tack"></i> <span>Job</span></a></li>
-                  <li class="{{set_active('cats')}}"><a href="{{route('cats')}}"><i class="fa  fa-thumb-tack"></i> <span>Kategori Servis</span></a></li>
+                  <li class="{{set_active('catrs')}}"><a href="{{route('catrs')}}"><i class="fa  fa-thumb-tack"></i> <span>Kategori Servis</span></a></li>
                   <li class="{{set_active('jams')}}"><a href="{{route('jams')}}"><i class="fa  fa-hourglass-2"></i> <span>Jam Layanan</span></a></li>
 
               </ul>
         </li>
-        <li class="treeview ">
+        <li class="treeview {{set_active(['tickets','cats','status','prioritas'])}}">
             <a href="#"><i class="fa fa-ticket"></i> <span>Ticket</span>
               <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu ">
-              {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-              <li><a href="{{url('admin/jasa')}}"><i class="fa fa-list"></i> <span>Daftar Ticket</span></a></li>
-              <li><a href="{{url('admin/jasa/job')}}"><i class="fa fa-flag"></i> <span>Prioritas</span></a></li>
-              <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa fa-angle-double-right"></i> <span>Kategori</span></a></li>
-
+            <li class="{{set_active('tickets')}}"><a href="{{  route('tickets')}}"><i class="fa fa-ticket"></i> <span>Daftar Ticket</span></a></li>
+            <li class="{{set_active('cats')}}"><a href="{{route('cats')}}"><i class="fa fa-flag"></i> <span>Kategori</span></a></li>
+            <li class="{{set_active('status')}}"><a href="{{route('status')}}"><i class="fa fa-angle-double-right"></i> <span>Status</span></a></li>
+            <li class="{{set_active('prioritas')}}"><a href="{{route('prioritas')}}"><i class="fa fa-angle-double-right"></i> <span>Prioritas</span></a></li>
+            <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa fa-angle-double-right"></i> <span>Comments</span></a></li>
+            <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa fa-angle-double-right"></i> <span>Audits</span></a></li>
           </ul>
         </li>
         <li class="treeview ">

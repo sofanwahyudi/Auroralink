@@ -2,6 +2,7 @@
 
 namespace App\Model\Tickets;
 
+use App\Model\Team;
 use Illuminate\Database\Eloquent\Model;
 
 class Tickets extends Model
@@ -35,7 +36,11 @@ class Tickets extends Model
     }
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User', 'users_id');
+    }
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
     }
     public function comments()
     {

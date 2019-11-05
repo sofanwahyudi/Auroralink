@@ -8,6 +8,7 @@ use App\Model\Portofolio;
 use App\Model\Post;
 use App\Model\Section;
 use App\Model\Team;
+use App\Model\Tickets\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -57,6 +58,14 @@ class FrontController extends Controller
     }
     public function tickets()
     {
-        return view('frontend.tickets');
+        $tic = Tickets::all();
+
+        return view('frontend.tickets')->withTic($tic);
+    }
+    public function getTickets($id)
+    {
+        $tickets = Tickets::findOrFail($id);
+
+        return view('frontend.tickets')->withTickets($tickets);
     }
 }

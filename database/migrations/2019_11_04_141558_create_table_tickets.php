@@ -21,7 +21,7 @@ class CreateTableTickets extends Migration
             $table->integer('priority_id')->unsigned();
             $table->integer('users_id')->unsigned();
             $table->integer('cats_id')->unsigned();
-            $table->longText('html')->nullable();
+            $table->integer('team_id')->unsigned();
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });

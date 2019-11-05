@@ -5,72 +5,93 @@
 @stop
 
 @section('hero')
-<section id="hero" class="wow fadeIn" style="margin-top:165px; margin-left:45px;">
-    <div class="pull-left container">
-    <div class="pull-right">
-<img src="image/dis.png" alt="Hero Imgs">
+<section id="hero" class="wow fadeIn" style="margin-top:165px;">
+    <div class="badge">
+        @if ($message = Session::get('danger'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+        @endif
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+        <strong>Success: </strong>{{ Session::get('success') }}
+        </div>
+        @endif
     </div>
-    <div class="col-md-6">
-      <a href="#" data-toggle="modal" data-target="#myAddModal" class="btn-get-started scrollto"><span class="fa fa-ticket"> Open Ticket </span></a>
-      <p>Klik Open Ticket dan silahkan isikan data sesuai kolom</p>
-      </div>
-      </div>
+    <div class="pull-left container">
+        <div class="pull-right">
+            <img src="image/dis.png" alt="Hero Imgs">
+        </div>
+        {{--  <div class="badge">
+            <div class="container">
+            <div class="alert alert-success">
+            @forelse ($tic as $tuc)
+            <p> No Tickets :
+            <br>Status Tickets :
+            <br>Complete at :
+            </p>
+            @empty
+            <p><span class="w3-tag w3-green"> Nothing Tickets</span></p>
+            @endforelse
+
+           </div>
+            </div>
+        </div>  --}}
+        <div class="col-md-6">
+        <a href="#" class="btn-get-started scrollto"><span class="fa fa-info-circle"> Status Ticket </span></a>
+        </div>
+        <div class="col-md-6">
+        <a href="#" data-toggle="modal" data-target="#myAddModal" class="btn-get-started scrollto"><span class="fa fa-ticket"> Open Ticket </span></a>
+        </div>
+    </div>
+
 <!-- Ini awalan modal tambah -->
 <div class="box box-warning">
 <div  id="myAddModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                <img src="image/dis.png" alt="Hero Imgs">
+                        <img src="image/dis.png" alt="Hero Imgs">
                         <div class="box box-warning">
-                        @if ($message = Session::get('info'))
-                        <div class="alert alert-info alert-block">
-                            <button type="button" class="close" data-dismiss="alert">X</button>
-                            <strong>{{ $message }}</strong>
-                        </div>
-                        @endif
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div><br/>
-                        @endif
                             <div class="modal-body">
                                 <div class="box-body">
-                                    {!! Form::open() !!}
+                                    {!! Form::open(['route' => ['tickets.store'], 'method'=> 'POST']) !!}
                                         <div class="form-group">
-                                            <label for="" class="control-label">Title</label>
+                                            <label for="" class="control-label">Subject</label>
                                             <div class="input-group">
                                                 {{--  <div class="input-group-addon"><i class="fa fa-id-card-o"></i></div>  --}}
-                                                {!! Form::text('nama', null, ['class' => 'form-control', 'id' => 'nama', 'rows' => '5', 'placeholder' => 'Masukan Nama']) !!}
+                                                {!! Form::text('subject', null, ['class' => 'form-control', 'id' => 'subject', 'rows' => '5', 'placeholder' => 'Enter Subject']) !!}
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="" class="control-label">Telepon</label>
+                                            <label for="" class="control-label"></label>
                                             <div class="input-group">
                                                 {{--  <div class="input-group-addon"><i class="fa fa-phone"></i></div>  --}}
-                                                <select id="category_id" class="form-control select" name="category_id">
-                                                    <option value="#">-- Pilih Kategori --</option>
-                                                    @foreach (\App\Model\Category::all() as $jp)
-                                                    <option value="{{$jp->id}}">{{$jp->category}}</option>
+                                                <select id="priority_id" class="form-control select" name="priority_id">
+                                                    <option value="#">-- Select Priority --</option>
+                                                    @foreach (\App\Model\Tickets\Priority::all() as $jp)
+                                                    <option value="{{$jp->id}}" >{{$jp->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="" class="control-label">Email</label>
+                                            <label for="" class="control-label"></label>
                                             <div class="input-group">
-                                                {{--  <div class="input-group-addon"><i class="fa fa-envelope"></i></div>  --}}
-                                                {!! Form::file('image') !!}
+                                                {{--  <div class="input-group-addon"><i class="fa fa-phone"></i></div>  --}}
+                                                <select id="cats_id" class="form-control select" name="cats_id">
+                                                    <option value="#">-- Select Categories --</option>
+                                                    @foreach (\App\Model\Tickets\Cats::all() as $jp)
+                                                    <option value="{{$jp->id}}" >{{$jp->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             {{--  <label for="" class="control-label">Komentar</label>  --}}
                                             <div class="input-group">
-                                                {!! Form::textarea('body', null, ['class' => 'form-control', 'rows' => '5', 'placeholder' => 'Enter Your Comment Here....']) !!}
+                                                {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => '5','class' => 'textarea', 'placeholder' => 'Enter Your Description Here....']) !!}
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -87,5 +108,12 @@
     </div><!--mydetailmodal-->
     <!-- Ini akhiran modal tambah -->
 </section>
-
 @stop
+<script>
+  $(function () {
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
+<script src="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<link rel="stylesheet" href="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">

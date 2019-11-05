@@ -26,7 +26,7 @@ class PostController extends Controller
         })
         ->addColumn('author', function($data){
             return $data->users['name'];
-    })
+        })
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,

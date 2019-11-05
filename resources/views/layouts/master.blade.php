@@ -135,6 +135,7 @@ desired effect
 <!-- Select2 -->
 <script src="{{ url('assets/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 
+
 </body>
 @yield('footer')
 </html>

@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 Route::get('/', 'FrontController@index');
 Route::get('/tickets', 'FrontController@tickets');
+Route::get('/tickets/{id}', 'FrontController@getTickets');
 Route::get('/blog', 'FrontController@blog');
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
@@ -45,6 +46,27 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('users', 'UserController@index')->name('users');
             Route::resource('dashboard', 'AdminController');
             Route::get('dashboard', 'AdminController@index')->name('dashboard');
+
+//Route Tickets Prioritas
+        Route::resource('prioritas', 'PrioritasController');
+        Route::get('/tickets/prioritas/list_prioritas', 'PrioritasController@index')->name('prioritas');
+        Route::get('/tickets/json/prioritas', 'PrioritasController@dataTable')->name('prioritas.json');
+
+//Route Tickets Status
+        Route::resource('status', 'StatusController');
+        Route::get('/tickets/status/list_status', 'StatusController@index')->name('status');
+        Route::get('/tickets/json/status', 'StatusController@dataTable')->name('status.json');
+
+//Route Tickets Categories
+        Route::resource('cats', 'CatsController');
+        Route::get('/tickets/categories/list_categories', 'CatsController@index')->name('cats');
+        Route::get('/tickets/json/categories', 'CatsController@dataTable')->name('cats.json');
+
+//Route Tickets
+        Route::resource('tickets', 'TicketsController');
+        Route::get('tickets', 'TicketsController@index')->name('tickets');
+        Route::get('json/tickets', 'TicketsController@dataTable')->name('tickets.json');
+
 
 //Route Comment
         Route::resource('comments', 'CommentController');
@@ -128,8 +150,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 //Route Categories
             Route::resource('categories', 'CategoriesController');
-            Route::get('/jasa/categories/list_categories', 'CategoriesController@index')->name('cats');
-            Route::get('/jasa/categories/json', 'CategoriesController@dataTable')->name('cats.json');
+            Route::get('/jasa/categories/list_categories', 'CategoriesController@index')->name('catrs');
+            Route::get('/jasa/categories/json', 'CategoriesController@dataTable')->name('catrs.json');
 
 //Route Kategori Part
             Route::resource('kategori', 'KategoriController');
