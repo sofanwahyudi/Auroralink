@@ -6,6 +6,7 @@ use App\Model\Tickets\Tickets;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class TicketsController extends Controller
 {
@@ -18,6 +19,9 @@ class TicketsController extends Controller
         })
         ->addColumn('category', function($data){
             return $data->category['name'];
+        })
+        ->addColumn('priority', function($data){
+            return $data->priority['name'];
         })
         ->addColumn('users', function($data){
             return $data->users['name'];
@@ -85,6 +89,13 @@ class TicketsController extends Controller
         $currentuser = Auth::user()->id;
         $data->users_id = $currentuser;
         $data->team_id = 1;
+        $nik = \DB::table('tickets')->max('id');
+        $th = Carbon::now();
+        $bulan = $th->format('m');
+        $nt = str_pad( 'TCKT'. $bulan . $nik, 8, 0 , STR_PAD_RIGHT);
+        $data->no_ticket = $nt;
+        $slug = str_slug($nt,'-');
+        $data->slug = $slug;
         $data->save();
 
         return redirect()->back()->with('success','Ticket Added Successfully with no.');
@@ -123,10 +134,10 @@ class TicketsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (!Auth::check()){
-            $request->session()->flash('login', 'Maaf Anda harus login dulu');
-            return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first.');
-        }
+        // if (!Auth::check()){
+        //     $request->session()->flash('login', 'Maaf Anda harus login dulu');
+        //     return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first.');
+        // }
 
         $this->validate($request,[
         'subject' => 'required|max:255',
@@ -136,12 +147,9 @@ class TicketsController extends Controller
         $data = Tickets::findOrFail($id);
         $data->subject = $request->subject;
         $data->content = $request->content;
-        $data->status_id = 1;
+        $data->status_id = $request->status_id;
         $data->priority_id = $request->priority_id;
         $data->cats_id = $request->cats_id;
-        $currentuser = Auth::user()->id;
-        $data->users_id = $currentuser;
-        $data->team_id = 1;
         $data->save();
 
         return redirect()->back()->with('success','Ticket Update Successfully');

@@ -30,6 +30,10 @@ class Tickets extends Model
     {
         return $this->belongsTo('App\Model\Tickets\Status', 'status_id');
     }
+    public function priority()
+    {
+        return $this->belongsTo('App\Model\Tickets\Priority', 'priority_id');
+    }
     public function category()
     {
         return $this->belongsTo('App\Model\Tickets\Cats', 'cats_id');

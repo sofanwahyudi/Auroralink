@@ -45,10 +45,7 @@
 <!-- Begin Site Title
 ================================================== -->
 <div class="container">
-    <div class="text-center">
-        <img src="{{ url('image/Auroralink.png') }}" class="img-fluid" alt="Responsive image" width='500'>
-
-    </div>
+    @yield('ads')
         {{-- <div class="mainheading">
             <a href='#' target='_blank' title='Settia Blog'>
                 <img src="{{url('img/bn.jpg')}}" alt=Settia  width='500'/></a>

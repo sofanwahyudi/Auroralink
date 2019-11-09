@@ -1,46 +1,24 @@
-<div class="text-center">
-</div><!--text-center -->
-<div class="modal-body">
-    <div class="box-body">
-            <div class="col-md-6">
-                    <table class="table table-bordered">
-                        <tr>
-                            <td><b>Nik </b></td>
-                            <td>{{$model->nik}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Nama </b></td>
-                            <td>{{$model->nama}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Alamat </b></td>
-                            <td>{{ $model->alamat }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Email </b></td>
-                            <td>{{ $model->email }}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table class="table table-bordered">
-                        <tr>
-                            <td><b>Telepon </b></td>
-                            <td>{{$model->telepon}}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Devisi </b></td>
-                            <td>{{ $model->devisi['name'] }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Bagian</b></td>
-                            <td>{{ $model->bagian['nama'] }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>User </b></td>
-                            <td>{{ $model->users['name'] }}</td>
-                        </tr>
-                    </table>
-                </div>
-    </div><!-- box-body-->
-</div><!-- modal-body-->
+<div class="body-box">
+ <center><img src="{{$model->image}}" class="img-fluid"></center>
+    <table class="table table-bordered">
+        <tr>
+            <td>No Tickets </td>
+            <td>Subject </td>
+            <td>Content </td>
+            <td>Status </td>
+            <td>Kategori </td>
+            <td>Prioritas </td>
+            <td>Team </td>
+            <td>Pelanggan </td>
+        </tr>
+        <tr>
+            <td>{{$model->id}}</td>
+            <td>{{$model->subject}}</td>
+            <td>{{ $model->content }}</td>
+            <td><span class="badge bg-{{$model->status['color']}}">{{$model->status['name']}}</span></td>
+            <td><span class="badge bg-{{$model->category['color']}}">{{ $model->category['name'] }}</span></td>
+            <td><span class="badge bg-{{$model->priority['color']}}">{{ $model->priority['name'] }}</span></td>
+            <td>{{ $model->team['nama'] }}
+            <td>{{ $model->users['name'] }}
+    </table>
+    </div>

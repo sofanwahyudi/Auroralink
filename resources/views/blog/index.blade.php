@@ -4,6 +4,7 @@
 Auroralink | Blog
 @stop
 @section('nav')
+<a class="nav-link" href="{{ url('/') }}" style="color:grey;">Home</a>
 <a class="nav-link" href="{{ url('/blog') }}" style="color:grey;">Index Of Blog</a>
 
 
@@ -24,6 +25,13 @@ Auroralink | Blog
         </div>
     </div>
 </div>
+@endsection
+
+@section('ads')
+    <div class="text-center">
+        <img src="{{ url('image/Auroralink.png') }}" class="img-fluid" alt="Responsive image" width='500'>
+
+    </div>
 @endsection
 
 @section('content')

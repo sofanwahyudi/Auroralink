@@ -3,7 +3,18 @@
     Auroralink | {{ htmlspecialchars($blog->title) }}
 @endsection
 @section('nav')
+<a class="nav-link" href="{{ url('/') }}" style="color:grey;">Home</a>
+<a class="nav-link" href="{{ url('/blog') }}" style="color:grey;">Index Of Blog</a>
 
+@foreach ($cats as $ca)
+<a class="nav-link" href="{{url("/blog/categories/$ca->slug")}}" style="color:grey;">{{ $ca->category }}</a>
+@endforeach
+@endsection
+@section('ads')
+    <div class="text-center">
+        <img src="{{ url('image/Auroralink.png') }}" class="img-fluid" alt="Responsive image" width='500'>
+
+    </div>
 @endsection
 @section('article')
 <div class="col-md-12 col-md-offset-2 col-xs-12">
@@ -24,11 +35,11 @@
     <div class="after-post-tags">
             <ul class="tags">
             <p> Tags: </p>
-            {{-- @foreach ($blog->tags as $item)
+            @foreach ($blog->tags as $item)
             <span class="w3-tag w3-blue">
             #{{ $item->tags }}
             </span>
-            @endforeach --}}
+            @endforeach
             </ul>
     </div> <!-- End Tags -->
 </div>

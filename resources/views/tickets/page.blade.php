@@ -23,29 +23,28 @@
         <div class="pull-right">
             <img src="image/dis.png" alt="Hero Imgs">
         </div>
-        {{--  <div class="badge">
-            <div class="container">
-            <div class="alert alert-success">
-            @forelse ($tic as $tuc)
-            <p> No Tickets :
-            <br>Status Tickets :
-            <br>Complete at :
-            </p>
-            @empty
-            <p><span class="w3-tag w3-green"> Nothing Tickets</span></p>
-            @endforelse
-
-           </div>
-            </div>
-        </div>  --}}
         <div class="col-md-6">
-        <a href="#" class="btn-get-started scrollto"><span class="fa fa-info-circle"> Status Ticket </span></a>
-        </div>
-        <div class="col-md-6">
+            {{-- <div class="input-group input-group-sm">
+                <input type="text" class="form-control" style="margin-right:5px; margin-bottom:10px;" placeholder="Put No. Ticket Here">
+            </div> --}}
+        <a href="#" class="btn-get-started  scrollto"><span class="fa fa-info-circle"> My Ticket </span></a>
         <a href="#" data-toggle="modal" data-target="#myAddModal" class="btn-get-started scrollto"><span class="fa fa-ticket"> Open Ticket </span></a>
         </div>
-    </div>
+        <div class="badge">
+            <div class="container">
+                <div class="alert alert-success">
+                @forelse ($tic as $tuc)
+                <p> No Tickets : {{ $tuc->no_ticket }}
+                <br>Status Tickets : {{ $tuc->status['name'] }}
+                </p>
+                @empty
+                <p><span class="w3-tag w3-green"> Nothing Tickets</span></p>
+                @endforelse
 
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- Ini awalan modal tambah -->
 <div class="box box-warning">
 <div  id="myAddModal" class="modal fade" role="dialog">
@@ -109,11 +108,11 @@
     <!-- Ini akhiran modal tambah -->
 </section>
 @stop
-<script>
+{{-- <script>
   $(function () {
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
   })
 </script>
 <script src="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
-<link rel="stylesheet" href="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+<link rel="stylesheet" href="{{url('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}"> --}}

@@ -259,50 +259,44 @@
       <div class="section-title text-center">
         <h2>Contact</h2>
         <p class="separator">  </p>
+         @if ($message = Session::get('danger'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+        @endif
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+        <strong>Success: </strong>{{ Session::get('success') }}
+        </div>
+        @endif
       </div>
     </div>
 
     <div class="container">
       <div class="row justify-content-center">
-
         <div class="col-lg-3 col-md-4">
+        <div class="info">
+            <div>
+              <i class="fa fa-map-marker"></i>
+              <p>Jl Bulak setro utara VI/4C<br> Bulak Surabaya</p>
+            </div>
 
-          @include('frontend.contact')
+            <div class="email">
+              <i class="fa fa-envelope"></i>
+              <p>auroralinkid@gmail.com<br>sofan@auroralink.id</p>
+            </div>
 
-          {{--  <div class="social-links">
-            <a href="https://twitter.com/id_auroralink" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a href="https://www.facebook.com/AuroralinkDotID" class="facebook"><i class="fa fa-facebook"></i></a>
-            <a href="https://www.instagram.com/auroralinkid/" class="instagram"><i class="fa fa-instagram"></i></a>
-            <a href="#" class="whatsapp"><i class="fa fa-whatsapp"></i></a>
-            <a href="#" class="telegram"><i class="fa fa-telegram"></i></a>
-            <a href="https://www.linkedin.com/in/auroralink-id-0a0908171/" class="linkedin"><i class="fa fa-linkedin"></i></a>
-          </div>  --}}
+            <div>
+              <i class="fa fa-phone"></i>
+              <p>+62 811-3190-408 <br> +62 822-3159-9828 <br> +62 856-5819-2877</p>
+        </div>
+    </div>
 
         </div>
 
          <div class="col-lg-5 col-md-8">
-          <div class="form">
-            <form action="{{ route('leads.store') }}" method="post" role="form" class="contactForm">
-            {{ csrf_field() }}
-              <div class="form-group">
-                <input type="text" name="nama" class="form-control" id="nama" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="number" class="form-control" name="telepon" id="telepon" placeholder="Phone" data-rule="minlen:4" data-msg="Please enter your phone" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="komentar" id="komentar" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                <div class="validation"></div>
-              </div>
-              <div class="text-center"><button type="submit"> <i class="fa fa-send"></i>  Send Message</button></div>
-            </form>
-          </div>
+         @include('frontend.contact')
         </div>
       </div>
     </div>

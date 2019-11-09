@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 Route::get('/', 'FrontController@index');
 Route::get('/tickets', 'FrontController@tickets');
-Route::get('/tickets/{id}', 'FrontController@getTickets');
+Route::get('/tickets/{slug}', 'FrontController@getTickets');
 Route::get('/blog', 'FrontController@blog');
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
@@ -33,10 +33,6 @@ Route::post('comments/reply/{comment_id}', ['uses' => 'CommentController@reply',
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
 Route::get('/services', 'FrontController@sectionServices')->name('section.services');
-// Route::get('/', 'FrontController@section');
-//Route::get('/services', 'FrontController@sectionOurServices');
-//Route::get('/portofolio', 'FrontController@sectionPortofolio');
-
 Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'admin'], function () {

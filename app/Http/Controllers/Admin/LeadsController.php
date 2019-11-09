@@ -67,6 +67,7 @@ class LeadsController extends Controller
         $data->email = $request->email;
         $data->komentar = $request->komentar;
         $data->save();
+
         return redirect()->back()->with('success','Data Berhasil disimpan');
     }
 

@@ -30,7 +30,7 @@ $('#modal-btn-save').click(function (event) {
     var form = $('#modal-body form'),
         url = form.attr('action'),
         method = $('input[name=_method]').val() == undefined ? 'POST' : 'PUT';
-        formData = new FormData($(form)[0]);
+        // formData = new FormData($(form)[0]);
 
     form.find('.help-block').remove();
     form.find('.form-group').removeClass('has-error');

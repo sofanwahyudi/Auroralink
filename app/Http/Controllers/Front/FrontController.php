@@ -34,8 +34,9 @@ class FrontController extends Controller
         // $blog = DB::table('post')->where('post.slug', $slug)->first();
        // $blog = Post::findOrFail($id);
         $blog = Post::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
+        $cats = Category::all();
         // dd($blog->comments);
-        return view('blog.post', compact('blog'));
+        return view('blog.post')->withBlog($blog)->withCats($cats);
     }
     public function search(Request $request)
     {
@@ -60,12 +61,11 @@ class FrontController extends Controller
     {
         $tic = Tickets::all();
 
-        return view('frontend.tickets')->withTic($tic);
+        return view('tickets.page')->withTic($tic);
     }
-    public function getTickets($id)
+    public function getTickets($slug)
     {
-        $tickets = Tickets::findOrFail($id);
-
-        return view('frontend.tickets')->withTickets($tickets);
+        $tickets = Tickets::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
+        return view('tickets.detail_tickets')->withTickets($tickets);
     }
 }
