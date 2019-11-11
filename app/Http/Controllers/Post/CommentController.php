@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Comment;
 use App\Model\Post;
+use App\Model\Tickets\Tickets;
 use DataTables;
 use Auth;
 
@@ -140,7 +141,7 @@ class CommentController extends Controller
         $model = Comment::findOrFail($id);
         $model->delete();
     }
-    public function reply(Request $request , $comment_id)
+    public function tickets(Request $request , $comment_id)
     {
         if (!Auth::check()){
             $request->session()->flash('login', 'Maaf Anda harus login dulu supaya bisa koment');
@@ -164,4 +165,29 @@ class CommentController extends Controller
 
         return redirect()->back()->with('success','Comment Reply Successfully');
     }
+    // public function tickets(Request $request , $comment_id)
+    // {
+    //     if (!Auth::check()){
+    //         $request->session()->flash('login', 'Maaf Anda harus login dulu supaya bisa koment');
+    //         return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first before you can REPLY comment. #cmiw');
+    //     }
+
+
+    // 	$request->validate([
+    //         // 'name' => 'required',
+    //         'body' => 'required',
+    //         // 'email' => 'required|email|unique:users',
+    //     ]);
+
+    //     $comment = Comment::find($comment_id);
+
+    //     $reply = new Comment();
+    //     $reply->body = $request->body;
+    //     $reply->users_id = Auth::user()->id;
+
+    //     $comment->comments()->save($reply);
+
+    //     return redirect()->back()->with('success','Comment Reply Successfully');
+    // }
+
 }

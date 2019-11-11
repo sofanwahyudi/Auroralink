@@ -60,12 +60,12 @@ class FrontController extends Controller
     public function tickets()
     {
         $tic = Tickets::all();
-
         return view('tickets.page')->withTic($tic);
     }
     public function getTickets($slug)
     {
         $tickets = Tickets::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
+        //  dd($tickets->comments);
         return view('tickets.detail_tickets')->withTickets($tickets);
     }
 }

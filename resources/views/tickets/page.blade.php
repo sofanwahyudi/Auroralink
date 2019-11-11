@@ -15,7 +15,7 @@
         @endif
         @if(Session::has('success'))
         <div class="alert alert-success">
-        <strong>Success: </strong>{{ Session::get('success') }}
+        <strong>Ticket Added Successfully with no: </strong>{{ Session::get('success') }}
         </div>
         @endif
     </div>
@@ -27,22 +27,54 @@
             {{-- <div class="input-group input-group-sm">
                 <input type="text" class="form-control" style="margin-right:5px; margin-bottom:10px;" placeholder="Put No. Ticket Here">
             </div> --}}
-        <a href="#" class="btn-get-started  scrollto"><span class="fa fa-info-circle"> My Ticket </span></a>
-        <a href="#" data-toggle="modal" data-target="#myAddModal" class="btn-get-started scrollto"><span class="fa fa-ticket"> Open Ticket </span></a>
+        <a href="#" data-toggle="modal" data-target="#myAddModal" class="btn-get-started scrollto" style="margin-left:15px;"><span class="fa fa-ticket"> Open Ticket </span></a>
         </div>
-        <div class="badge">
-            <div class="container">
-                <div class="alert alert-success">
-                @forelse ($tic as $tuc)
-                <p> No Tickets : {{ $tuc->no_ticket }}
-                <br>Status Tickets : {{ $tuc->status['name'] }}
-                </p>
-                @empty
-                <p><span class="w3-tag w3-green"> Nothing Tickets</span></p>
-                @endforelse
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="badge" style="margin-left:5px;">
+                                {{--  Nomor Tickets :<a href='{{url("/tickets/$tuc->slug")}}' title="Selengkapnya">{{ $tuc->no_ticket }}</a>
+                                <br>Status Tickets : {{ $tuc->status['name'] }}  --}}
+                                 <table class="table table-bordered">
+                                    <tr>
+                                        <td>No Tickets </td>
+                                        <td>Status </td>
+                                        <td>Kategori </td>
+                                        <td>Prioritas </td>
+                                    </tr>
+                                    @foreach ($tic as $model)
+                                    <tr>
+
+                                        <td><a href='{{url("/tickets/$model->slug")}}'>{{ $model->no_ticket }}</a></td>
+                                        <td><span class="badge badge-{{$model->status['color']}}">{{$model->status['name']}}</span></td>
+                                        <td><span class="badge badge-{{$model->category['color']}}">{{ $model->category['name'] }}</span></td>
+                                        <td><span class="badge badge-{{$model->priority['color']}}">{{ $model->priority['name'] }}</span></td>
+
+                                    </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                    </div>
 
                 </div>
-            </div>
+
+                            {{--  @forelse ($tic as $tuc)
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="badge" style="margin-left:5px;">
+                            <div class="alert alert-success">
+                            <span class="fa fa-info-circle"> My Ticket </span>
+                                            <p> No. Tickets : {{ $tuc->no_ticket }}
+                                            <br>Status : {{ $tuc->status['name'] }}
+                                            <br><span class="post-read-more"><a href='{{url("/tickets/$tuc->slug")}}' title="Selengkapnya">Read More &raquo;</a></span>
+                                            </p>
+                                            @empty
+                                            <p><span class="w3-tag w3-green"> Nothing Tickets</span></p>
+
+                            </div>
+                    </div>
+                </div>
+                @endforelse  --}}
         </div>
     </div>
 <!-- Ini awalan modal tambah -->

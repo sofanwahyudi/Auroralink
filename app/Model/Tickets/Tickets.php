@@ -3,6 +3,7 @@
 namespace App\Model\Tickets;
 
 use App\Model\Team;
+use App\Model\Comment;
 use Illuminate\Database\Eloquent\Model;
 
 class Tickets extends Model
@@ -48,6 +49,6 @@ class Tickets extends Model
     }
     public function comments()
     {
-        return $this->hasMany('App\Model\Tickets\Comment', 'ticket_id');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

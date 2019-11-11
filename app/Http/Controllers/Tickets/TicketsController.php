@@ -98,7 +98,7 @@ class TicketsController extends Controller
         $data->slug = $slug;
         $data->save();
 
-        return redirect()->back()->with('success','Ticket Added Successfully with no.');
+        return redirect()->back()->withSuccess($nt);
     }
 
     /**
