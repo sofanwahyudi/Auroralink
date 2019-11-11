@@ -1,14 +1,21 @@
 @extends('frontend.base.medium')
+@section('title')
+    Details Tickets #{{$tickets->no_ticket}}
+@stop
+@section('ads')
+    <div class="text-center">
+        <img src="{{ url('image/Auroralink.png') }}" class="img-fluid" alt="Responsive image" width='500'>
 
+    </div>
+@endsection
 @section('article')
 <div class="col-md-12 col-md-offset-2 col-xs-12">
     <div class="mainheading">
         <div class="panel-body">
             <div class="content">
                 <h2 class="header">
-                    #{{$tickets->no_ticket}}
                     <span class="pull-right">
-                    <a href="http://ticketit.kordy.info/tickets/74/reopen" class="btn btn-success">Reopen Ticket</a>
+                     #{{$tickets->no_ticket}}
                     </span>
                 </h2>
                 <div class="panel well well-sm">
@@ -39,7 +46,8 @@
                 <hr>
                 <div class="col-md-12">
                     <div class="article-post">
-                        <p>{!! $tickets->content !!}</p>
+                        <p>{!! htmlspecialchars($tickets->content) !!}</p>
+
                     </div>
                 </div>
             </div>

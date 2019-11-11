@@ -28,8 +28,8 @@ Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories',
 //Comments
 
 Route::post('comments/post/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
-// Route::post('comments/tickets/{tickets_id}', ['uses' => 'CommentController@tickets', 'as' => 'comment.tickets']);
-Route::post('comments/reply/{tickets_id}', ['uses' => 'CommentController@tickets', 'as' => 'comment.tickets']);
+Route::post('comments/tickets/{tickets_id}', ['uses' => 'CommentController@tickets', 'as' => 'comment.ticket']);
+Route::post('comments/reply/{comment_id}', ['uses' => 'CommentController@reply', 'as' => 'comment.reply']);
 
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');

@@ -141,7 +141,7 @@ class CommentController extends Controller
         $model = Comment::findOrFail($id);
         $model->delete();
     }
-    public function tickets(Request $request , $comment_id)
+    public function reply(Request $request , $comment_id)
     {
         if (!Auth::check()){
             $request->session()->flash('login', 'Maaf Anda harus login dulu supaya bisa koment');
@@ -165,29 +165,27 @@ class CommentController extends Controller
 
         return redirect()->back()->with('success','Comment Reply Successfully');
     }
-    // public function tickets(Request $request , $comment_id)
-    // {
-    //     if (!Auth::check()){
-    //         $request->session()->flash('login', 'Maaf Anda harus login dulu supaya bisa koment');
-    //         return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first before you can REPLY comment. #cmiw');
-    //     }
+    public function tickets(Request $request, $tickets_id)
+    {
+        if (!Auth::check()){
+            $request->session()->flash('login', 'Maaf Anda harus login dulu supaya bisa koment');
+            return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first before you can REPLY comment. #cmiw');
+        }
+        $request->validate([
+            // 'name' => 'required',
+            'body' => 'required',
+            // 'email' => 'required|email|unique:users',
+        ]);
+        $tickets = Tickets::find($tickets_id);
 
+        $comment = new Comment();
+        $comment->body = $request->body;
+        $comment->users_id = Auth::user()->id;
 
-    // 	$request->validate([
-    //         // 'name' => 'required',
-    //         'body' => 'required',
-    //         // 'email' => 'required|email|unique:users',
-    //     ]);
+        $tickets->comments()->save($comment);
 
-    //     $comment = Comment::find($comment_id);
+        return redirect()->back()->with('success','Comment Added Successfully');
 
-    //     $reply = new Comment();
-    //     $reply->body = $request->body;
-    //     $reply->users_id = Auth::user()->id;
-
-    //     $comment->comments()->save($reply);
-
-    //     return redirect()->back()->with('success','Comment Reply Successfully');
-    // }
+    }
 
 }

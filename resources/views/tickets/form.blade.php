@@ -21,11 +21,11 @@
 
 <!-- /.box-header -->
 <div class="box-body">
-    {!! Form::open(['route' => ['comment.reply', $tickets->id], 'method'=> 'POST']) !!}
+    {!! Form::open(['route' => ['comment.ticket', $tickets->id], 'method'=> 'POST']) !!}
     <form role="form">
     <!-- textarea -->
     <div class="form-group required">
-        {!! Form::textarea('body', null, ['class' => 'form-control', 'rows' => '5', 'placeholder' => 'Enter Your Comment Here....']) !!}
+        {!! Form::textarea('body', null, ['class' => 'form-control editor', 'rows' => '5', 'placeholder' => 'Enter Your Comment Here....']) !!}
     </div>
     <div class="box-footer">
     <button type="submit" class="btn btn-primary">Send Comment</button>
