@@ -59,7 +59,8 @@ class FrontController extends Controller
     }
     public function tickets()
     {
-        $tic = Tickets::all();
+        $users = auth()->user()->id;
+        $tic = Tickets::where(['users_id' => $users])->get();
         return view('tickets.page')->withTic($tic);
     }
     public function getTickets($slug)

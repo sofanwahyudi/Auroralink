@@ -18,24 +18,32 @@ Route::get('/', function () {
 
 });
 Route::get('/', 'FrontController@index');
-Route::get('/tickets', 'FrontController@tickets');
-Route::get('/tickets/{slug}', 'FrontController@getTickets');
+
+
+
 Route::get('/blog', 'FrontController@blog');
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
 Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories', 'as' => 'cat.post']);
 
-//Comments
 
-Route::post('comments/post/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
-Route::post('comments/tickets/{tickets_id}', ['uses' => 'CommentController@tickets', 'as' => 'comment.ticket']);
-Route::post('comments/reply/{comment_id}', ['uses' => 'CommentController@reply', 'as' => 'comment.reply']);
 
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
 Route::get('/services', 'FrontController@sectionServices')->name('section.services');
 Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
+
+    // Route Tickets Front
+
+    Route::get('/tickets', 'FrontController@tickets');
+    Route::get('/tickets/{slug}', 'FrontController@getTickets');
+
+    //Route Comments Front
+    Route::post('comments/post/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
+    Route::post('comments/tickets/{tickets_id}', ['uses' => 'CommentController@tickets', 'as' => 'comment.ticket']);
+    Route::post('comments/reply/{comment_id}', ['uses' => 'CommentController@reply', 'as' => 'comment.reply']);
+
     Route::group(['prefix' => 'admin'], function () {
             Route::resource('roles','RoleController');
             Route::get('roles', 'RoleController@index')->name('roles');

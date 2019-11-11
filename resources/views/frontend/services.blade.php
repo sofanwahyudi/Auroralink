@@ -1,11 +1,11 @@
 @foreach ($services as $data)
-        <div class="col-md-6 col-lg-3 top_left_cont zoomIn wow animated animated">
-          <div class="feature-block">
-            <img src="{{$data->getGambar()}}" alt="About" class="img-fluid">
-            <h4>{{ $data->nama }}</h4>
-            <p>{!! $data->deskripsi !!}</p>
-            <a class="btn btn-primary " href="https://wa.me/628113190408">Let's Start</a>
-          </div>
-
-        </div>
+<div class="col-md-6 col-lg-3 top_left_cont zoomIn wow animated animated">
+    <div class="feature-block">
+    <img src="{{$data->getGambar()}}" alt="About" class="img-fluid">
+    <h4>{{ $data->nama }}</h4>
+    <p>{!! $data->deskripsi !!}</p>
+    <a class="btn btn-primary " href="#" data-toggle="modal" data-target="#myAddModal">Lets Start</a>
+    </div>
+</div>
 @endforeach
+@include('form.form')

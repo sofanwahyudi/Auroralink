@@ -11,6 +11,13 @@
             {!! Form::text('nama', null, ['class' => 'form-control', 'id' => 'nama', 'placeholder' => 'Masukan Nama']) !!}
         </div>
     </div>
+    {{--  <div class="form-group">
+        <label for="" class="control-label">Slug</label>
+        <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-id-card-o"></i></div>
+            {!! Form::text('slug', $model->nama, ['class' => 'form-control', 'id' => 'slug', 'placeholder' => 'Masukan Nama']) !!}
+        </div>
+    </div>  --}}
     <div class="form-group">
         <label for="" class="control-label">Deskripsi</label>
         <div class="input-group">

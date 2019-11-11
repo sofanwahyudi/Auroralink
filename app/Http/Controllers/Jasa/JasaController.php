@@ -74,6 +74,9 @@ class JasaController extends Controller
         $data->benefit = $request->benefit;
         $data->jam_id = $request->jam_id;
         $data->job_id = $request->job_id;
+        $tl = $data->nama;
+        $slug = str_slug($tl,'-');
+        $data->slug = $slug;
 
         if($request->file('gambar')){
             $image = $request->file('gambar');
@@ -130,11 +133,24 @@ class JasaController extends Controller
             'benefit' => 'required|max:5000',
             'harga' => 'required',
             'job_id' => 'required',
+            'slug' => 'required'
             // 'gambar' => 'required',
             ]);
 
             $model = Jasa::findOrFail($id);
-            $model->update($request->all());
+            $model->nama = $request->nama;
+            $model->deskripsi = $request->deskripsi;
+            $model->harga = $request->harga;
+            $model->fitur = $request->fitur;
+            $model->benefit = $request->benefit;
+            $model->jam_id = $request->jam_id;
+            $model->job_id = $request->job_id;
+            $tl = $model->nama;
+            $slug = str_slug($tl,'-');
+            $model->slug = $slug;
+            $model->save();
+
+            return redirect()->back()->with('success','Data Update Successfully');
     }
 
     /**
