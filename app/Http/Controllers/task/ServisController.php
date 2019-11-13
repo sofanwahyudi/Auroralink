@@ -6,6 +6,21 @@ use Illuminate\Http\Request;
 
 class ServisController extends Controller
 {
+    public function dataTable(){
+        $model = Servis::query();
+        return DataTables::of($model)
+        ->addColumn('action', function($model){
+            return view('layouts._action', [
+                'model' => $model,
+                'url_show' => route('servis.show', $model->id),
+                'url_edit' => route('servis.edit', $model->id),
+                'url_destroy' => route('servis.destroy', $model->id),
+            ]);
+        })
+        ->addIndexColumn()
+        ->rawColumns(['checkbox','action'])
+        ->make(true);
+        }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +28,7 @@ class ServisController extends Controller
      */
     public function index()
     {
-        return view('admin.jasa.servis');
+        return view('admin.task.servis');
     }
 
     /**
