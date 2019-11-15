@@ -151,8 +151,6 @@ class TicketsController extends Controller
         $data->priority_id = $request->priority_id;
         $data->cats_id = $request->cats_id;
         $data->save();
-
-        return redirect()->back()->with('success','Ticket Update Successfully');
     }
 
     /**

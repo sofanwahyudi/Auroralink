@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Servis;
+use DataTables;
 
 class ServisController extends Controller
 {
@@ -28,7 +30,7 @@ class ServisController extends Controller
      */
     public function index()
     {
-        return view('admin.task.servis');
+        return view('admin.servis.index');
     }
 
     /**
@@ -38,7 +40,8 @@ class ServisController extends Controller
      */
     public function create()
     {
-        //
+        $model = new Servis();
+        return view('admin.servis.form', compact('model'));
     }
 
     /**

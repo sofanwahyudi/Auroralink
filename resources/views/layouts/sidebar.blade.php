@@ -46,7 +46,7 @@
                   <li class="{{set_active('portofolio')}}"><a href="{{route('portofolio')}}"><i class="fa fa-image"></i> Portofolio</a></li>
                 </ul>
               </li>
-        <li class="treeview {{set_active(['parts','kats','merks'])}}">
+        <li class="treeview {{set_active(['parts','kats','merks','models'])}}">
                 <a href="#">
                   <i class="fa fa-cube"></i> <span>Part</span>
                   <span class="pull-right-container">
@@ -56,7 +56,8 @@
                 <ul class="treeview-menu">
                   <li class="{{set_active('parts')}} "><a href="{{route('parts')}}"><i class="fa fa fa-cubes"></i> Daftar Part</a></li>
                   <li class="{{set_active('kats')}}"><a href="{{route('kats')}}"><i class="fa fa-circle-o"></i> Part Kategori</a></li>
-                  <li class="{{set_active('merks')}}"><a href="{{route('merks')}}"><i class="fa fa-circle-o"></i> Merk Part</a></li>
+                  <li class="{{set_active('merks')}}"><a href="{{route('merks')}}"><i class="fa fa-cube"></i> Merk</a></li>
+                  <li class="{{set_active('models')}}"><a href="{{route('models')}}"><i class="fa fa-circle-o"></i> Model</a></li>
                 </ul>
               </li>
         <li class="treeview {{set_active(['jobs','jasas','catrs','jams'])}}">
@@ -89,7 +90,7 @@
             <li><a href="{{url('admin/jasa/kategori_servis')}}"><i class="fa fa-angle-double-right"></i> <span>Audits</span></a></li>
           </ul>
         </li>
-        <li class="treeview ">
+        <li class="treeview {{set_active(['servis'])}}">
                 <a href="#"><i class="fa fa-tasks"></i> <span>Task</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -99,8 +100,21 @@
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li><a href="{{url('admin/task')}}"><i class="fa fa-list"></i> <span>Daftar Task</span></a></li>
                   <li><a href="{{url('admin/task/project')}}"><i class="fa fa-codepen"></i> <span>Project</span></a></li>
-                  <li><a href="{{url('admin/task/servis')}}"><i class="fa fa-medkit"></i> <span>Servis</span></a></li>
-                  <li><a href="{{url('admin/task/support')}}"><i class="fa fa-compress"></i> <span>Support</span></a></li>
+                  <li class="{{set_active('servis')}}"><a href="{{route('servis')}}"><i class="fa fa-medkit"></i> <span>Servis</span></a></li>
+                {{--  <li class="treeview ">
+                    <a href="#"><i class="fa fa-medkit"></i> <span>Servis</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                        <ul class="treeview-menu ">
+                            <li class="{{set_active('merks')}}"><a href="{{route('merks')}}"><i class="fa fa-circle-o"></i>Daftar Servis</a></li>
+                            <li class="{{set_active('garans')}}"><a href="{{route('garans')}}"><i class="fa fa-tag"></i> Garansi</a></li>
+                            <li class="{{set_active('kelengkapans')}}"><a href="{{route('kelengkapans')}}"><i class="fa fa-wheelchair"></i> Kelengkapan</a></li>
+                        </ul>
+                </li>  --}}
+
+                    <li><a href="{{url('admin/task/support')}}"><i class="fa fa-compress"></i> <span>Support</span></a></li>
 
               </ul>
         </li>

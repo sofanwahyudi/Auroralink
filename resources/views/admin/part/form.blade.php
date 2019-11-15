@@ -48,10 +48,10 @@
     <label for="name" class="control-label">Supplier</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-        <select id="supplier_id" class="form-control select2" name="supplier_id">
+        <select id="supplier_id" class="form-control select" name="supplier_id">
             <option value="#">-- Pilih Supplier --</option>
             @foreach (\App\Supplier::all() as $jp)
-            <option value="{{$jp->id}}" selected="selected">{{$jp->nama}}</option>
+            <option value="{{$jp->id}}" {{ ( $jp->id == $model->supplier['id']) ? 'selected' : '' }}>{{$jp->nama}}</option>
             @endforeach
         </select>
         </div>
@@ -60,10 +60,10 @@
     <label for="name" class="control-label">Kategori</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-        <select id="kategori_id" class="form-control select2" name="kategori_id">
+        <select id="kategori_id" class="form-control select" name="kategori_id">
             <option value="#">-- Pilih Kategori --</option>
             @foreach (\App\Model\Kategori::all() as $jp)
-            <option value="{{$jp->id}}" selected="selected" >{{$jp->nama}}</option>
+            <option value="{{$jp->id}}" {{ ( $jp->id == $model->kategori['id']) ? 'selected' : '' }} >{{$jp->nama}}</option>
             @endforeach
         </select>
         </div>
@@ -72,22 +72,23 @@
     <label for="name" class="control-label">Merk</label>
     <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-filter"></i></div>
-        <select id="merk_id" class="form-control select2" name="merk_id">
+        <select id="merk_id" class="form-control select" name="merk_id">
             <option value="#">-- Pilih Merk --</option>
             @foreach (\App\Model\Merk::all() as $jp)
-            <option value="{{$jp->id}}" selected="selected" >{{$jp->nama}}</option>
+            <option value="{{$jp->id}}" {{ ( $jp->id == $model->merk['id']) ? 'selected' : '' }} >{{$jp->name}}</option>
             @endforeach
         </select>
         </div>
     </div>
+    {{--  <div class="form-group col-md-6 required ">
+    <label for="name" class="control-label">Model</label>
+    <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-filter"></i></div>
+        <select name="subcategory" id="subcategory" class="form-control input-sm">
+        <option value=""></option>
+    </select>
+        </div>
+    </div>  --}}
 </div>
 {!! Form::close() !!}
-<script>
-$(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('deskripsi')
-    //bootstrap WYSIHTML5 - text editor
-    //$('.textarea').wysihtml5()
-  })
-</script>
+

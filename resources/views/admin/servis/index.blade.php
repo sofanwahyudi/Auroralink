@@ -5,7 +5,7 @@ Servis | Auroralink
 @section('content_header')
     <h1>
         <span class="fa fa-filter"></span> Servis
-        <a href="{{route('merk.create')}}"  class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
+        <a href="{{route('servis.create')}}"  class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
         <a href="#" data-url="" class="btn-sm btn-danger delete-all"><span class="fa fa-trash"></span> Hapus Data Terpilih</a>
     {{-- <button style="margin: 5px;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button> --}}
     </h1>
@@ -42,6 +42,10 @@ Servis | Auroralink
                 <tr role="row">
                     {{-- <th class="sorting_asc"> <input type="checkbox" id="check_all"></th> --}}
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Kode Servis</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Pelanggan</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Teknisi</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tgl Terima</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Status</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -59,11 +63,15 @@ $(document).ready(function(){
     {
     processing: true,
     serverSide: true,
-    ajax: "{{route('merk.json')}}",
+    ajax: "{{route('servis.json')}}",
     columns: [
         // { data: 'checkbox', orderable:false, searchable:false },
         // { data: 'id', name: 'id' },
         { data: 'kode_servis', name: 'kode_servis' },
+        { data: 'users', name: 'users' },
+        { data: 'teknisi', name: 'teknisi' },
+        { data: 'recive', name: 'recieve' },
+        { data: 'status', name: 'status' },
         { data: 'action', orderable:false, searchable:false },
     ]
     }

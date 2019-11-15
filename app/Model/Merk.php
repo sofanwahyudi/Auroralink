@@ -13,10 +13,14 @@ class Merk extends Model
       *
       * @var array
       */
-     protected $fillable = ['nama'];
+     protected $fillable = ['name'];
 
      public function part()
      {
          return $this->hasOne(Part::class);
+     }
+     public function models()
+     {
+         return $this->hasOne(Models::class);
      }
 }

@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('title')
-Servis | Auroralink
+Models | Auroralink
 @stop
 @section('content_header')
     <h1>
-        <span class="fa fa-filter"></span> Servis
-        <a href="{{route('merk.create')}}"  class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
+        <span class="fa fa-filter"></span> Models
+        <a href="{{route('models.create')}}"  class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
         <a href="#" data-url="" class="btn-sm btn-danger delete-all"><span class="fa fa-trash"></span> Hapus Data Terpilih</a>
     {{-- <button style="margin: 5px;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button> --}}
     </h1>
@@ -15,8 +15,8 @@ Servis | Auroralink
     <a href="{{route('export_kategori_csv')}}" class="btn-sm btn-success" style="color:white"><span class="fa fa-file" style="color:white"></span> Export Csv</a>
     </li>
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li>Task</li>
-      <li class="active">Servis</li>
+      <li>Part</li>
+      <li class="active">Merk/li>
     </ol>
 @endsection
 @section('content')
@@ -41,7 +41,8 @@ Servis | Auroralink
                 <thead>
                 <tr role="row">
                     {{-- <th class="sorting_asc"> <input type="checkbox" id="check_all"></th> --}}
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Kode Servis</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Model</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Merk</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -59,11 +60,14 @@ $(document).ready(function(){
     {
     processing: true,
     serverSide: true,
-    ajax: "{{route('merk.json')}}",
+    ajax: "{{route('models.json')}}",
     columns: [
         // { data: 'checkbox', orderable:false, searchable:false },
         // { data: 'id', name: 'id' },
-        { data: 'kode_servis', name: 'kode_servis' },
+        { data: 'name', name: 'name' },
+        { data: 'merk', name: 'merk' , render : function(data, type, row) {
+              return '<span class="badge bg-green">'+data+'</span>'
+          }  },
         { data: 'action', orderable:false, searchable:false },
     ]
     }

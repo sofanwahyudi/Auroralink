@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Merk;
+use App\Model\Garansi;
 use Illuminate\Http\Request;
 use DataTables;
 
-class MerkController extends Controller
+class GaransiController extends Controller
 {
     public function dataTable(){
-        $data = Merk::query();
+        $data = Garansi::query();
         return DataTables::of($data)
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
-                'url_show' => route('merk.show', $data->id),
-                'url_edit' => route('merk.edit', $data->id),
-                'url_destroy' => route('merk.destroy', $data->id),
+                'url_show' => route('garansi.show', $data->id),
+                'url_edit' => route('garansi.edit', $data->id),
+                'url_destroy' => route('garansi.destroy', $data->id),
             ]);
         })
         ->addIndexColumn()
@@ -30,10 +30,7 @@ class MerkController extends Controller
      */
     public function index()
     {
-        // $data = Merk::all();
-        // dd($data);
-
-        return view('admin.part.merk.index');
+        return view('admin.servis.garansi.index');
     }
 
     /**
@@ -43,8 +40,8 @@ class MerkController extends Controller
      */
     public function create()
     {
-        $model = new Merk();
-        return view('admin.part.merk.form', compact('model'));
+        $model = new Garansi();
+        return view('admin.servis.garansi.form', compact('model'));
     }
 
     /**
@@ -56,11 +53,11 @@ class MerkController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
+            'nama' => 'required|max:255',
             ]);
 
-            $data = new Merk();
-            $data->name = $request->name;
+            $data = new Garansi();
+            $data->nama = $request->nama;
             $data->save();
             return redirect()->back()->with('success','Data Berhasil disimpan');
     }
@@ -73,8 +70,8 @@ class MerkController extends Controller
      */
     public function show($id)
     {
-        $model = Merk::findOrFail($id);
-        return view('admin.part.merk.show', compact('model'));
+        $model = Garansi::findOrFail($id);
+        return view('admin.servis.garansi.show', compact('model'));
     }
 
     /**
@@ -85,8 +82,8 @@ class MerkController extends Controller
      */
     public function edit($id)
     {
-        $model = Merk::findOrFail($id);
-        return view('admin.part.merk.form', compact('model'));
+        $model = Garansi::findOrFail($id);
+        return view('admin.servis.garansi.form', compact('model'));
     }
 
     /**
@@ -99,10 +96,10 @@ class MerkController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => 'required|max:255',
+            'nama' => 'required|max:255',
             ]);
 
-            $model = Merk::findOrFail($id);
+            $model = Garansi::findOrFail($id);
             $model->update($request->all());
     }
 
@@ -114,7 +111,7 @@ class MerkController extends Controller
      */
     public function destroy($id)
     {
-        $model = Merk::findOrFail($id);
+        $model = Garansi::findOrFail($id);
         $model->delete();
     }
 }

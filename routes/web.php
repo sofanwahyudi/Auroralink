@@ -101,7 +101,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::group(['prefix' => 'task'], function () {
             Route::resource('/', 'TaskController');
             Route::resource('/project', 'ProjectController');
-            Route::resource('/servis', 'ServisController');
+
             Route::resource('/support', 'SupportController');
         });
             Route::resource('part', 'PartController');
@@ -111,6 +111,24 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('csv', 'PartController@exportCsv')->name('export_part_csv');
             Route::post('part/delete-multiple', ['as'=>'part.multiple-delete','uses'=>'PartController@deleteMultiple']);
 
+// Route Servis
+            Route::resource('/servis', 'ServisController');
+            Route::get('servis', 'ServisController@index')->name('servis');
+            Route::get('json/servis', 'ServisController@dataTable')->name('servis.json');
+
+
+
+// Route Garansi
+
+            Route::resource('garansi', 'GaransiController');
+            Route::get('/servis/garansi/list_garansi', 'GaransiController@index')->name('garans');
+            Route::get('/servis/json/garansi', 'GaransiController@dataTable')->name('garansi.json');
+
+// Route Kelengkapan
+
+            Route::resource('kelengkapan', 'KelengkapanController');
+            Route::get('/servis/kelengkapan/list_kelengkapan', 'KelengkapanController@index')->name('kelengkapans');
+            Route::get('servis/json/kelengkapan', 'KelengkapanController@dataTable')->name('kelengkapan.json');
 
 
 //Route Portofolio
@@ -170,6 +188,15 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('merk', 'MerkController');
             Route::get('/part/merk/list_merk', 'MerkController@index')->name('merks');
             Route::get('part/merk/json', 'MerkController@dataTable')->name('merk.json');
+
+//Model Part
+
+            Route::resource('models', 'ModelsController');
+            Route::get('/part/models/list_models', 'ModelsController@index')->name('models');
+            Route::get('/part/models/json', 'ModelsController@dataTable')->name('models.json');
+
+
+
 
 //Route Supplier
             Route::resource('supplier', 'SupplierController');

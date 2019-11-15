@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Merk Part | Auroralink
+Merk | Auroralink
 @stop
 @section('content_header')
     <h1>
@@ -16,7 +16,7 @@ Merk Part | Auroralink
     </li>
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li>Part</li>
-      <li class="active">Merk/li>
+      <li class="active">Merk</li>
     </ol>
 @endsection
 @section('content')
@@ -41,7 +41,7 @@ Merk Part | Auroralink
                 <thead>
                 <tr role="row">
                     {{-- <th class="sorting_asc"> <input type="checkbox" id="check_all"></th> --}}
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Merk</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -63,7 +63,7 @@ $(document).ready(function(){
     columns: [
         // { data: 'checkbox', orderable:false, searchable:false },
         // { data: 'id', name: 'id' },
-        { data: 'nama', name: 'nama' },
+        { data: 'name', name: 'name' },
         { data: 'action', orderable:false, searchable:false },
     ]
     }

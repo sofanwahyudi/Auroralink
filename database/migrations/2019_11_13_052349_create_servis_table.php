@@ -26,12 +26,6 @@ class CreateServisTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('brands', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('merk');
-            $table->string('model');
-            $table->timestamps();
-        });
         Schema::create('kelengkapan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
@@ -46,7 +40,7 @@ class CreateServisTable extends Migration
         Schema::create('servis_item', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('servis_id')->unsigned();
-            $table->integer('brands_id')->unsigned();
+            $table->integer('merk_id')->unsigned();
             $table->string('serial_number');
             $table->string('warna');
             $table->integer('kelengkapan_id')->unsigned();
@@ -65,7 +59,6 @@ class CreateServisTable extends Migration
     public function down()
     {
         Schema::dropIfExists('servis');
-        Schema::dropIfExists('brands');
         Schema::dropIfExists('kelengkapan');
         Schema::dropIfExists('garansi');
         Schema::dropIfExists('servis_item');
