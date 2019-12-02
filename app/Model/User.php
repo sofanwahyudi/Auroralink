@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Servis;
 use App\Model\Tickets\Tickets;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;

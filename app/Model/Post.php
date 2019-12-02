@@ -29,13 +29,16 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function tags(){
+    public function tags()
+    {
         return $this->belongsToMany(Tags::class);
     }
-    public function kategori(){
+    public function kategori()
+    {
         return $this->belongsTo(Category::class, 'category_id');
     }
-    public function getGambar(){
+    public function getGambar()
+    {
         if(!$this->gambar){
             return asset('image/dash.jpeg');
         }

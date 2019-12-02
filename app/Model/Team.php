@@ -50,4 +50,8 @@ class Team extends Model
        {
            return $this->hasOne(Jasa::class);
        }
+       public function servis()
+       {
+           return $this->hasOne(Servis::class);
+       }
 }

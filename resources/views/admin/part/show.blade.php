@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <td><b>Merk </b></td>
-                            <td>{{ $model->merk['nama'] }}</td>
+                            <td>{{ ($model->merk['name']) }}</td>
                         </tr>
                     </table>
                 </div>

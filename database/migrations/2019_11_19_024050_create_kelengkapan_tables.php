@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMerkTable extends Migration
+class CreateKelengkapanTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,6 +13,16 @@ class CreateMerkTable extends Migration
      */
     public function up()
     {
+        Schema::create('kelengkapan', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nama');
+            $table->timestamps();
+        });
+        Schema::create('garansi', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nama');
+            $table->timestamps();
+        });
         Schema::create('merk', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
@@ -33,6 +43,8 @@ class CreateMerkTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('kelengkapan');
+        Schema::dropIfExists('garansi');
         Schema::dropIfExists('merk');
         Schema::dropIfExists('model');
     }

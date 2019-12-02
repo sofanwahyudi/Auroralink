@@ -14,4 +14,9 @@ class Kelengkapan extends Model
      * @var array
      */
     protected $fillable = ['nama'];
+
+    public function servisItem()
+    {
+        return $this->belongsToMany(ServisItem::class, 'servis_kelengkapan','kelengkapan_id');
+    }
 }

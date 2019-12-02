@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/tickets/{slug}', 'FrontController@getTickets');
 
     //Route Comments Front
+    Route::post('item/servis/{servis_id}', ['uses' => 'ServisItemController@store', 'as' => 'serpis.store']);
     Route::post('comments/post/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comment.store']);
     Route::post('comments/tickets/{tickets_id}', ['uses' => 'CommentController@tickets', 'as' => 'comment.ticket']);
     Route::post('comments/reply/{comment_id}', ['uses' => 'CommentController@reply', 'as' => 'comment.reply']);
@@ -51,6 +52,11 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('users', 'UserController@index')->name('users');
             Route::resource('dashboard', 'AdminController');
             Route::get('dashboard', 'AdminController@index')->name('dashboard');
+
+
+        Route::resource('servis_item', 'ServisItemController');
+        Route::get('servis_item', 'ServisItemController@deviceJson')->name('device.json');
+
 
 //Route Tickets Prioritas
         Route::resource('prioritas', 'PrioritasController');
@@ -113,6 +119,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 // Route Servis
             Route::resource('/servis', 'ServisController');
+            Route::get('servis', 'ServisController@addDevice')->name('device');
             Route::get('servis', 'ServisController@index')->name('servis');
             Route::get('json/servis', 'ServisController@dataTable')->name('servis.json');
 

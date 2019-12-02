@@ -23,4 +23,8 @@ class Merk extends Model
      {
          return $this->hasOne(Models::class);
      }
+     public function item()
+    {
+        return $this->belongsToMany(ServisItem::class);
+    }
 }

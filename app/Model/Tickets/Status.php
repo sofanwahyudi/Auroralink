@@ -2,6 +2,7 @@
 
 namespace App\Model\Tickets;
 
+use App\Model\Servis;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
@@ -23,5 +24,9 @@ class Status extends Model
     public function tickets()
     {
         return $this->hasMany(Tickets::class, 'status_id');
+    }
+    public function servis()
+    {
+        return $this->hasMany(Servis::class, 'status_id');
     }
 }

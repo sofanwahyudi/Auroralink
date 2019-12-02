@@ -2,24 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Models;
+use App\Model\Servis;
+use App\Model\ServisItem;
 use Illuminate\Http\Request;
 use DataTables;
 
-class ModelsController extends Controller
+class ServisItemController extends Controller
 {
-    public function dataTable(){
-        $data = Models::get();
+    public function deviceJson(){
+        $data = ServisItem::query();
         return DataTables::of($data)
-        ->addColumn('merk', function($d){
-            return $d->merk['name'];
+        ->addColumn('merk', function($data){
+            return $data->merk['name'];
+        })
+        ->addColumn('garansi', function($data){
+            return $data->garansi['nama'];
+        })
+        ->addColumn('kelengkapan', function($data){
+            // foreach ($data->kelengkapan as $kelengkapan) {
+            //     return $kelengkapan;
+            // }
+            return $data->kelengkapan['nama'];
         })
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
-                'url_show' => route('models.show', $data->id),
-                'url_edit' => route('models.edit', $data->id),
-                'url_destroy' => route('models.destroy', $data->id),
+                'url_show' => route('servis_item.show', $data->id),
+                'url_edit' => route('servis_item.edit', $data->id),
+                'url_destroy' => route('servis_item.destroy', $data->id),
             ]);
         })
         ->addIndexColumn()
@@ -33,7 +43,7 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        return view('admin.part.model.index');
+        return view('admin.servis.create');
     }
 
     /**
@@ -43,8 +53,8 @@ class ModelsController extends Controller
      */
     public function create()
     {
-        $model = new Models();
-        return view('admin.part.model.form', compact('model'));
+        $model = new ServisItem();
+        return view('admin.servis.formItem', compact('model'));
     }
 
     /**
@@ -53,17 +63,23 @@ class ModelsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $servis_id)
     {
-        $this->validate($request,[
-            'name' => 'required|max:255',
-            ]);
+        $servis = Servis::find($servis_id);
 
-            $data = new Models();
-            $data->name = $request->name;
-            $data->merk_id = $request->merk_id;
-            $data->save();
-            return redirect()->back()->with('success','Data Berhasil disimpan');
+        $item = new ServisItem();
+        $item->merk_id = $request->merk_id;
+        // $data->model_id = $request->model_id;
+        $item->serial_number = $request->serial_number;
+        $item->warna = $request->warna;
+        $item->garansi_id = $request->garansi_id;
+        $item->keluhan = $request->keluhan;
+        $item->biaya = $request->biaya;
+
+        $servis->device()->save($item);
+
+        // Sessions::flash('success', 'Comment Added');
+        return redirect()->back()->with('success','Comment Added Successfully');
     }
 
     /**
@@ -74,8 +90,7 @@ class ModelsController extends Controller
      */
     public function show($id)
     {
-        $model = Models::findOrFail($id);
-        return view('admin.part.model.show', compact('model'));
+        //
     }
 
     /**
@@ -86,8 +101,7 @@ class ModelsController extends Controller
      */
     public function edit($id)
     {
-        $model = Models::findOrFail($id);
-        return view('admin.part.model.form', compact('model'));
+        //
     }
 
     /**
@@ -99,15 +113,7 @@ class ModelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required|max:255',
-            'merk_id' => 'required',
-            ]);
-
-            $model = Models::findOrFail($id);
-            $model->name = $request->name;
-            $model->merk_id = $request->merk_id;
-            $model->save();
+        //
     }
 
     /**
@@ -118,7 +124,6 @@ class ModelsController extends Controller
      */
     public function destroy($id)
     {
-        $model = Models::findOrFail($id);
-        $model->delete();
+        //
     }
 }
