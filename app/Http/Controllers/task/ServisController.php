@@ -6,6 +6,7 @@ use App\Model\Merk;
 use Illuminate\Http\Request;
 use App\Model\Servis;
 use App\Model\ServisItem;
+use PDF;
 use Carbon\Carbon;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,7 @@ class ServisController extends Controller
         ->addColumn('action', function($data){
             return view('layouts._action', [
                 'model' => $data,
+                'url_print' => route('servis.pdf', $data->id),
                 'url_show' => route('servis.show', $data->id),
                 'url_edit' => route('servis.edit', $data->id),
                 'url_destroy' => route('servis.destroy', $data->id),
@@ -168,7 +170,8 @@ class ServisController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Servis::findOrFail($id);
+        return view('admin.servis.form', compact('model'));
     }
 
     /**
@@ -191,6 +194,13 @@ class ServisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Servis::findOrFail($id);
+        $model->delete();
+    }
+    public function getPdf($id)
+    {
+        $model = Servis::findOrFail($id);
+        $pdf = PDF::loadview($model);
+        return $pdf->stream('show.pdf');
     }
 }

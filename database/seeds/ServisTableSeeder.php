@@ -20,7 +20,7 @@ class ServisTableSeeder extends Seeder
     {
 
         $service =[
-            'kode_servis' => 'S-2113',
+            'kode_servis' => 'S-2114',
             'users_id' => 1,
             'team_id' => 1,
             'recieve_at' => Carbon::now(),
@@ -39,6 +39,12 @@ class ServisTableSeeder extends Seeder
             'keluhan' => 'ini keluhan saya',
             'biaya' => '10000',
         ];
+
+        // for ($item=0; $item < count($servis_detail); $item++){
+        //     foreach ($servis_detail as $value) {
+        //         $value+=1;
+        //     }
+        // }
 
         $servis = Servis::create($service);
         $servis->device()->create($servis_detail);

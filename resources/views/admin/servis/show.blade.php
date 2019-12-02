@@ -7,12 +7,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
-        <table>#DITERIMA DARI
-            <tr>
-                <td style="padding: 1px;">No.Servis</td>
-                <td style="padding: 1px;">: </td>
-                <td style="padding: 1px;"> {{ $model->kode_servis }}</td>
-            </tr>
+        <table><b>DITERIMA DARI</b>
             <tr>
                 <td style="padding: 1px;" width="30%">Nama </td>
                 <td style="padding: 1px;">:</td>
@@ -43,7 +38,7 @@
         </table>
 </div>
     <div class="col-md-6">
-        <table>#DITERIMA OLEH
+        <table><b>DITERIMA OLEH</b>
             <tr>
                 <td style="padding: 1px;" width="30%">AURORALINK</td>
             </tr>
@@ -88,19 +83,20 @@
                     <td>{{ $item->warna }}</td>
                     <td>{{ $item->garansi['nama'] }}</td>
                     <td>{{ $item->keluhan }}</td>
-                    <td><span class="badge bg-blue">
+                    <td>
                     {{--  {{ dd($item->perlengkapan) }}  --}}
                     @foreach ($item->perlengkapan as $kel)
-                        #{{ $kel->name }}
+                        <span class="badge bg-blue">{{ $kel->nama }}
+                    </span>
                     @endforeach
-                    </span></td>
+                    </td>
                     {{--  <td>Rp. {{ $item->biaya }},-</td>  --}}
                 </tr>
             </tbody>
             @endforeach
 </table>
-{{--  <div class="box-tools">
+<div class="box-tools">
     <div class='push-left'>
-	<a  href="#" class="btn btn-success" role="button" aria-pressed="true"><span class="fa fa-money"></span> Bayar</a>
+	<a  href="{{ route('servis.pdf', $model->id) }}" class="btn btn-success" role="button" aria-pressed="true"><span class="fa fa-money"></span> Print</a>
 </div>
-</div>  --}}
+</div>

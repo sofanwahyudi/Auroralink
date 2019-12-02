@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\ServisController;
 
 Route::get('/', function () {
     return view('frontend.welcome');
@@ -25,7 +26,7 @@ Route::get('/blog', 'FrontController@blog');
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
 Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories', 'as' => 'cat.post']);
-
+Route::get('servis/pdf/{id}', 'ServisController@getPdf')->name('servis.pdf');
 
 
 
