@@ -6,15 +6,15 @@
 body {
   background-image: url("paper.gif");
 }
-th {
-    border: 1px solid #ddd;
+thead, tbody {
+    border: 1px solid #dddd;
     text-align: left;
 }
 table {
     border-collapse: collapse;
     width: 100%;
 }
-th, td {
+td, {
     padding: 5px;
 }
 .center {
@@ -26,8 +26,8 @@ th, td {
 </style>
 </head>
 <div class="center">
-<img src="/asset/img/logo.png"  alt="Logo" style="border-bottom:1px solid black;text-decoration:none;color:#000001;">
-        <p>TANDA TERIMA SERVIS:{{$model->kode_servis}}<p>
+<img src="https://auroralink.id/asset/img/logo.png"  alt="Logo" style="border-bottom:1px solid black;text-decoration:none;color:#000001;">
+        <p>TANDA TERIMA SERVIS: #{{$model->kode_servis}}<p>
 </div>
 <div>
     <table width="80%">
@@ -37,25 +37,23 @@ th, td {
             <td>#Untuk Servis di</td>
         </tr>
         <tr>
-            <td>{{ ($model->team['nama']) }}</td>
+            <td>Nama : {{ ($model->team->nama) }}</td>
             <td>AURORALINK</td>
         </tr>
         <tr>
-            <td>{{ ($model->team['alamat']) }}</td>
+            <td>Alamat : {{ ($model->team->alamat) }}</td>
             <td> Jl Bulak Setro Utara VI/4C Bulak Surabaya</td>
         </tr>
         <tr>
-            <td>{{ ($model->team['telepon']) }}</td>
+            <td>Telepon : {{ ($model->team->telepon) }}</td>
             <td> 081553177408</td>
         </tr>
          <tr>
-            <td>{{ ($model->team['email']) }}</td>
-            <td>#</td>
-        </tr>
-        <tr>
-        <td style="padding: 1px;">
+            <td>Email : {{ ($model->team->email) }}</td>
             <td> support@auroralink.id</td>
         </tr>
+        <tr>
+    </tr>
         </thead>
     </table>
 </div>
@@ -72,26 +70,27 @@ th, td {
                 <td><b>Kelengkapan</b></td>
             </tr>
         </thead>
+        @foreach ($model->device as $key => $item)
             <tbody>
                 <tr>
                     <td>{{$key+1}}</td>
                     <td>
-                        {{ ($item->merk['name']) }}
+                        {{ ($item->merk->name) }}
                     </td>
                     <td>{{ $item->serial_number }}</td>
                     <td>{{ $item->warna }}</td>
-                    <td>{{ $item->garansi['nama'] }}</td>
+                    <td>{{ $item->garansi->nama }}</td>
                     <td>{{ $item->keluhan }}</td>
                     <td>
-                    {{--  {{ dd($item->perlengkapan) }}  --}}
                     @foreach ($item->perlengkapan as $kel)
-                        <span class="badge bg-blue">{{ $kel->nama }}
+                        <span class="badge bg-blue">{{ $kel->nama }},
                     </span>
                     @endforeach
                     </td>
-                    {{--  <td>Rp. {{ $item->biaya }},-</td>  --}}
+                     {{-- <td>Rp. {{ $item->biaya }},-</td> --}}
                 </tr>
         </tbody>
+        @endforeach
 </table>
 <div>
 <br>

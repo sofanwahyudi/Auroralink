@@ -6,9 +6,9 @@ use App\Model\Merk;
 use Illuminate\Http\Request;
 use App\Model\Servis;
 use App\Model\ServisItem;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
-use DataTables;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 class ServisController extends Controller
@@ -200,7 +200,9 @@ class ServisController extends Controller
     public function getPdf($id)
     {
         $model = Servis::findOrFail($id);
-        $pdf = PDF::loadview($model);
-        return $pdf->stream('show.pdf');
+
+        $pdf = PDF::loadview('tts', compact('model'))->setPaper('a4', 'potrait');
+
+        return $pdf->stream();
     }
 }

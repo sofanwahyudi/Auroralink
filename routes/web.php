@@ -11,7 +11,6 @@
 |
 */
 
-use App\Http\Controllers\ServisController;
 
 Route::get('/', function () {
     return view('frontend.welcome');
@@ -26,7 +25,7 @@ Route::get('/blog', 'FrontController@blog');
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
 Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories', 'as' => 'cat.post']);
-Route::get('servis/pdf/{id}', 'ServisController@getPdf')->name('servis.pdf');
+Route::get('/servis/{id}/pdf', 'ServisController@getPdf')->name('servis.pdf');
 
 
 
@@ -203,7 +202,12 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/part/models/list_models', 'ModelsController@index')->name('models');
             Route::get('/part/models/json', 'ModelsController@dataTable')->name('models.json');
 
-
+//Route Pelanggan
+            Route::resource('pelanggan', 'PelangganController');
+            Route::get('/pelanggan', 'PelangganController@index')->name('pelanggan');
+            Route::get('/json/pelanggan', 'PelangganController@dataTable')->name('pelanggan.json');
+            Route::get('export_excel/pelanggan', 'PelangganController@exportExcel')->name('exportExcelPelanggan');
+            Route::get('export_csv/pelanggan', 'PelangganController@exportCsv')->name('exportCsvPelanggan');
 
 
 //Route Supplier
