@@ -6,7 +6,7 @@ use App\Model\Merk;
 use Illuminate\Http\Request;
 use App\Model\Servis;
 use App\Model\ServisItem;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -74,18 +74,18 @@ class ServisController extends Controller
     }
     public function store(Request $request)
     {
-        // if (!Auth::check()){
-        //     $request->session()->flash('login', 'Maaf Anda harus login dulu');
-        //     return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first.');
-        // }
+        if (!Auth::check()){
+            $request->session()->flash('login', 'Maaf Anda harus login dulu');
+            return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first.');
+        }
 
-        // $this->validate($request,[
-        // 'keterangan' => 'required|max:5000',
-        // 'team_id' => 'required|integer',
-        // 'users_id' => 'required|integer',
-        // // 'status_id' => 'required',
-        // // 'kode_servis' => 'required',
-        // ]);
+        $this->validate($request,[
+        'keterangan' => 'required|max:5000',
+        'team_id' => 'required|integer',
+        'users_id' => 'required|integer',
+        // 'status_id' => 'required',
+        // 'kode_servis' => 'required',
+        ]);
 
         // $th = Carbon::now();
         // $nt = 'SE-'.strtoupper(uniqid());
