@@ -5,7 +5,9 @@ namespace App\Model;
 use App\User;
 use App\Model\Category;
 use App\Model\Comment;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Post extends Model
 {
@@ -43,5 +45,26 @@ class Post extends Model
             return asset('image/dash.jpeg');
         }
         return asset('image/upload/' .$this->image);
+    }
+    public function scopePopular($query){
+        return $query->orderBy('view_count', 'desc');
+    }
+    public function scopePublished($query){
+		return $query->where("published_at", "<=", Carbon::now());
+	}
+    public function getImageThumbUrlAttribute($value){
+
+        $imageUrl = "";
+        if(!is_null($this->image)){
+            $ext = substr(strrchr($this->image, '.'), 1);
+            $thumbnail = str_replace(".{$ext}", "_thumb.{$ext}", $this->image);
+            $imagePath = public_path() . "/img/" . $thumbnail;
+            if(file_exists($imagePath)) $imageUrl = asset("img/" . $thumbnail);
+            $imageUrl = $this->image;
+        }else{
+            $imageUrl = "";
+        }
+
+        return $imageUrl;
     }
 }

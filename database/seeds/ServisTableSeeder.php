@@ -7,6 +7,7 @@ use App\Model\Models;
 use App\Model\Servis;
 use App\Model\ServisItem;
 use Carbon\Carbon;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class ServisTableSeeder extends Seeder
@@ -20,7 +21,7 @@ class ServisTableSeeder extends Seeder
     {
 
         $service =[
-            'kode_servis' => 'S-2114',
+            'kode_servis' => 'SE'.strtoupper(uniqid()),
             'users_id' => 1,
             'team_id' => 1,
             'recieve_at' => Carbon::now(),
@@ -30,24 +31,26 @@ class ServisTableSeeder extends Seeder
 
         ];
 
-        $servis_detail =[
+        $serv =[
             'merk_id' => 1,
             'model_id' => 1,
-            'serial_number' => 'SN3121321',
+            'serial_number' => 'SN'.strtoupper(uniqid()),
             'warna' => 'merah',
             'garansi_id' => 1,
-            'keluhan' => 'ini keluhan saya',
-            'biaya' => '10000',
+            'keluhan' => 'blank',
+            'biaya' => 10000,
         ];
 
-        // for ($item=0; $item < count($servis_detail); $item++){
-        //     foreach ($servis_detail as $value) {
-        //         $value+=1;
-        //     }
-        // }
+        for($s=0; $s < count($serv); $s++){
+            foreach ($serv as  $value) {
+                $servis = Servis::create($service);
+                $servis->device()->create($serv[$s]);
+            }
+        }
+        //    $servis = Servis::create($service);
+         //   $servis->device()->create($serv);
 
-        $servis = Servis::create($service);
-        $servis->device()->create($servis_detail);
+
         // $garansi = ['Bergaransi', 'Tidak Bergaransi'];
 
         // for($gar=0; $gar < count($garansi); $gar++){

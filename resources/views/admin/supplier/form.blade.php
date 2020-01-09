@@ -32,10 +32,9 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="" class="control-label">Alamat</label>
+        <label for="" class="control-label"><i class="fa fa-map"></i> Alamat</label>
         <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-map"></i></div>
-            {!! Form::text('alamat', null, ['class' => 'form-control', 'id' => 'alamat', 'placeholder' => 'Masukan Alamat']) !!}
+            {!! Form::textarea('alamat', null, ['class' => 'form-control', 'id' => 'alamat', 'placeholder' => 'Masukan Alamat']) !!}
         </div>
     </div>
 </div>

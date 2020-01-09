@@ -15,6 +15,9 @@ $('body').on('click', '.modal-show', function(event) {
             url: url,
             dataType: 'html',
             success: function(response) {
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
                 $('#modal-body').html(response);
                 $('#datatable').DataTable().ajax.reload();
             }

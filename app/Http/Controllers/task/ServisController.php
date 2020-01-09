@@ -79,72 +79,26 @@ class ServisController extends Controller
             return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first.');
         }
 
-        $this->validate($request,[
-        'keterangan' => 'required|max:5000',
-        'team_id' => 'required|integer',
-        'users_id' => 'required|integer',
-        // 'status_id' => 'required',
-        // 'kode_servis' => 'required',
-        ]);
+        $service =[
+            'kode_servis' => 'SE'.strtoupper(uniqid()),
+            'users_id' => $request->users_id,
+            'team_id' => $request->team_id,
+            'recieve_at' => Carbon::now(),
+            'completed_at' => Carbon::now(),
+            'keterangan' => $request->keterangan,
+            'status_id' => 1,
+            ];
 
-        // $th = Carbon::now();
-        // $nt = 'SE-'.strtoupper(uniqid());
-        // $data = [
-        //     'keterangan' => $request->keterangan,
-        //     'status_id' => 1,
-        //     'recieve_at' => $th,
-        //     'users_id' => Auth::user()->id,
-        //     'team_id' => 1,
-        //     'kode_servis' => $nt,
-        // ];
+        $servis_detail =[
+            'merk_id' => $request->merk_id,
+            'serial_number' => $request->serial_number,
+            'warna' => $request->warna,
+            'garansi_id' => $request->garansi_id,
+        ];
 
-        // $item = [
-        // 'merk_id' => '1',
-        // // $data->model_id = $request->model_id;
-        // 'serial_number' => 'SN3121321',
-        // 'warna' => 'merah',
-        // 'garansi_id' => '1',
-        // 'keluhan' => 'ini keluhan saya',
-        // 'biaya' => '10000',
+        $servis = Servis::create($servis);
+        $servis->device()->create($servis_detail);
 
-        // ];
-
-        // $servis = Servis::create($data);
-        // $servis->device()->create($item);
-
-
-        // $data = new Servis();
-        // $data->keterangan = $request->keterangan;
-        // $data->status_id = 1;
-        // $th = Carbon::now();
-        // $data->recieve_at = $th;
-        // $data->users_id = $request->users_id;
-        // $data->team_id = 1;
-        // $nt = 'SE-'.strtoupper(uniqid());
-        // $data->kode_servis = $nt;
-
-
-        // $item = new ServisItem();
-        // $item->merk_id = '1';
-        // $data->model_id = $request->model_id;
-        // $item->serial_number = 'SN3121321';
-        // $item->warna = 'merah';
-        // $item->garansi_id = '1';
-        // $item->keluhan = 'ini keluhan saya';
-        // $item->biaya = '10000';
-
-
-        // $item->kelengkapan()->sync($request->kelengkapan, false);
-
-
-        // for ($item=0; $item < count($item); $item++) {
-        //     if ($item[$item] != '') {
-        //         $data->device()->attach($item);
-        //     }
-        // }
-
-        // $data->save();
-        // $data->servis()->create($item);
 
         return redirect()->back()->withSuccess();
     }

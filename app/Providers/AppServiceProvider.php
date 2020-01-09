@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Model\Post;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('frontend.popular', function($view){
+            $popularPosts = Post::published()->popular()->take(3)->get();
+//            $posts = $popularPosts->popular()->take(3)->get();
+        //    dd($popularPosts);
+            return $view->with('popularPosts', $popularPosts);
+        });
     }
 }

@@ -27,6 +27,11 @@ Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.
 Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories', 'as' => 'cat.post']);
 Route::get('/servis/{id}/pdf', 'ServisController@getPdf')->name('servis.pdf');
 
+//Sitemap
+Route::get('/sitemap', 'SitemapController@index');
+Route::get('/sitemap/blog', 'SitemapController@posts');
+
+Route::get('/sitemap.xml', 'SitemapController@index');
 
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
@@ -86,7 +91,9 @@ Route::group(['middleware' => ['auth']], function() {
 //Route Post
             Route::resource('/post', 'PostController');
             Route::get('post', 'PostController@index')->name('posts');
+            Route::get('post/create', 'PostController@add')->name('posts.add');
             Route::get('json/posts', 'PostController@dataTable')->name('posts.json');
+            Route::post('post/image_upload', 'PostController@upload')->name('upload');
 
 
 //Route Tags

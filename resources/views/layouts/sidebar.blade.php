@@ -119,15 +119,16 @@
 
               </ul>
         </li>
-        <li class="treeview {{set_active(['posts','tags','categorys','comments'])}}">
+        <li class="treeview {{set_active(['posts.add','posts','tags','categorys','comments'])}}">
                 <a href="#"><i class="fa fa-wordpress"></i> <span>Post</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu {{set_active(['posts','tags','categorys','comments'])}}">
+                <ul class="treeview-menu">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li {{set_active('posts')}}><a href="{{route('posts')}}"><i class="fa fa-list"></i> <span>Daftar Post</span></a></li>
+                  <li {{set_active('posts.add')}}><a href="{{route('posts.add')}}"><i class="fa fa-plus"></i> <span>Tambah Post</span></a></li>
                   <li {{set_active('categorys')}}><a href="{{route('categorys')}}"><i class="fa fa-filter"></i> <span>Kategori</span></a></li>
                   <li {{set_active('tags')}}><a href="{{route('tags')}}"><i class="fa fa-tags"></i> <span> Tags</span></a></li>
                     <li {{set_active('comments')}}><a href="{{route('comments')}}"><i class="fa fa-commenting-o"></i> <span> Komentar</span></a></li>
@@ -139,7 +140,7 @@
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu ">
+                <ul class="treeview-menu">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li class="{{set_active('teams')}}"><a href="{{route('teams')}}"><i class="fa fa-users"></i> <span>Daftar Team</span></a></li>
                   <li class="{{set_active('divs')}}"><a href="{{route('divs')}}"><i class="fa  fa-user-plus"></i> <span>Devisi</span></a></li>

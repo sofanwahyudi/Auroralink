@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Selamat Datang di Auroralink
+  Reliable IT Support Partners
 @stop
 
 
@@ -12,13 +12,13 @@
       <h1>Welcome to Website</h1>
       <h1>Auroralink</h1>
       <h2>Reliable IT Support Partners</h2>
-      <img src="image/dis.png" alt="Hero Imgs">
+      <img src="image/heroes.png" alt="Hero Imgs">
       <a href="https://wa.me/628113190408" class="btn-get-started scrollto">Get Started</a>
       <div class="btns">
         <a href="#"><i class="fa fa-laptop fa-3x"></i> Laptop Repair</a>
         <a href="#"><i class="fa fa-support fa-3x"></i> Support Troubleshooting</a>
         <a href="#"><i class="fa fa-code fa-3x"></i> Aplication Development</a>
-        <a href="#"><i class="fa fa-user-secret fa-3x"></i> IT Infrastructur Consulting</a>
+        <a href="#"><i class="fa fa-user-secret fa-3x"></i> IT Consulting</a>
       </div>
     </div>
 </section>
@@ -32,14 +32,15 @@
     <div class="container">
       <div class="section-title text-center">
 
-        <h2>IT Partners Solutions </h2>
-        <p class="separator">How To Work ? .</p>
+        <h2>IT Partners Solutions  </h2>
+        <hr>
+        <p class="separator">How To Work ?</p>
 
       </div>
     </div>
 
     <div class="container">
-      <div class="row " >
+      <div class="row">
 
 @include('frontend.start')
 
@@ -51,7 +52,7 @@
 
  {{--  ======================================================About Section========================================================   --}}
 @section('about')
-    <section id="about-us" class="about-us padd-section wow fadeInUp">
+    <section id="about-us" class="about-us padd-section wow fadeInUp" style="background-image:url('image/background1.png');">
     <div class="container">
       <div class="row justify-content-center">
 
@@ -65,8 +66,9 @@
 {{--  ======================================================Services Section========================================================   --}}
 
 @section('services')
-      <section id="features" class="padd-section text-center wow fadeInUp">
+      <section id="features" class="padd-section text-center wow fadeInUp" style="background-image:url('image/Swop.svg');">
       <h1>Services </h1>
+      <hr>
     <div class="container-fluid container-full">
       <div class="section-title text-center">
         <p class="separator"> Our Services </p>
@@ -89,7 +91,8 @@
         <div class="container-fluid container-full">
             <div class="section-title text-center">
                 <h3>Portofolio</h3>
-                <p class="separator"> Click for Watch Detail </p>
+                <hr>
+                <p class="separator"> Click For Watch Detail </p>
             </div>
         </div>
         <div class="container">
@@ -123,7 +126,8 @@
 <div class="container-fluid container-full">
             <div class="section-title text-center">
                 <h3>Team</h3>
-                <p class="separator"> Our teams has grown and delivered numerous masterpiece. </p>
+                <hr>
+                <p class="separator"> Our Teams Has Grown And Delivered Numerous Masterpiece </p>
             </div>
         </div>
         <div class="container">
@@ -221,7 +225,7 @@
 
 {{--  ======================================================newsletter Section========================================================  --}}
 @section('newsletter')
-      <section id="newsletter" class="newsletter text-center wow fadeInUp">
+    <section id="newsletter" class="newsletter text-center wow fadeInUp">
     <div class="overlay padd-section">
       <div class="container">
 
@@ -253,7 +257,7 @@
 @endsection
   {{--  ======================================================Contact Section========================================================  --}}
 @section('contact')
-      <section id="contact" class="padd-section wow fadeInUp">
+    <section id="contact" class="padd-section wow fadeInUp">
 
     <div class="container">
       <div class="section-title text-center">

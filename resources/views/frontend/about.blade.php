@@ -1,5 +1,5 @@
 
-        <div class="col-md-5 col-lg-3 top_left_cont zoomIn wow animated animated">
+        <div class="col-md-5 col-lg-3 top_left_cont zoomIn wow animated animated" >
           <img src="{{ url('image/'. $about->image) }}" alt="About" class="img-about">
         </div>
 
@@ -9,6 +9,7 @@
 
 
             <h2><span></span>About Us </h2>
+            <hr>
             {!! $about->content !!}
             <p>
 

@@ -80,11 +80,10 @@
 	================================================== -->
 	<section class="recent-posts">
 	<div class="section-title">
-		<h2><span>@yield('judul_recent')</span></h2>
+		<h2><span>Popular Post</span></h2>
 	</div>
 	<div class="card-columns listrecent">
-
-		@yield('content_recent')
+        @include('frontend.popular')
 
 	</div>
 	</section>

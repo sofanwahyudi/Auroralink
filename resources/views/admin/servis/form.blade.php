@@ -12,7 +12,7 @@ Tambah Servis | Auroralink
                 </h3>
             </div>
             <div class="panel-body">
-            {!! Form::open(['route' => ['servis.store'], 'method'=> 'POST']) !!}
+            {!! Form::open(['route' => ['servis.store'], 'method'=> 'POST', 'id'=>'myform']) !!}
                 <div class="row">
                     <div class="col-md-3 required">
                         <div class="form-group">
@@ -91,7 +91,7 @@ Tambah Servis | Auroralink
                         <select id="merk" class="form-control select2" name="merk">
                                 <option value="#">-- Pilih Merk --</option>
                                 @foreach (\App\Model\Merk::all() as $jp)
-                                <option value="{{$jp->name}}">{{$jp->name}}</option>
+                                <option value="{{$jp->id}}">{{$jp->name}}</option>
                                 @endforeach
                         </select>
                     </div>
@@ -102,7 +102,7 @@ Tambah Servis | Auroralink
                         <select name="garansi" id="garansi" class="form-control select2" name="garansi_id">
                                     <option value="#">-- Pilih Status Garansi--</option>
                                     @foreach (\App\Model\Garansi::all() as $jp)
-                                    <option value="{{$jp->nama}}">{{$jp->nama}}</option>
+                                    <option value="{{$jp->id}}">{{$jp->nama}}</option>
                                     @endforeach
                         </select>
                     </div>
@@ -112,7 +112,7 @@ Tambah Servis | Auroralink
                     <div class="col-md-9">
                         <select name="kelengkapan" id="kelengkapan[]" class="form-control select2" multiple="multiple" name="kelengkapan[]">
                             @foreach (\App\Model\Kelengkapan::all() as $jp)
-                            <option value="{{$jp->nama}}">{{$jp->nama}}</option>
+                            <option value="{{$jp->id}}">{{$jp->nama}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -179,14 +179,45 @@ $(document).ready(function(){
 
     }
     set_number();
+
+
+    var clear = function()
+    {
+        $('input[name=no]').val('');
+        $('input[name=sn]').val('');
+        $('input[name=warna]').val('');
+        $('select[name=merk]').val('');
+        $('select[name=garansi]').val('');
+        $('select[name=kelengkapan]').val('');
+    }
+
     $("#btn-add").click(function(){
     var _id = $('input[name=no]').val();
     var _sn = $('input[name=sn]').val();
+    if(!_sn){
+        document.getElementById("sn").focus();
+        return swal("Ups.. Kamu belum memasukan SN");
+    }
     var _warna = $('input[name=warna]').val();
+    if(!_warna){
+        document.getElementById("warna").focus();
+        return swal("Ups.. Kamu belum memasukan WARNA");
+    }
     var _merk = $('select[name=merk]').val();
+    if(!_merk){
+        document.getElementById("merk").focus();
+        return swal("Ups.. Kamu belum memilih MERK");
+    }
     var _garansi = $('select[name=garansi]').val();
+    if(!_garansi){
+        document.getElementById("garansi").focus();
+        return swal("Ups.. Kamu belum memilih GARANSI");
+    }
     var _kelengkapan = $('select[name=kelengkapan]').val();
-
+    if(!_kelengkapan){
+        document.getElementById("kelengkapan").focus();
+        return swal("Ups.. Kamu belum memilih KELENGKAPAN");
+    }
 
     var _tr = '<tr> <td>'+_id+'</td> <td>'+_sn+'</td> <td>'+_warna+'</td> <td>'+_merk+'</td> <td>'+_garansi+'</td> <td>'+_kelengkapan+'</td> <td><a type="button" class="btn-sm btn-warning btn-edit"><span class="fa fa-edit" style="color:white"></span></a>  <a type="button" class="btn-sm btn-danger btn-hapus"><span class="fa fa-trash" style="color:white"></span></a></td> </tr>';
 
@@ -195,12 +226,7 @@ $(document).ready(function(){
 
 
     // DATA CLEAR
-    $('input[name=no]').val('');
-    $('input[name=sn]').val('');
-    $('input[name=warna]').val('');
-    $('select[name=merk]').val('');
-    $('select[name=garansi]').val('');
-    $('select[name=kelengkapan]').val('');
+    clear();
     set_number().length+1;
 
     }
@@ -230,6 +256,7 @@ $(document).ready(function(){
 
     $(document).on('click', '.btn-hapus', function(){
     $(this).closest("tr").remove();
+    clear();
     set_number().length-1;
     });
 

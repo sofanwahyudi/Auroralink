@@ -1,8 +1,9 @@
+
 @foreach ($blog as $post)
 
 <div class="col-md-6 col-lg-4 top_left_cont zoomIn wow animated animated">
     <div class="block-blog text-left">
-        <a href="#"><img src="{{ url('image/upload/'. $post->image) }}" alt="img"></a>
+        <a href="{{url("/blog/read/post/$post->slug")}}"><img src="{{ url('image/upload/'. $post->image) }}" alt="img"></a>
         <div class="content-blog">
          @foreach ($post->tags as $item)
         <span class="badge badge-info"> #{{ $item->tags }} </span>
@@ -15,3 +16,4 @@
     </div>
 </div>
 @endforeach
+

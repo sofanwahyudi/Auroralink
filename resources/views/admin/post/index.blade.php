@@ -5,7 +5,7 @@ Post | Auroralink
 @section('content_header')
     <h1>
         <span class="fa fa-list"></span> Daftar Post
-        <a href="{{ route('post.create') }}"  class="btn-sm btn-primary modal-show"><span class="fa fa-plus"></span> Tambah Data</a>
+        <a href="{{ route('posts.add') }}"  class="btn-sm btn-primary"><span class="fa fa-plus"></span> Tambah Data</a>
         <a href="#" data-url="" class="btn-sm btn-danger delete-all"><span class="fa fa-trash"></span> Hapus Data Terpilih</a>
     {{-- <button style="margin: 5px;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All</button> --}}
     </h1>

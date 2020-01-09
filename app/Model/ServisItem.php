@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServisItem extends Model
 {
-    protected $table ='servis_item';
+    protected $table ='item_servis';
 
     protected $fillable =[
         'servis_id'
@@ -14,7 +14,7 @@ class ServisItem extends Model
 
     public function servis()
     {
-        return $this->belongsTo(Servis::class, 'servis_id');
+        return $this->belongsToMany(Servis::class, 'servis_id');
     }
     public function merk()
     {

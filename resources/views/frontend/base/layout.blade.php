@@ -41,7 +41,7 @@
 
 <body>
 
-<header id="header" class="header header-hide">
+<header id="header" class="header header-hide" style="background-image:url('image/background-nav.png');background-size: cover;">
     <div class="container">
         <div id="logo" class="pull-left">
         <a href="#body"><img src="asset/img/logo.png" alt="" title="" /></a>
@@ -109,7 +109,7 @@
         <div class="col-md-12 col-lg-4">
           <div class="footer-logo">
 
-            <a class="navbar-brand" href="#">Comingsoon...</a>
+            <a class="navbar-brand" href="#">Segera Hadir...</a>
             <p>Auroralink Mobile App</p>
             <img src="image/comingsoon.png" alt="about" height="150" width="300">
           </div>
