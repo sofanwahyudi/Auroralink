@@ -1,0 +1,136 @@
+/*==Custom Widget Contact form WhatsApp By Codepelajar.com ==*/
+div#pelajar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -99;
+    opacity: 0;
+    transition:.5s;
+    background: rgba(0,0,0,0.5);
+    }
+    div#pelajar.active{
+    z-index: 9999;
+    opacity: 1;
+    }
+    div#whatsapp {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 480px;
+    width: 95%;
+    background: #fff;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+    opacity: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition:.5s;
+    }
+    div#whatsapp.active {
+    z-index: 999999;
+    opacity: 1;
+    }
+    p.wa-title {
+    margin: 0;
+    padding: 15px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    background: #2ecc71;
+    color: #fff;
+    }
+    .wa-body {
+    padding: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    }
+    .wa-input {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    line-height: 32px;
+    padding: 0 10px;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.1);
+    }
+    .wa-input.bagi {
+    width: 48%;
+    margin: 1%;
+    margin-bottom: 10px;
+    }
+    .wa-input.full {
+    width: 98%;
+    resize: none;
+    min-height: 150px;
+    margin: 0 1%;
+    }
+    a.submit {
+    line-height: 24px;
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    background: #2ecc71;
+    margin: 14px auto 0 auto;
+    display: block;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    }
+    span.wa-x {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 30px;
+    width: 30px;
+    /* background: #222; */
+    border: 2px solid #fff;
+    border-radius: 50px;
+    corsor:pointer;
+    }
+    a#wa-icon {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    line-height: 0;
+    border-radius: 30px;
+    background: #2ecc71;
+    padding: 0;
+    height: 60px;
+    width: 60px;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    /* filter: invert(100%); */
+    z-index:99;
+    }
+    a#wa-icon::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    }
+    span.wa-x::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 3px;
+    width: 50%;
+    background: #fff;
+    transform: translate(-50%,-50%);
+    }
+    @media (max-width: 480px){
+    .wa-input.bagi {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    }
+    a#wa-icon {bottom:10px;left:10px;}
+    .wa-input.full {
+    width: 100%;
+    margin: 0;
+    }
+    }

@@ -69,4 +69,11 @@ class FrontController extends Controller
         //  dd($tickets->comments);
         return view('tickets.detail_tickets')->withTickets($tickets);
     }
+    public function page($slug)
+    {
+        $service = Jasa::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
+       // dd($service);
+        return view('service.page')->withService($service);
+    }
+
 }

@@ -22,6 +22,8 @@ Route::get('/', 'FrontController@index');
 
 
 Route::get('/blog', 'FrontController@blog');
+Route::get('/layanan/{slug}', 'FrontController@page');
+
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
 Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories', 'as' => 'cat.post']);

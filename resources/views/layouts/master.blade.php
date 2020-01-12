@@ -138,7 +138,7 @@ desired effect
 <!-- Select2 -->
 <script src="{{ url('assets/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-//<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script src="{{url('assets/dist/js/tinymce.min.js')}}"></script>
 <script>
     var editor_config = {
@@ -150,7 +150,7 @@ desired effect
           "advlist autolink lists link image charmap print preview hr anchor pagebreak",
           "searchreplace wordcount visualblocks visualchars code fullscreen",
           "insertdatetime media nonbreaking save table contextmenu directionality",
-          "emoticons template paste textcolor colorpicker textpattern"
+          "emoticons template paste toc textcolor colorpicker textpattern"
         ],
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
         relative_urls: false,

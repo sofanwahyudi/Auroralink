@@ -24,6 +24,13 @@
             {!! Form::textarea('deskripsi', null, ['class' => 'form-control', 'id' => 'deskripsi', 'placeholder' => 'Masukan Deskripsi']) !!}
         </div>
     </div>
+    <div class="form-group">
+        <label for="" class="control-label">Content</label>
+        <div class="input-group">
+            {!! Form::textarea('content', null, ['placeholder' => 'type here text', 'id' => 'content', 'class' => 'content']) !!}
+            <input name="image" type="file" id="upload" class="hidden" onchange="">
+        </div>
+    </div>
     <div class="form-group col-md-6">
         <label for="" class="control-label">Harga</label>
         <div class="input-group">
@@ -77,13 +84,5 @@
     </div>
 </div>
 {!! Form::close() !!}
-<script>
-$(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('deskripsi')
-    //bootstrap WYSIHTML5 - text editor
-    //$('.textarea').wysihtml5()
-  })
-</script>
+
 

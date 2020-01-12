@@ -6,6 +6,7 @@ use App\Model\Jasa;
 use Illuminate\Http\Request;
 use DataTables;
 use Image;
+use Purifier;
 
 class JasaController extends Controller
 {
@@ -14,7 +15,7 @@ class JasaController extends Controller
         return DataTables::of($model)
         ->escapeColumns('deskripsi')
         ->addColumn('action', function($model){
-            return view('layouts._action', [
+            return view('layouts.action', [
                 'model' => $model,
                 'url_show' => route('jasa.show', $model->id),
                 'url_edit' => route('jasa.edit', $model->id),
@@ -43,7 +44,7 @@ class JasaController extends Controller
     public function create()
     {
         $model = new Jasa();
-        return view('admin.jasa.form', compact('model'));
+        return view('admin.jasa.create', compact('model'));
     }
 
     /**
@@ -62,6 +63,7 @@ class JasaController extends Controller
         'fitur' => 'required|max:5000',
         'benefit' => 'required|max:500',
         'harga' => 'required',
+        'content' => 'required|string|min:30',
         'job_id' => 'required',
         'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -69,6 +71,7 @@ class JasaController extends Controller
         $data = new Jasa();
         $data->nama = $request->nama;
         $data->deskripsi = $request->deskripsi;
+        $data->content = Purifier::clean($request->content);
         $data->harga = $request->harga;
         $data->fitur = $request->fitur;
         $data->benefit = $request->benefit;
@@ -112,7 +115,7 @@ class JasaController extends Controller
     public function edit($id)
     {
         $model = Jasa::findOrFail($id);
-        return view('admin.jasa.form', compact('model'));
+        return view('admin.jasa.edit', compact('model'));
     }
 
     /**
@@ -125,29 +128,29 @@ class JasaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nama' => 'required|max:255',
-            'deskripsi' => 'required|max:255',
-            'harga' => 'required|max:25',
-            'jam_id' => 'required',
-            'fitur' => 'required|max:5000',
-            'benefit' => 'required|max:5000',
-            'harga' => 'required',
-            'job_id' => 'required',
-            'slug' => 'required'
+            // 'nama' => 'required|max:255',
+            // 'deskripsi' => 'required|max:255',
+            // 'harga' => 'required|max:25',
+            // 'jam_id' => 'required',
+            // 'fitur' => 'required|max:5000',
+            // 'benefit' => 'required|max:5000',
+            // 'harga' => 'required',
+             'job_id' => 'required',
+             'team_id' => 'required',
+            // 'content' => 'required|string|min:30',
             // 'gambar' => 'required',
             ]);
 
             $model = Jasa::findOrFail($id);
             $model->nama = $request->nama;
             $model->deskripsi = $request->deskripsi;
+            $model->content = Purifier::clean($request->content);
             $model->harga = $request->harga;
             $model->fitur = $request->fitur;
             $model->benefit = $request->benefit;
             $model->jam_id = $request->jam_id;
             $model->job_id = $request->job_id;
-            $tl = $model->nama;
-            $slug = str_slug($tl,'-');
-            $model->slug = $slug;
+            $model->team_id = $request->team_id;
             $model->save();
 
             return redirect()->back()->with('success','Data Update Successfully');

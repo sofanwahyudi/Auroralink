@@ -9,16 +9,16 @@
 @section('hero')
 <section id="hero" class="wow fadeIn">
     <div class="hero-container top_left_cont zoomIn wow animated animated">
-      <h1>Welcome to Website</h1>
+      <h1>Selamat Datang Di Website</h1>
       <h1>Auroralink</h1>
       <h2>Reliable IT Support Partners</h2>
       <img src="image/heroes.png" alt="Hero Imgs">
       <a href="https://wa.me/628113190408" class="btn-get-started scrollto">Get Started</a>
       <div class="btns">
-        <a href="#"><i class="fa fa-laptop fa-3x"></i> Laptop Repair</a>
-        <a href="#"><i class="fa fa-support fa-3x"></i> Support Troubleshooting</a>
-        <a href="#"><i class="fa fa-code fa-3x"></i> Aplication Development</a>
-        <a href="#"><i class="fa fa-user-secret fa-3x"></i> IT Consulting</a>
+        <a href="#"><i class="fa fa-laptop fa-3x"></i> Perbaikan Laptop</a>
+        <a href="#"><i class="fa fa-code fa-3x"></i> Jasa Pembuatan Website</a>
+        <a href="#"><i class="fa fa-user-secret fa-3x"></i> Jasa Sysadmin</a>
+        <a href="#"><i class="fa fa-support fa-3x"></i> Jasa IT Support</a>
       </div>
     </div>
 </section>
@@ -34,7 +34,7 @@
 
         <h2>IT Partners Solutions  </h2>
         <hr>
-        <p class="separator">How To Work ?</p>
+        <p class="separator">Bagaimana Kami Bisa Membantu Anda ?</p>
 
       </div>
     </div>
@@ -67,11 +67,11 @@
 
 @section('services')
       <section id="features" class="padd-section text-center wow fadeInUp" style="background-image:url('image/Swop.svg');">
-      <h1>Services </h1>
+      <h1>Layanan </h1>
       <hr>
     <div class="container-fluid container-full">
       <div class="section-title text-center">
-        <p class="separator"> Our Services </p>
+        <p class="separator"> Berikut Beberapa Jenis Layanan Kami </p>
       </div>
     </div>
     <div class="container">
@@ -92,7 +92,7 @@
             <div class="section-title text-center">
                 <h3>Portofolio</h3>
                 <hr>
-                <p class="separator"> Click For Watch Detail </p>
+                <p class="separator"> Beberapa Project Yang Telah Kami Selesaikan, Silahkan Klik Untuk Detailnya </p>
             </div>
         </div>
         <div class="container">
@@ -127,7 +127,7 @@
             <div class="section-title text-center">
                 <h3>Team</h3>
                 <hr>
-                <p class="separator"> Our Teams Has Grown And Delivered Numerous Masterpiece </p>
+                <p class="separator"> Dari Tangan-Tangan Merekalah Karya Hebat Tercipta </p>
             </div>
         </div>
         <div class="container">
@@ -207,7 +207,7 @@
         <div class="container">
         <div class="section-title text-center">
 
-            <h2>Latest posts</h2>
+            <h2>Blog</h2>
             <p class="separator">   .</p>
 
         </div>
@@ -261,7 +261,7 @@
 
     <div class="container">
       <div class="section-title text-center">
-        <h2>Contact</h2>
+        <h2>Kontak</h2>
         <p class="separator">  </p>
          @if ($message = Session::get('danger'))
         <div class="alert alert-danger alert-block">
@@ -288,12 +288,12 @@
 
             <div class="email">
               <i class="fa fa-envelope"></i>
-              <p>auroralinkid@gmail.com<br>sofan@auroralink.id</p>
+              <p><a href="mailto:auroralinkid@gmail.com">auroralink@gmail.com</a><br><a href="mailto:hi@auroralink.co.id">hi@auroralink.co.id</a></p>
             </div>
 
             <div>
               <i class="fa fa-phone"></i>
-              <p>+62 811-3190-408 <br> +62 822-3159-9828 <br> +62 856-5819-2877</p>
+              <p> <a href="callto:+628113190408">+628113190408</a> <br> <a href="callto:+6282231599828">+6282231599828</a> <br> <a href="callto:+6285658192877">+6285658192877</a></p>
         </div>
     </div>
 

@@ -8,7 +8,7 @@
 
 
 
-            <h2><span></span>About Us </h2>
+            <h2><span></span>Tentang Kami  </h2>
             <hr>
             {!! $about->content !!}
             <p>

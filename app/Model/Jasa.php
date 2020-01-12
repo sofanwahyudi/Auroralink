@@ -40,4 +40,8 @@ class Jasa extends Model
     {
         return $this->belongsTo(Jam::class);
     }
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }
