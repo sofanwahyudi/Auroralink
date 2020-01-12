@@ -19,7 +19,7 @@ class FrontController extends Controller
         $services = Jasa::all()->take(4);
         $team   = Team::all();
         $portofolio = Portofolio::all();
-        $blog = Post::all()->take(3);
+        $blog = Post::latest()->get()->take(3);
         $contact = DB::table('section')->where('id', 11)->first();
         $start = DB::table('section')->whereIn('id', array(2, 4, 5))->get();
 // dd($about);
