@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Category;
+use App\Model\Galery;
 use App\Model\Jasa;
 use App\Model\Portofolio;
 use App\Model\Post;
@@ -72,8 +73,8 @@ class FrontController extends Controller
     public function page($slug)
     {
         $service = Jasa::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
-       // dd($service);
-        return view('service.page')->withService($service);
+        $galeri = Galery::all();
+        return view('service.page')->withService($service)->withGaleri($galeri);
     }
 
 }

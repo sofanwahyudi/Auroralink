@@ -20,6 +20,7 @@
         "mews/purifier": "^3.1",
         "milon/barcode": "^6.0",
         "spatie/laravel-permission": "^3.0",
+        "tymon/jwt-auth": "^1.0",
         "unisharp/laravel-filemanager": "dev-master",
         "yajra/laravel-datatables-oracle": "^9.6"
     },

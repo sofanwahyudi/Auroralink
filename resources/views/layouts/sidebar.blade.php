@@ -35,7 +35,7 @@
         <li class="{{set_active('suppliers')}}"><a href="{{route('suppliers')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
         <li class="{{set_active('leads')}}"><a href="{{route('leads')}}"><i class="fa fa-paper-plane-o"></i> <span>Leads</span></a></li>
         <li class="{{set_active('pelanggan')}}"><a href="{{route('pelanggan')}}"><i class="fa fa-users"></i> <span>Pelanggan</span></a></li>
-        <li class="treeview {{set_active(['sections','portofolio'])}}">
+        <li class="treeview {{set_active(['sections','portofolio','galery'])}}">
                 <a href="#">
                   <i class="fa fa-th-large"></i> <span>Section</span>
                   <span class="pull-right-container">
@@ -45,6 +45,7 @@
                 <ul class="treeview-menu">
                   <li class="{{set_active('sections')}} "><a href="{{route('sections')}}"><i class="fa fa-th-large"></i> Section</a></li>
                   <li class="{{set_active('portofolio')}}"><a href="{{route('portofolio')}}"><i class="fa fa-image"></i> Portofolio</a></li>
+                  <li class="{{set_active('galery')}}"><a href="{{route('galery')}}"><i class="fa fa-image"></i> Galery</a></li>
                 </ul>
               </li>
         <li class="treeview {{set_active(['parts','kats','merks','models'])}}">

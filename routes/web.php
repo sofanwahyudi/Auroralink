@@ -153,6 +153,11 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('portofolio', 'PortofolioController@index')->name('portofolio');
             Route::get('json/portofolio', 'PortofolioController@dataTable')->name('portofolio.json');
 
+//Route Portofolio
+
+            Route::resource('galery', 'GaleryController');
+            Route::get('galery', 'GaleryController@index')->name('galery');
+            Route::get('json/galery', 'GaleryController@dataTable')->name('galery.json');
 //Route Sections
 
             Route::resource('sections', 'SectionController');
