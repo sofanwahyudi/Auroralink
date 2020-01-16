@@ -21,7 +21,7 @@
     </div>
     <div class="pull-left container">
         <div class="pull-right">
-            <img src="image/dis.png" alt="Hero Imgs">
+            <img src="{{url('image/dis.png')}}" alt="Hero Imgs">
         </div>
         <div class="col-md-6">
             {{-- <div class="input-group input-group-sm">

@@ -15,10 +15,13 @@
       <img src="image/heroes.png" alt="Hero Imgs">
       <a href="https://wa.me/628113190408" class="btn-get-started scrollto">Get Started</a>
       <div class="btns">
-        <a href="#"><i class="fa fa-laptop fa-3x"></i> Perbaikan Laptop</a>
+        {{--  <a href="#"><i class="fa fa-laptop fa-3x"></i> Perbaikan Laptop</a>
         <a href="#"><i class="fa fa-code fa-3x"></i> Jasa Pembuatan Website</a>
         <a href="#"><i class="fa fa-user-secret fa-3x"></i> Jasa Sysadmin</a>
-        <a href="#"><i class="fa fa-support fa-3x"></i> Jasa IT Support</a>
+        <a href="#"><i class="fa fa-support fa-3x"></i> Jasa IT Support</a>  --}}
+        @foreach ($services as $data)
+            <a href="{{url("/$data->slug")}}"><i class="fa fa-check-circle fa-3x"></i> {{$data->nama}}</a>
+        @endforeach
       </div>
     </div>
 </section>
@@ -293,7 +296,7 @@
 
             <div>
               <i class="fa fa-phone"></i>
-              <p> <a href="callto:+628113190408">+628113190408</a> <br> <a href="callto:+6282231599828">+6282231599828</a> <br> <a href="callto:+6285658192877">+6285658192877</a></p>
+              <p> <a href="tel:+628113190408">+628113190408</a> <br> <a href="tel:+6282231599828">+6282231599828</a> <br> <a href="callto:+6285658192877">+6285658192877</a></p>
         </div>
     </div>
 

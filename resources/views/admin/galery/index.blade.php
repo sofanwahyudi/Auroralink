@@ -46,6 +46,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Gambar</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Title</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Deskripsi</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Slug</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Url Demo</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
@@ -74,6 +75,7 @@ $(document).ready(function(){
                     } },
         { data: 'title', name: 'title' },
         { data: 'deskripsi', name: 'deskripsi'},
+        { data: 'slug', name: 'slug'},
         { data: 'url', name: 'url'},
         { data: 'action', orderable:false, searchable:false },
     ],

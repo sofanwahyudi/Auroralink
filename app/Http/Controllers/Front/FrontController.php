@@ -62,7 +62,7 @@ class FrontController extends Controller
     {
         $users = auth()->user()->id;
         $tic = Tickets::where(['users_id' => $users])->get();
-        return view('tickets.page')->withTic($tic);
+        return view('tickets.index')->withTic($tic);
     }
     public function getTickets($slug)
     {
@@ -73,8 +73,19 @@ class FrontController extends Controller
     public function page($slug)
     {
         $service = Jasa::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
+        return view('service.page')->withService($service);
+    }
+    public function tempelate($jasa)
+    {
+        $service = Jasa::where('id', $jasa)->orWhere('slug', $jasa)->firstOrFail();
         $galeri = Galery::all();
-        return view('service.page')->withService($service)->withGaleri($galeri);
+        return view('service.tempelate')->withService($service)->withGaleri($galeri);
+    }
+    public function detailTempelate($jasa, $slug)
+    {
+        $service = Jasa::where('id', $jasa)->orWhere('slug', $jasa)->firstOrFail();
+        $detail = Galery::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
+        return view('service.detail_tempelate')->withService($service)->withDetail($detail);
     }
 
 }

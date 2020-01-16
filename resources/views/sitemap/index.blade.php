@@ -1,23 +1,40 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
   <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    @foreach ($jasa as $item)
     <sitemap>
-        <loc>{{ url('sitemap/blog') }}</loc>
-        <lastmod>{{ $post->created_at->toAtomString() }}</lastmod>
+        <url>
+            <loc>{{ url($item->slug) }}</loc>
+                <lastmod>{{ $item->created_at->toAtomString() }}</lastmod>
+                <changefreq>weekly</changefreq>
+            <priority>0.6</priority>
+        </url>
+    </sitemap>
+    @endforeach
+    <sitemap>
+        <url>
+            <loc>{{ url('/blog') }}</loc>
+                <lastmod>{{ $blog->created_at->toAtomString() }}</lastmod>
+                <changefreq>weekly</changefreq>
+            <priority>0.6</priority>
+        </url>
     </sitemap>
     <sitemap>
-        <loc>{{ url('sitemap/service') }}</loc>
-        <lastmod>{{ $post->created_at->toAtomString() }}</lastmod>
+        <url>
+            <loc>{{ url('/tickets') }}</loc>
+                <lastmod>{{ $tickets->created_at->toAtomString() }}</lastmod>
+                <changefreq>weekly</changefreq>
+            <priority>0.6</priority>
+        </url>
     </sitemap>
+    @foreach ($galeri as $data)
     <sitemap>
-        <loc>{{ url('sitemap/about') }}</loc>
-        <lastmod>{{ $post->created_at->toAtomString() }}</lastmod>
+        <url>
+            <loc>{{ url('jasa-pembuatan-website/tema/') }}</loc>
+                <lastmod>{{ $data->created_at->toAtomString() }}</lastmod>
+                <changefreq>weekly</changefreq>
+            <priority>0.6</priority>
+        </url>
     </sitemap>
-    <sitemap>
-        <loc>{{ url('sitemap/portofolio') }}</loc>
-        <lastmod>{{ $post->created_at->toAtomString() }}</lastmod>
-    </sitemap>
-    <sitemap>
-        <loc>{{ url('sitemap/kontak') }}</loc>
-        <lastmod>{{ $post->created_at->toAtomString() }}</lastmod>
-    </sitemap>
+    @endforeach
   </sitemapindex>

@@ -4,7 +4,7 @@
     <img src="{{$data->getGambar()}}" alt="About" class="img-fluid">
     <h4>{{ $data->nama }}</h4>
     <p>{!! $data->deskripsi !!}</p>
-    <a class="btn btn-primary " href="{{url("/layanan/$data->slug")}}">Selengkapnya</a>
+    <a class="btn btn-primary " href="{{url("/$data->slug")}}">Selengkapnya</a>
     </div>
 </div>
 @endforeach

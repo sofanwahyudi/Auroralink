@@ -151,6 +151,9 @@ class JasaController extends Controller
             $model->jam_id = $request->jam_id;
             $model->job_id = $request->job_id;
             $model->team_id = $request->team_id;
+            $tl = $model->nama;
+            $slug = str_slug($tl,'-');
+            $model->slug = $slug;
             $model->save();
 
             return redirect()->back()->with('success','Data Update Successfully');

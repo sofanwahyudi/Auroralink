@@ -22,7 +22,9 @@ Route::get('/', 'FrontController@index');
 
 
 Route::get('/blog', 'FrontController@blog');
-Route::get('/layanan/{slug}', 'FrontController@page');
+Route::get('/{slug}', 'FrontController@page');
+Route::get('/{jasa}/tema', 'FrontController@tempelate');
+Route::get('/{jasa}/tema/{slug}', 'FrontController@detailTempelate');
 
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
@@ -30,7 +32,7 @@ Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories',
 Route::get('/servis/{id}/pdf', 'ServisController@getPdf')->name('servis.pdf');
 
 //Sitemap
-Route::get('/sitemap', 'SitemapController@index');
+Route::get('/sitemap/index', 'SitemapController@index');
 Route::get('/sitemap/blog', 'SitemapController@posts');
 
 Route::get('/sitemap.xml', 'SitemapController@index');
@@ -43,7 +45,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Route Tickets Front
 
-    Route::get('/tickets', 'FrontController@tickets');
+    Route::get('/tickets/index', 'FrontController@tickets');
     Route::get('/tickets/{slug}', 'FrontController@getTickets');
 
     //Route Comments Front

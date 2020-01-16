@@ -71,6 +71,9 @@ class GaleryController extends Controller
             $data->deskripsi = $request->deskripsi;
             $data->url = $request->url;
             $data->job_id = $request->job_id;
+            $tl = $data->title;
+            $slug = str_slug($tl,'-');
+            $data->slug = $slug;
 
             if($request->file('gambar')){
                 $image = $request->file('gambar');
@@ -131,6 +134,9 @@ class GaleryController extends Controller
             $data->deskripsi = $request->deskripsi;
             $data->url = $request->url;
             $data->job_id = $request->job_id;
+            $tl = $data->title;
+            $slug = str_slug($tl,'-');
+            $data->slug = $slug;
 
             if($request->file('gambar')){
                 $image = $request->file('gambar');
