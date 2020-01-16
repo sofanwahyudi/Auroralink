@@ -87,5 +87,13 @@ class FrontController extends Controller
         $detail = Galery::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
         return view('service.detail_tempelate')->withService($service)->withDetail($detail);
     }
+    public function getLogin()
+    {
+      return view('auth.login');
+    }
+    public function getRegister()
+    {
+      return view('auth.register');
+    }
 
 }

@@ -40,7 +40,9 @@ Route::get('/sitemap.xml', 'SitemapController@index');
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
 Route::get('/services', 'FrontController@sectionServices')->name('section.services');
-Auth::routes();
+Route::get('/member/login', 'FrontController@getLogin')->middleware('guest');
+Route::get('/member/register', 'FrontController@getRegister')->middleware('guest');
+//Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
 
     // Route Tickets Front
@@ -242,3 +244,7 @@ Route::group(['middleware' => ['auth']], function() {
     });  //End Route Admin Prefix
 }); //End Route Auth Midleware
 Route::get('/clientarea', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
