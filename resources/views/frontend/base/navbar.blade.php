@@ -11,9 +11,9 @@
     @auth
     <li><a href="{{ route('home') }}">Area Pelanggan</a></li>
     @else
-    <li><a href="{{ route('login') }}"><span class="fa fa-sign-in"></span> Login</a></li>
+    <li><a href="{{ url('/member/login') }}"><span class="fa fa-sign-in"></span> Login</a></li>
     @if (Route::has('register'))
-    <li><a href="{{ route('register') }}"><span class="fa fa-user-plus"></span> Register</a></li>
+    <li><a href="{{ url('/member/register') }}"><span class="fa fa-user-plus"></span> Register</a></li>
     @endif
     @endauth
 </ul>

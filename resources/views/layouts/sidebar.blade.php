@@ -157,7 +157,7 @@
               </span>
           </a>
           <ul class="treeview-menu ">
-            {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
+            <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li>
             <li class="{{set_active('users')}} "><a href="{{route('users')}}"><i class="fa fa-group"></i> <span>Pengguna</span></a></li>
             <li class="{{set_active('roles')}} "><a href="{{route('roles')}}"><i class="fa fa-unlock-alt"></i> <span>Role</span></a></li>
 

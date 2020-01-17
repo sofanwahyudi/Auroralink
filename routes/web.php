@@ -242,9 +242,11 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('export_csv/leads', 'LeadsController@exportCsv')->name('exportCsvLeads');
 
     });  //End Route Admin Prefix
+    Route::group(['prefix' => 'member'], function () {
+        Route::get('/clientarea', 'HomeController@index');
+    });
 }); //End Route Auth Midleware
-Route::get('/clientarea', 'HomeController@index')->name('home');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

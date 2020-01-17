@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Dashboard | Client
+    Dashboard | Member
 @stop
 
 
