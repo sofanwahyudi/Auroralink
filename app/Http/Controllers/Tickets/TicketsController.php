@@ -164,4 +164,5 @@ class TicketsController extends Controller
         $model = Tickets::findOrFail($id);
         $model->delete();
     }
+
 }

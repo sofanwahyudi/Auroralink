@@ -12,6 +12,7 @@ use App\Model\Team;
 use App\Model\Tickets\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {
@@ -60,7 +61,7 @@ class FrontController extends Controller
     }
     public function tickets()
     {
-        $users = auth()->user()->id;
+        $users = Auth()->user()->id;
         $tic = Tickets::where(['users_id' => $users])->get();
         return view('tickets.index')->withTic($tic);
     }

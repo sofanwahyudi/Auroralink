@@ -45,4 +45,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tickets::class);
     }
+    public function verifyUser()
+    {
+    return $this->hasOne('App\Model\VerifyUser');
+    }
 }

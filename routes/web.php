@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 Route::get('/', 'FrontController@index');
 
-
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/blog', 'FrontController@blog');
 Route::get('/{slug}', 'FrontController@page');
@@ -40,10 +40,12 @@ Route::get('/sitemap.xml', 'SitemapController@index');
 
 Route::get('/team', 'FrontController@sectionTeam')->name('section.team');
 Route::get('/services', 'FrontController@sectionServices')->name('section.services');
-Route::get('/member/login', 'FrontController@getLogin')->middleware('guest');
-Route::get('/member/register', 'FrontController@getRegister')->middleware('guest');
+Route::get('/member/login', 'FrontController@getLogin')->middleware('guest')->name('login');
+Route::get('/member/register', 'FrontController@getRegister')->middleware('guest')->name('register');
+Route::get('/bantuan', 'FrontController@bantuan');
 //Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
+
 
     // Route Tickets Front
 
@@ -93,6 +95,7 @@ Route::group(['middleware' => ['auth']], function() {
 //Route Comment
         Route::resource('comments', 'CommentController');
         Route::get('/post/comments/list_comments', 'CommentController@index')->name('comments');
+
         Route::get('/post/json/comments', 'CommentController@dataTable')->name('comment.json');
 //Route Post
             Route::resource('/post', 'PostController');
@@ -243,10 +246,14 @@ Route::group(['middleware' => ['auth']], function() {
 
     });  //End Route Admin Prefix
     Route::group(['prefix' => 'member'], function () {
-        Route::get('/clientarea', 'HomeController@index');
+        Route::get('/clientarea', 'HomeController@index')->name('home');
     });
 }); //End Route Auth Midleware
 
 
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

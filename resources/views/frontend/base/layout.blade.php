@@ -140,7 +140,7 @@
 
             <a class="navbar-brand" href="#">Segera Hadir...</a>
             <p>Auroralink Mobile App</p>
-            <img src="{{url('image/comingsoon.png')}}" alt="about" height="150" width="300">
+            <img src="{{url('image/comingsoon.jpg')}}" alt="about" height="150" width="300">
           </div>
         </div>
 
@@ -180,7 +180,7 @@
             <h4>Pusat Bantuan</h4>
 
             <ul class="list-unstyled">
-              <li><a href="{{ url('tickets') }}">Tickets</a></li>
+              <li><a href="{{ url('tickets/index') }}">Tickets</a></li>
               <li><a href="#">Bantuan Remote</a></li>
               <li><a href="#">Bantuan Onsite</a></li>
               <li><a href="#">Kontak Team</a></li>

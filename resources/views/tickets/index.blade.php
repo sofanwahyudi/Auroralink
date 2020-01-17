@@ -33,6 +33,7 @@
 
                     <div class="col-md-3">
                         <div class="badge" style="margin-left:5px;">
+                            @if( ! $tic->isEmpty() )
                                 {{--  Nomor Tickets :<a href='{{url("/tickets/$tuc->slug")}}' title="Selengkapnya">{{ $tuc->no_ticket }}</a>
                                 <br>Status Tickets : {{ $tuc->status['name'] }}  --}}
                                  <table class="table table-bordered">
@@ -53,6 +54,7 @@
                                     </tr>
                                     @endforeach
                                 </table>
+                                @endif
                             </div>
                     </div>
 

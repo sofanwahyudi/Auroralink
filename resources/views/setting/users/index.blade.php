@@ -116,6 +116,7 @@
         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Email</th>
         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Role</th>
+        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Date Creat</th>
         <th width="150px">Aksi</th></tr>
     </thead>
@@ -130,6 +131,8 @@
                     @foreach ($usr->roles as $rl)
                     {{$rl->name}},
                     @endforeach
+                </td>
+                <td>{{$usr->verified}}
                 </td>
                 <td>{{$usr->created_at}} </td>
                 <td>

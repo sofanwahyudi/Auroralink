@@ -50,7 +50,16 @@ margin-top:30px;
         <!-- /.login-logo -->
         <div class="login-box-body">
         <p class="login-box-msg">{{ __('Silahkan Masuk Untuk Memulai') }}</p>
-
+        @if (session('status'))
+        <div class="alert alert-success">
+          {{ session('status') }}
+        </div>
+      @endif
+      @if (session('warning'))
+        <div class="alert alert-warning">
+          {{ session('warning') }}
+        </div>
+      @endif
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
