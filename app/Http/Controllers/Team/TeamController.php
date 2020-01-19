@@ -23,7 +23,7 @@ class TeamController extends Controller
         $data = Team::query();
         return DataTables::of($data)
         ->addColumn('action', function($data){
-            return view('layouts._action', [
+            return view('layouts.action', [
                 'model' => $data,
                 'url_show' => route('team.show', $data->id),
                 'url_edit' => route('team.edit', $data->id),
@@ -55,7 +55,7 @@ class TeamController extends Controller
     {
         $model = new Team();
         $s = Devisi::all()->where('bagian_id','=','0');
-        return view('admin.team.form', compact('model'));
+        return view('admin.team.create', compact('model'));
     }
 
     /**
@@ -80,6 +80,7 @@ class TeamController extends Controller
 
         $data = new Team();
         $data->nama = $request->nama;
+        $slug = $data->nama;
         $data->alamat = $request->alamat;
         $data->email = $request->email;
         $data->telepon = $request->telepon;
@@ -93,13 +94,11 @@ class TeamController extends Controller
         $data->nik = $nik;
         // $data->foto = null;
 
-        if($request->file('foto')){
+        if($request->hasFile('foto')){
             $image = $request->file('foto');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $filename = str_slug($slug) . '.' . $image->getClientOriginalExtension();
             $location = public_path('/image/' .$filename);
-            Image::make($image)->resize(500, 300)->save($location);
-            // $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
-            // $request->image->move(public_path('/image/upload'), $data->image);
+            Image::make($image)->resize(800, 400)->save($location);
             $data->foto = $filename;
         }
 
@@ -128,7 +127,7 @@ class TeamController extends Controller
     public function edit($id)
     {
         $model = Team::findOrFail($id);
-        return view('admin.team.form', compact('model'));
+        return view('admin.team.edit', compact('model'));
     }
 
     /**
@@ -143,18 +142,24 @@ class TeamController extends Controller
         $this->validate($request, [
 
         // 'file' => 'foto'
-        'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      //  'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $model = Team::findOrFail($id);
-        if($request->file('foto')){
+        $model->nama = $request->nama;
+        $slug = $model->nama;
+        $model->alamat = $request->alamat;
+        $model->email = $request->email;
+        $model->telepon = $request->telepon;
+        $model->devisi_id = $request->devisi_id;
+        $model->bagian_id = $request->bagian_id;
+        $model->users_id = $request->users_id;
+        if($request->hasFile('foto')){
             $image = $request->file('foto');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $filename = str_slug($slug) . '.' . $image->getClientOriginalExtension();
             $location = public_path('/image/' .$filename);
             Image::make($image)->resize(800, 400)->save($location);
-
             $model->foto = $filename;
-
             $oldFilename = $model->foto;
             //Update Image
             $model->foto;
@@ -162,8 +167,9 @@ class TeamController extends Controller
             Storage::delete($oldFilename);
         }
 
-        // $model->save();
-        $model->update();
+         $model->save();
+        //$model->update();
+        return redirect()->back()->with('success','Data Berhasil diupdate');
 
     }
 

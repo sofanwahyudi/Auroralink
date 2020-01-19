@@ -35,7 +35,19 @@
         <li class="{{set_active('suppliers')}}"><a href="{{route('suppliers')}}"><i class="fa fa-truck"></i> <span>Supplier</span></a></li>
         <li class="{{set_active('leads')}}"><a href="{{route('leads')}}"><i class="fa fa-paper-plane-o"></i> <span>Leads</span></a></li>
         <li class="{{set_active('pelanggan')}}"><a href="{{route('pelanggan')}}"><i class="fa fa-users"></i> <span>Pelanggan</span></a></li>
-        <li class="treeview {{set_active(['sections','portofolio','galery'])}}">
+        <li class="treeview {{set_active([
+        'sections',
+        'sections.create',
+        'sections.show',
+        'sections.edit',
+        'portofolio',
+        'portofolio.create',
+        'portofolio.show',
+        'portofolio.edit',
+        'galery',
+        'galery.create',
+        'galery.edit',
+        ])}}">
                 <a href="#">
                   <i class="fa fa-th-large"></i> <span>Section</span>
                   <span class="pull-right-container">
@@ -120,7 +132,7 @@
 
               </ul>
         </li>
-        <li class="treeview {{set_active(['posts.add','posts','tags','categorys','comments'])}}">
+        <li class="treeview {{set_active(['posts.add','posts','posts.edit','tags','categorys','comments'])}}">
                 <a href="#"><i class="fa fa-wordpress"></i> <span>Post</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -128,14 +140,14 @@
                 </a>
                 <ul class="treeview-menu">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
-                  <li {{set_active('posts')}}><a href="{{route('posts')}}"><i class="fa fa-list"></i> <span>Daftar Post</span></a></li>
-                  <li {{set_active('posts.add')}}><a href="{{route('posts.add')}}"><i class="fa fa-plus"></i> <span>Tambah Post</span></a></li>
-                  <li {{set_active('categorys')}}><a href="{{route('categorys')}}"><i class="fa fa-filter"></i> <span>Kategori</span></a></li>
-                  <li {{set_active('tags')}}><a href="{{route('tags')}}"><i class="fa fa-tags"></i> <span> Tags</span></a></li>
-                    <li {{set_active('comments')}}><a href="{{route('comments')}}"><i class="fa fa-commenting-o"></i> <span> Komentar</span></a></li>
+                  <li class="{{set_active('posts')}}"><a href="{{route('posts')}}"><i class="fa fa-list"></i> <span>Daftar Post</span></a></li>
+                  <li class="{{set_active('posts.add')}}"><a href="{{route('posts.add')}}"><i class="fa fa-plus"></i> <span>Tambah Post</span></a></li>
+                  <li class="{{set_active('categorys')}}"><a href="{{route('categorys')}}"><i class="fa fa-filter"></i> <span>Kategori</span></a></li>
+                  <li class="{{set_active('tags')}}"><a href="{{route('tags')}}"><i class="fa fa-tags"></i> <span> Tags</span></a></li>
+                    <li class="{{set_active('comments')}}" ><a href="{{route('comments')}}"><i class="fa fa-commenting-o"></i> <span> Komentar</span></a></li>
               </ul>
         </li>
-        <li class="treeview {{set_active(['teams','divs','bagians'])}}">
+        <li class="treeview {{set_active(['teams','divs','bagians','team.create','team.show','team.edit'])}}">
                 <a href="#"><i class="fa  fa-user-md"></i> <span>Team</span>
                   <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -144,6 +156,7 @@
                 <ul class="treeview-menu">
                   {{-- <li><a href="{{url('perusahaan')}}"><i class="fa fa-building"></i> <span>Perusahaan</span></a></li> --}}
                   <li class="{{set_active('teams')}}"><a href="{{route('teams')}}"><i class="fa fa-users"></i> <span>Daftar Team</span></a></li>
+                  <li class="{{set_active('team.create')}}"><a href="{{route('team.create')}}"><i class="fa fa-plus"></i> <span>Tambah Team</span></a></li>
                   <li class="{{set_active('divs')}}"><a href="{{route('divs')}}"><i class="fa  fa-user-plus"></i> <span>Devisi</span></a></li>
                   <li class="{{set_active('bagians')}}"><a href="{{route('bagians')}}"><i class="fa  fa-user-plus"></i> <span>Bagian</span></a></li>
               </ul>

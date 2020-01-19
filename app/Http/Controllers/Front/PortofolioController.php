@@ -15,7 +15,7 @@ class PortofolioController extends Controller
         $data = Portofolio::query();
         return DataTables::of($data)
         ->addColumn('action', function($data){
-            return view('layouts._action', [
+            return view('layouts.action', [
                 'model' => $data,
                 'url_show' => route('portofolio.show', $data->id),
                 'url_edit' => route('portofolio.edit', $data->id),
@@ -45,7 +45,7 @@ class PortofolioController extends Controller
     public function create()
     {
         $model = new Portofolio();
-        return view('admin.portofolio.form', compact('model'));
+        return view('admin.portofolio.create', compact('model'));
     }
 
     /**
@@ -67,20 +67,21 @@ class PortofolioController extends Controller
 
             $data = new Portofolio();
             $data->title = $request->title;
+            $slug = $data->title;
             $data->deskripsi = $request->deskripsi;
             $data->url = $request->url;
 
-            if($request->file('gambar')){
+            if($request->hasFile('gambar')){
                 $image = $request->file('gambar');
-                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $filename = str_slug($slug) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('/image/' .$filename);
-                Image::make($image)->resize(500, 300)->save($location);
-                $data->gambar= $filename;
+                Image::make($image)->resize(800, 400)->save($location);
+                $data->gambar = $filename;
             }
 
             $data->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('success','Data Berhasil disimpan');
     }
 
     /**
@@ -105,7 +106,7 @@ class PortofolioController extends Controller
     public function edit($id)
     {
         $model = Portofolio::findOrFail($id);
-        return view('admin.portofolio.form', compact('model'));
+        return view('admin.portofolio.edit', compact('model'));
     }
 
     /**
@@ -121,20 +122,29 @@ class PortofolioController extends Controller
             'title' => 'required|max:255',
             'deskripsi' => 'required|max:255',
             'url' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+           // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
             ]);
             $model = Portofolio::findOrFail($id);
-
-            if($request->file('gambar')){
+            $model->title = $request->title;
+            $model->deskripsi = $request->deskripsi;
+            $slug = $model->title;
+            $model->url = $request->url;
+            if($request->hasFile('gambar')){
                 $image = $request->file('gambar');
-                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $filename = str_slug($slug) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('/image/' .$filename);
-                Image::make($image)->resize(500, 300)->save($location);
-                $model->gambar= $filename;
+                Image::make($image)->resize(800, 400)->save($location);
+                $model->gambar = $filename;
+                $oldFilename = $model->gambar;
+                //Update Image
+                $model->gambar;
+                // Delete Image
+                Storage::delete($oldFilename);
             }
 
-            $model->update($request->all());
+            $model->save();
+            return redirect()->back()->with('success','Data Berhasil diupdate');
     }
 
     /**

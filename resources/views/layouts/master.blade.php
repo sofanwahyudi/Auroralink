@@ -87,6 +87,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
     @yield('content_header')
+    @include('layouts.flash')
     </section>
 
     <!-- Main content -->

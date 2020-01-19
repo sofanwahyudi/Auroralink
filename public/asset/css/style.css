@@ -221,7 +221,7 @@ span {
 #hero {
   width: 100%;
   height: calc(100vh - 40px);
-  background: url(../../image/background2.png) center bottom no-repeat;
+  background: url(../../image/background2-min.png) center bottom no-repeat;
   background-size: 100%;
   position: relative;
   margin-top: 40px;

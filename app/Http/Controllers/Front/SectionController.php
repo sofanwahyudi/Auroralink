@@ -6,6 +6,7 @@ use App\Model\Section;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Image;
+use Storage;
 
 class SectionController extends Controller
 {
@@ -13,7 +14,7 @@ class SectionController extends Controller
         $data = Section::query();
         return DataTables::of($data)
         ->addColumn('action', function($data){
-            return view('layouts._action', [
+            return view('layouts.action', [
                 'model' => $data,
                 'url_show' => route('sections.show', $data->id),
                 'url_edit' => route('sections.edit', $data->id),
@@ -43,7 +44,7 @@ class SectionController extends Controller
     public function create()
     {
         $model = new Section();
-        return view('admin.section.form', compact('model'));
+        return view('admin.section.create', compact('model'));
     }
 
     /**
@@ -64,10 +65,11 @@ class SectionController extends Controller
             $data = new Section();
             $data->title = $request->title;
             $data->sub_title = $request->sub_title;
+            $slug = $data->sub_title;
             $data->content = $request->content;
             if($request->file('image')){
                 $image = $request->file('image');
-                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $filename = str_slug($slug) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('/image/' .$filename);
                 Image::make($image)->resize(500, 300)->save($location);
                 // $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
@@ -102,7 +104,7 @@ class SectionController extends Controller
     public function edit($id)
     {
         $model = Section::findOrFail($id);
-        return view('admin.section.form', compact('model'));
+        return view('admin.section.edit', compact('model'));
     }
 
     /**
@@ -117,10 +119,29 @@ class SectionController extends Controller
         $this->validate($request,[
             'title' => 'required|max:255',
             'sub_title' => 'required|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
             ]);
             $model = Section::findOrFail($id);
-            $model->update($request->all());
+            $model->title = $request->title;
+            $model->sub_title = $request->sub_title;
+            $slug = $model->sub_title;
+            $model->content = $request->content;
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $filename = str_slug($slug) . '.' . $image->getClientOriginalExtension();
+                $location = public_path('/image/' .$filename);
+                Image::make($image)->resize(800, 400)->save($location);
+                $model->image = $filename;
+                $oldFilename = $model->image;
+                //Update Image
+                $model->image;
+                // Delete Image
+                Storage::delete($oldFilename);
+            }
+
+            $model->save();
+            return redirect()->back()->with('success','Data Berhasil diupdate');
     }
 
     /**

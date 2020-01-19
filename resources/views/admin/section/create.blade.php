@@ -1,16 +1,15 @@
 @extends('layouts.master')
 @section('title')
-Create Portofolio | Auroralink
+Create Section | Auroralink
 @stop
 @section('content_header')
 <h1>
-    <span class="fa fa-edit"></span> Create Portofolio
+    <span class="fa fa-edit"></span> Create Section
 </h1>
-<a href="{{route('portofolio')}}"><i class="fa fa-arrow-left"></i> Back To List Portofolio</a>
 <ol class="breadcrumb">
   <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-  <li>Portofolio</li>
-  <li class="active">Create Portofolio</li>
+  <li>Section</li>
+  <li class="active">Create Section</li>
 </ol>
 @endsection
 
@@ -38,7 +37,7 @@ Create Portofolio | Auroralink
         <div class="row">
           <div class="col-md-9">
             {!!Form::model($model, [
-                'route' => 'portofolio.store',
+                'route' => 'sections.store',
                 'method' => 'POST',
                 'files' => true
             ])!!}
@@ -53,23 +52,24 @@ Create Portofolio | Auroralink
                     <span class="badge badge-danger">{{ $errors->first('title') }}</span>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('url') ? 'has-error' : ''}}">
-                {!! Form::label('Url') !!}
-                {!! Form::text('url', null, ['class'=>'form-control']) !!}
-                @if($errors->has('url'))
-                    <span class="badge badge-danger">{{ $errors->first('url') }}</span>
+
+            <div class="form-group {{ $errors->has('sub_title') ? 'has-error' : ''}}">
+                {!! Form::label('sub_title') !!}
+                {!! Form::text('sub_title', null, ['class'=>'form-control']) !!}
+                @if($errors->has('sub_title'))
+                    <span class="badge badge-danger">{{ $errors->first('sub_title') }}</span>
                 @endif
             </div>
 
-            <div class="form-group {{ $errors->has('deskripsi') ? 'has-error' : ''}}">
-                {!! Form::label('Deskripsi') !!}
-                {!! Form::textarea('deskripsi', null, ['class'=>'form-control']) !!}
-                <input name="image" type="file" id="upload" class="hidden" onchange="">
-                @if($errors->has('deskripsi'))
-                    <span class="badge badge-danger">{{ $errors->first('deskripsi') }}</span>
-                @endif
+            <div class="form-group">
+                <label for="" class="control-label">Content</label>
+                <div class="input-group">
+                    {!! Form::textarea('content', null, ['placeholder' => 'type here text', 'id' => 'content', 'class' => 'content']) !!}
+                    <input name="image" type="file" id="upload" class="hidden" onchange="">
+                </div>
             </div>
-
+            </div>
+            <div class="card-footer clearfix">
 
             </div>
 
@@ -88,7 +88,7 @@ Create Portofolio | Auroralink
       <div class="card card-default">
         <!-- /.card-header -->
         <div class="card-body text-center">
-          <div class="form-group {{ $errors->has('gambar') ? 'has-error' : ''}}">
+          <div class="form-group {{ $errors->has('image') ? 'has-error' : ''}}">
               <div class="fileinput fileinput-new" data-provides="fileinput">
                 <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                   <img src="http://placehold.it/200x150&text=No+Image" alt="...">
@@ -96,14 +96,14 @@ Create Portofolio | Auroralink
                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                 <div>
                   <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
-                  {!! Form::file('gambar') !!}
+                  {!! Form::file('image') !!}
                   </span>
                   <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                 </div>
               </div>
 
-              @if($errors->has('gambar'))
-                  <span class="badge badge-danger">{{ $errors->first('gambar') }}</span>
+              @if($errors->has('image'))
+                  <span class="badge badge-danger">{{ $errors->first('image') }}</span>
               @endif
           </div>
         </div>

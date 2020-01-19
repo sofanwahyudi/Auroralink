@@ -12,7 +12,7 @@
       <h1>Selamat Datang Di Website</h1>
       <h1>Auroralink</h1>
       <h2>Reliable IT Support Partners</h2>
-      <img src="image/heroes.png" alt="Hero Imgs">
+      <img src="image/heroes-min.png" alt="Hero Imgs">
       <a href="https://wa.me/628113190408" class="btn-get-started scrollto">Get Started</a>
       <div class="btns">
         {{--  <a href="#"><i class="fa fa-laptop fa-3x"></i> Perbaikan Laptop</a>
@@ -20,7 +20,7 @@
         <a href="#"><i class="fa fa-user-secret fa-3x"></i> Jasa Sysadmin</a>
         <a href="#"><i class="fa fa-support fa-3x"></i> Jasa IT Support</a>  --}}
         @foreach ($services as $data)
-            <a href="{{url("/$data->slug")}}"><i class="fa fa-check-circle fa-3x"></i> {{$data->nama}}</a>
+            <a href="{{url("/$data->slug")}}"><i class="fa fa-check-circle fa-7x"></i> {{$data->nama}}</a>
         @endforeach
       </div>
     </div>
@@ -55,7 +55,7 @@
 
  {{--  ======================================================About Section========================================================   --}}
 @section('about')
-    <section id="about-us" class="about-us padd-section wow fadeInUp" style="background-image:url('image/background1.png');">
+    <section id="about-us" class="about-us padd-section wow fadeInUp" style="background-image:url('image/background1-min.png');">
     <div class="container">
       <div class="row justify-content-center">
 
