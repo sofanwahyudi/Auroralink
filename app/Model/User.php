@@ -49,4 +49,45 @@ class User extends Authenticatable
     {
     return $this->hasOne('App\Model\VerifyUser');
     }
+    // static function hasRole($id, $role){
+    //     $user = User::find($id);
+
+    //     if(is_numeric($role)){
+    //         foreach ($user->roles as $r) {
+    //             // var_dump($r->id);
+    //             if($r->id == $role){
+    //                 return true;
+    //             }
+    //             return false;
+    //         }
+    //     }else{
+    //         foreach ($user->roles as $r) {
+    //             if($r->name == $role){
+    //                 return true;
+    //             }
+    //             return false;
+    //         }
+
+    //     }
+    // }
+    static function superAdmin(){
+        $user = User::find(Auth::user()->id);
+
+            foreach ($user->roles as $r) {
+                if($r->id == 2){
+                    return true;
+                }
+                return false;
+            }
+    }
+    static function isAdmin(){
+        $user = User::find(Auth::user()->id);
+
+            foreach ($user->roles as $r) {
+                if($r->id == 2){
+                    return true;
+                }
+                return false;
+            }
+    }
 }

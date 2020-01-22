@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/member/clientarea';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -43,6 +43,11 @@ class LoginController extends Controller
         auth()->logout();
         return back()->with('warning', 'Mohon Ceck Email Anda !!! Kami telah mengirimkan link untuk aktivasi');
     }
-    return redirect()->intended('/member/clientarea');
+    if ($user->role === 2) {
+        return redirect()->intended('/admin/dashboard');
+    } else {
+        return redirect()->intended('/member/clientarea');
+    }
+
     }
 }

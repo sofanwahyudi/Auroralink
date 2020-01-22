@@ -27,6 +27,7 @@ Route::get('/{jasa}/tema', 'FrontController@tempelate');
 Route::get('/{jasa}/tema/{slug}', 'FrontController@detailTempelate');
 
 Route::get('/blog/read/post/{slug}',['uses' => 'FrontController@post', 'as' => 'blog.post']);
+Route::get('/blog/read/post/share/{slug}',['uses' => 'FrontController@share', 'as' => 'blog.share']);
 Route::get('blog/search/', ['uses' => 'FrontController@search', 'as' => 'search.post']);
 Route::get('blog/categories/{slug}', ['uses' => 'FrontController@getCategories', 'as' => 'cat.post']);
 Route::get('/servis/{id}/pdf', 'ServisController@getPdf')->name('servis.pdf');
@@ -46,6 +47,8 @@ Route::get('/bantuan', 'FrontController@bantuan');
 //Auth::routes();
 Route::group(['middleware' => ['auth']], function() {
 
+    //Route::get('laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
+    //Route::post('laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');
 
     // Route Tickets Front
 
@@ -66,6 +69,9 @@ Route::group(['middleware' => ['auth']], function() {
             Route::resource('dashboard', 'AdminController');
             Route::get('dashboard', 'AdminController@index')->name('dashboard');
 
+            // Route::post('/users/permission/create', 'UserController@addPermission')->name('users.add_permission');
+            // Route::get('/users/permission/role_permission', 'UserController@rolePermission')->name('users.roles_permission');
+            // Route::put('/users/permission/set/{role}', 'UserController@setRolePermission')->name('users.setRolePermission');
 
         Route::resource('servis_item', 'ServisItemController');
         Route::get('servis_item', 'ServisItemController@deviceJson')->name('device.json');

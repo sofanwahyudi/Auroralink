@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="img/pavicon.png">
+    @yield('og')
     <title>@yield('title')</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ url('asset/css/bootstrap.min.css') }}" rel="stylesheet">

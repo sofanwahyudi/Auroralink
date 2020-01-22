@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
-
+    'name' => env('APP_NAME', 'Auroralink'),
+    //'url_prefix' => 'laravel-filemanager',
     /*
     |--------------------------------------------------------------------------
     | Application Environment

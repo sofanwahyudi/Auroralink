@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role as ModelsRole;
+use DB;
 
 class UserController extends Controller
 {
@@ -16,10 +19,12 @@ class UserController extends Controller
      */
     function __construct()
     {
+
+        //JIKA DI KOMEN MAKA USER BISA MELAKUKAN AKSI ROLE/PERMISSION YANG DI KOMEN
         // $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
-        //   $this->middleware('permission:role-create', ['only' => ['create','store']]);
-        //   $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-        //   $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+        //  $this->middleware('permission:role-create', ['only' => ['create','store']]);
+        //  $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
+         // $this->middleware('permission:role-delete', ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
@@ -148,5 +153,44 @@ class UserController extends Controller
         User::whereIn('id',explode(",",$ids))->delete();
         return response()->json(['success'=>"Data Berhasil Di Hapus."]);
 
+    }
+    public function rolePermission(Request $request)
+    {
+        $role = $request->get('role');
+
+        $permissions = null;
+        $hasPermission = null;
+
+        $roles = ModelsRole::all()->pluck('name');
+
+        if (!empty($role))
+        {
+            $getRole = ModelsRole::findByName($role);
+
+            $hasPermission = DB::table('role_has_permission')->select('permission.name')->join('permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')->where('role_id', $getRole->id)->get()->pluck('name')->all();
+
+            $permission = Permission::all()->pluck('name');
+        }
+        return view('setting.permission.role_permission', compact('roles', 'permissions', 'hasPermission'));
+    }
+
+    public function addPermission(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|unique:permissions'
+        ]);
+        $permission = Permission::firstOrCreate([
+
+            'name' => $request->name
+        ]);
+        return redirect()->back();
+    }
+    public function setPermission(Request $request, $role)
+    {
+
+        $role = ModelsRole::findByName($role);
+
+        $role->syncPermissions($request->permission);
+        return redirect()->back()->with(['success' => 'Permission to Role Saved!']);
     }
 }

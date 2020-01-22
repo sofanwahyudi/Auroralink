@@ -79,7 +79,7 @@ class ServisController extends Controller
             return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first.');
         }
 
-        $service =[
+        $servis =[
             'kode_servis' => 'SE'.strtoupper(uniqid()),
             'users_id' => $request->users_id,
             'team_id' => $request->team_id,

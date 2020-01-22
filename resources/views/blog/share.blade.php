@@ -2,36 +2,36 @@
   <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
   {{-- <link href="asset/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
 <p> Share Button: </p>
-<div>
-    <a  class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($url) }}"
+<div class="text-center">
+    <a  class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ url('/blog/read/post/' .$blog->slug) }}"
     target="_blank">
-    <i class="fa fa-facebook"></i>
+    <i class="fa fa-facebook fa-2x" style="color:blue"></i>
     </a>
-    <a class="btn btn-social-icon btn-twitter" href="https://www.twitter.com/sharer/sharer.php?u={{ urlencode($url) }}"
+    <a class="btn btn-social-icon btn-twitter" href="https://www.twitter.com/sharer/sharer.php?u={{ url('/blog/read/post/' .$blog->slug) }}"
     target="_blank">
-    <i class="fa fa-twitter"></i>
+    <i class="fa fa-twitter fa-2x" style="color:aqua"></i>
     </a>
-    <a class="btn btn-social-icon btn-instagram" href="https://www.instagram.com/sharer/sharer.php?u={{ urlencode($url) }}"
+    <a class="btn btn-social-icon btn-instagram" href="https://www.instagram.com/sharer/sharer.php?u={{ url('/blog/read/post/' .$blog->slug) }}"
     target="_blank">
-    <i class="fa fa-instagram"></i>
+    <i class="fa fa-instagram fa-2x" style="color:pink"></i>
     </a>
-    <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/sharer/sharer.php?u={{ urlencode($url) }}"
+    <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/sharer/sharer.php?u={{ url('/blog/read/post/' .$blog->slug) }}"
     target="_blank">
-    <i class="fa fa-linkedin"></i>
+    <i class="fa fa-linkedin fa-2x" style="color:darkblue"></i>
     </a>
-    <a class="btn btn-social-icon btn-telegram" href="https://web.telegram.com/sharer/sharer.php?u={{ urlencode($url) }}"
+    <a class="btn btn-social-icon btn-telegram" href="https://web.telegram.com/sharer/sharer.php?u={{ url('/blog/read/post/' .$blog->slug) }}"
     target="_blank">
-    <i class="fa fa-telegram"></i>
+    <i class="fa fa-telegram fa-2x" style="color:cyan"></i>
     </a>
-    <a class="btn btn-social-icon btn-whatsapp" href="https://web.whatsapp.com/sharer/sharer.php?u={{ urlencode($url) }}"
+    <a class="btn btn-social-icon btn-whatsapp" href="https://web.whatsapp.com/sharer/sharer.php?u={{ url('/blog/read/post/' .$blog->slug) }}"
     target="_blank">
-    <i class="fa fa-whatsapp"></i>
+    <i class="fa fa-whatsapp fa-2x" style="color:green"></i>
     </a>
-        <img src="{{ url('image/Auroralink.png') }}" class="img-fluid text-center" alt="Responsive image" width='500'>
+        {{--  <img src="{{ url('image/Auroralink.png') }}" class="img-fluid text-center" alt="Responsive image" width='500'>  --}}
 
 </div>
 <script src="{{ url('asset/js/jquery.min.js') }}"></script>
-{{-- <script>
+<script>
 var = popupSize ={
     width: 780,
     height: 550
@@ -49,4 +49,4 @@ $($document).on('click', '.btn-social-icon > a', function(e){
         e.preventDefault()
     }
 });
-</script> --}}
+</script>

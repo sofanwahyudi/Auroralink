@@ -13,6 +13,7 @@ use App\Model\Tickets\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Sitemap\SitemapGenerator;
 
 class FrontController extends Controller
 {
@@ -95,6 +96,13 @@ class FrontController extends Controller
     public function getRegister()
     {
       return view('auth.register');
+    }
+    public function share($slug)
+    {
+        $blog = Post::where('id', $slug)->orWhere('slug', $slug)->firstOrFail();
+        $cats = Category::all();
+        //dd($blog->slug);
+        return view('blog.share')->withBlogs($blog)->withCats($cats);
     }
 
 }

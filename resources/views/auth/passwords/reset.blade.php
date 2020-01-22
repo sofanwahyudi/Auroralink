@@ -29,7 +29,7 @@
 <!-- Automatic element centering -->
 <div class="lockscreen-wrapper">
   <div class="lockscreen-logo">
-    <a href="{{url('assets/index2.html')}}"><b>Admin</b>LTE</a>
+    <img src="{{url('asset/img/logo.png')}}">
   </div>
   <!-- User name -->
   <div class="lockscreen-name">John Doe</div>
