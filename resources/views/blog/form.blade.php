@@ -11,9 +11,9 @@
     </div>
     @else
     <p class="w3-tag w3-black">Noted:  Your must login for comment.
-    <a href="{{ route('login') }}"><span class="fa fa-sign-in"></span> Login</a> OR
+    <a href="{{ url('member/login') }}"><span class="fa fa-sign-in"></span> Login</a> OR
     @if (Route::has('register'))
-    <a href="{{ route('register') }}"><span class="fa fa-user-plus"></span> Register</a>
+    <a href="{{ url('member/register') }}"><span class="fa fa-user-plus"></span> Register</a>
     </p>
     @endif
 @endauth

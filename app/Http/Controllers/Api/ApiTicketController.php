@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Model\Servis;
-use App\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Tickets\Tickets;
 
-class AdminController extends Controller
+class ApiTicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +15,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        $servis = Servis::all();
-        return view('admin.index')->withUser($user)->withServis($servis);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $data = Tickets::all();
+        if(count($data) > 0){ //mengecek apakah data kosong atau tidak
+            $res['message'] = "Success!";
+            $res['values'] = $data;
+            return response($res);
+        }
+        else{
+            $res['message'] = "Empty!";
+            return response($res);
+        }
     }
 
     /**
@@ -48,17 +45,6 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

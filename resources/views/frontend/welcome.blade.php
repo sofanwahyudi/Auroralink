@@ -55,7 +55,7 @@
 
  {{--  ======================================================About Section========================================================   --}}
 @section('about')
-    <section id="about-us" class="about-us padd-section wow fadeInUp" style="background-image:url('image/background1-min.png');">
+    <section id="about-us" class="about-us padd-section wow fadeInUp" style="background-image:url('image/bg_one.png');">
     <div class="container">
       <div class="row justify-content-center">
 
@@ -69,7 +69,7 @@
 {{--  ======================================================Services Section========================================================   --}}
 
 @section('services')
-      <section id="features" class="padd-section text-center wow fadeInUp" style="background-image:url('image/Swop.svg');">
+      <section id="features" class="padd-section text-center wow fadeInUp">
       <h1>Layanan </h1>
       <hr>
     <div class="container-fluid container-full">

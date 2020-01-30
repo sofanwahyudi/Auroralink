@@ -42,9 +42,9 @@ class Post extends Model
     public function getGambar()
     {
         if(!$this->gambar){
-            return asset('image/dash.jpeg');
+            return storage_path('image/dash.jpeg');
         }
-        return asset('image/upload/' .$this->image);
+        return storage_path('image/upload/' .$this->image);
     }
     public function scopePopular($query){
         return $query->orderBy('view_count', 'desc');

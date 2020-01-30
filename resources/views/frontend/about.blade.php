@@ -5,9 +5,6 @@
 
         <div class="col-md-7 col-lg-5">
           <div class="about-content">
-
-
-
             <h2><span></span>Tentang Kami  </h2>
             <hr>
             {!! $about->content !!}

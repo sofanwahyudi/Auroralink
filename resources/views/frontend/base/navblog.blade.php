@@ -6,9 +6,9 @@
                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }} </form>
                 </li>
                 @else
-                <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><span class="fa fa-sign-in"></span> Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('member/login') }}"><span class="fa fa-sign-in"></span> Login</a></li>
                 @if (Route::has('register'))
-                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}"><span class="fa fa-user-plus"></span> Register</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('member/register') }}"><span class="fa fa-user-plus"></span> Register</a></li>
                 @endif
                 @endauth
             </ul>

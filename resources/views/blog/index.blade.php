@@ -3,16 +3,15 @@
 @section('title')
 Auroralink | Blog
 @stop
-@section('nav')
+{{--  @section('nav')
 <a class="nav-link" href="{{ url('/') }}" style="color:grey;">Home</a>
 <a class="nav-link" href="{{ url('/blog') }}" style="color:grey;">Index Of Blog</a>
 
 
 @foreach ($categories as $blog)
-                {{--  {{ dd($blog->post) }}  --}}
 <a class="nav-link" href="{{url("/blog/categories/$blog->slug")}}" style="color:grey;">{{ $blog->category }}</a>
 @endforeach
-@endsection
+@endsection  --}}
 @section('search')
 <div class="container">
     <div class="row">

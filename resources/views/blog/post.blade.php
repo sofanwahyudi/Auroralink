@@ -2,14 +2,14 @@
 @section('title')
     Auroralink | {{ htmlspecialchars($blog->title) }}
 @endsection
-@section('nav')
+{{--  @section('nav')
 <a class="nav-link" href="{{ url('/') }}" style="color:grey;">Home</a>
 <a class="nav-link" href="{{ url('/blog') }}" style="color:grey;">Index Of Blog</a>
 
 @foreach ($cats as $ca)
 <a class="nav-link" href="{{url("/blog/categories/$ca->slug")}}" style="color:grey;">{{ $ca->category }}</a>
 @endforeach
-@endsection
+@endsection  --}}
 @section('ads')
     <div class="text-center">
         <img src="{{ url('image/Auroralink.png') }}" class="img-fluid" alt="Responsive image" width='500'>
@@ -17,15 +17,19 @@
     </div>
 @endsection
 @section('article')
+@section('og')
+<meta property="og:title" content="{{$blog->title}}" />
+<meta property="og:image" content="{{ url('storage/upload/'. $blog->image) }}" />
+<meta property="og:type" content="website" />
+@endsection
 <div class="col-md-12 col-md-offset-2 col-xs-12">
     <div class="mainheading">
         <h1 class="posttitle text-center">{{$blog->title}}</h1>
     </div>
 
         <!-- Begin Featured Image -->
-        <img class="featured-image img-fluid" src="{{ url('image/upload/'. $blog->image) }}" alt="">
+        <img class="featured-image img-fluid" src="{{ url('storage/upload/'. $blog->image) }}" alt="">
         <!-- End Featured Image -->
-
         <!-- Begin Post Content -->
     <div class="article-post">
             <p>{!! $blog->content !!}</p>

@@ -94,7 +94,7 @@ class PostController extends Controller
 
             if($request->file( 'image')){
                 $image = $request->file('image');
-                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $filename = str_slug($slug) . '.' . $image->getClientOriginalExtension();
                 $location = public_path('/image/upload/' .$filename);
                 Image::make($image)->resize(800, 400)->save($location);
                 // $data->image = '/image/upload/'.str_slug($data->title).'.'.$request->image->getClienOriginalExtension();
@@ -200,15 +200,15 @@ class PostController extends Controller
         $model->title = $request->title;
         $model->content = Purifier::clean($request->content);
         // $title = $model->title;
-        // $slug = str_slug($title,'-');
+         $oldslug = $model->slug;
         // $model->slug = $slug;
         $model->category_id = $request->category_id;
         $currentuser = Auth::user()->id;
         $model->users_id = $currentuser;
 
-        if($request->hasFile( 'feature_image')){
-            $image = $request->file('feature_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
+        if($request->hasFile( 'image')){
+            $image = $request->file('image');
+            $filename = str_slug($oldslug) . '.' . $image->getClientOriginalExtension();
             $location = public_path('/image/upload/' .$filename);
             Image::make($image)->resize(800, 400)->save($location);
             $model->image = $filename;

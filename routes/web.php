@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('tickets', 'TicketsController');
         Route::get('tickets', 'TicketsController@index')->name('tickets');
         Route::get('json/tickets', 'TicketsController@dataTable')->name('tickets.json');
+    //    Route::get('/api/ticket', 'Api\TicketApiController@index');
 
 
 //Route Comment
