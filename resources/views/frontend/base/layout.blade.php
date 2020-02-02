@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', '', { 'optimize_id': 'GTM-TL8M5JC'});
+</script>
 <head>
   <meta charset="utf-8">
   <title>@yield('title')</title>
@@ -8,15 +17,13 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129762300-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-129762300-2');
-  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-K4BQTWS');</script>
+  <!-- End Google Tag Manager -->
 
   <!-- Facebook Pixel Code -->
     <script>
@@ -69,7 +76,10 @@
 </head>
 
 <body>
-
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4BQTWS"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 <header id="header" class="header header-hide">
     <div class="container">
         <div id="logo" class="pull-left">
@@ -80,54 +90,63 @@
 </header>
 <!-- #header -->
 
-  <!--==========================
-    Hero Section
-  ============================-->
-    @yield('hero')
-  <!--==========================
-    Get Started Section
-  ============================-->
-    @yield('start')
-  <!--==========================
-    About Us Section
-  ============================-->
-    @yield('about')
-  <!--==========================
-    Features Section
-  ============================-->
-    @yield('services')
-  <!--==========================
-    Screenshots Section
-  ============================-->
-    @yield('portofolio')
-  <!--==========================
-    Video Section
-  ============================-->
+  <!--==========================Hero Section============================-->
+    <section id="hero" class="wow fadeIn">
+        <div class="hero-container top_left_cont zoomIn wow animated animated">
+          <h1>Selamat Datang Di Website</h1>
+          <h1>Auroralink</h1>
+          <h2>Reliable IT Support Partners</h2>
+          <img src="image/heroes-min.png" alt="Hero Imgs">
+          <a href="https://wa.me/628113190408" class="btn-get-started scrollto">Get Started</a>
+          @yield('hero')
+        </div>
+    </section>
+  <!--==========================Get Started Section============================-->
+
+    <section id="get-started" class="padd-section text-center wow fadeInUp">
+        @yield('start')
+      </section>
+  <!--==========================About Us Section============================-->
+
+    <section id="about-us" class="about-us padd-section wow fadeInUp" style="background-image:url('image/bg_one.png');">
+        @yield('about')
+      </section>
+  <!--==========================Features Section============================-->
+    <section id="features" class="padd-section text-center wow fadeInUp">
+        @yield('services')
+    </section>
+  <!--==========================Screenshots Section============================-->
+    <section id="screenshots" class="padd-section text-center wow fadeInUp">
+        @yield('portofolio')
+    </section>
+  <!--==========================Video Section============================-->
     @yield('video')
-  <!--==========================
-    Team Section
-  ============================-->
-    @yield('team')
-  <!--==========================
-    Testimonials Section
-  ============================-->
+  <!--==========================Team Section============================-->
+    <section id="team" class="padd-section text-center wow fadeInUp">
+        @yield('team')
+    </section>
+  <!--==========================Testimonials Section============================-->
+  <section id="testimonials" class="padd-section text-center wow fadeInUp">
     @yield('testimoni')
+    </section>
   <!--==========================
     Pricing Table Section
   ============================-->
-    @yield('price')
-  <!--==========================
-    Blog Section
-  ============================-->
-    @yield('blog')
-  <!--==========================
-    Newsletter Section
-  ============================-->
-    @yield('newsletter')
-  <!--==========================
-    Contact Section
-  ============================-->
-    @yield('contact')
+    <section id="pricing" class="padd-section text-center wow fadeInUp">
+        @yield('price')
+    </section>
+  <!--==========================Blog Section============================-->
+    <section id="blog" class="padd-section wow fadeInUp">
+        @yield('blog')
+    </section>
+  <!--==========================Newsletter Section============================-->
+    <section id="newsletter" class="newsletter text-center wow fadeInUp">
+        @yield('newsletter')
+    </section>
+  <!--==========================Contact Section============================-->
+    <section id="contact" class="padd-section wow fadeInUp">
+        @yield('contact')
+    </section>
   <!--==========================
     404 Section
   ============================-->

@@ -28,7 +28,7 @@
     </div>
 
         <!-- Begin Featured Image -->
-        <img class="featured-image img-fluid" src="{{ url('storage/upload/'. $blog->image) }}" alt="">
+        <img class="featured-image img-fluid" src="{{ url('image/upload/'. $blog->image) }}" alt="">
         <!-- End Featured Image -->
         <!-- Begin Post Content -->
     <div class="article-post">
