@@ -18,7 +18,7 @@ class Servis extends Model
     }
     public function pelanggan()
     {
-        return $this->belongsTo(User::class,'users_id');
+        return $this->belongsTo(User::class);
     }
     public function status()
     {

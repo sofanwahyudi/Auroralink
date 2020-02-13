@@ -20,18 +20,21 @@ class ServisTableSeeder extends Seeder
     public function run()
     {
 
-        $service =[
+        $services = Servis::create([
             'kode_servis' => 'SE'.strtoupper(uniqid()),
-            'users_id' => 1,
+            'user_id' => 36,
             'team_id' => 1,
             'recieve_at' => Carbon::now(),
             'completed_at' => Carbon::now(),
             'keterangan' => 'gagal booting',
             'status_id' => 1,
+        ]);
 
-        ];
+        $service = Servis::pluck('id');
+        $servisid = $services->id;
 
-        $serv =[
+        $servis_detail [] = [
+            'servis_id' => $servisid,
             'merk_id' => 1,
             'model_id' => 1,
             'serial_number' => 'SN'.strtoupper(uniqid()),
@@ -41,14 +44,12 @@ class ServisTableSeeder extends Seeder
             'biaya' => 10000,
         ];
 
-        for($s=0; $s < count($serv); $s++){
-            foreach ($serv as  $value) {
-                $servis = Servis::create($service);
-                $servis->device()->create($serv[$s]);
+        for($s=0; $s < 2 ; $s++){
+            foreach ($servis_detail as  $value) {
+                $item [] = ServisItem::create($value);
             }
         }
-        //    $servis = Servis::create($service);
-         //   $servis->device()->create($serv);
+            $service->device()->create($item[s]);
 
 
         // $garansi = ['Bergaransi', 'Tidak Bergaransi'];

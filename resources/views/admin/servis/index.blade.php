@@ -47,6 +47,7 @@ Servis | Auroralink
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tgl Terima</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Status</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Kelengkapan</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -76,6 +77,9 @@ $(document).ready(function(){
         { data: 'status', name: 'status', render : function(data, type, row) {
               return '<span class="badge bg-blue">'+data+'</span>'
           }   },
+          { data: 'kelengkapan', name: 'kelengkapan', render : function(data, type, row) {
+            return '<span class="badge bg-blue">'+data+'</span>'
+        }   },
         { data: 'action', orderable:false, searchable:false },
     ]
     }

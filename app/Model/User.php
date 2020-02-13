@@ -55,6 +55,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Tickets::class);
     }
+    public function servis()
+    {
+        return $this->hasOne(Servis::class);
+    }
     public function verifyUser()
     {
     return $this->hasOne('App\Model\VerifyUser');

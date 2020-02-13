@@ -4,8 +4,15 @@
 <link rel="icon" href="pavicon.png" type="image/png">
 <style>
 body {
-  background-image: url("paper.gif");
+    background-image: url("https://auroralink.co.id/asset/img/pavicon.png");
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    background-position: center;
+    background-size: 30%;
 }
+.container {
+    position: relative;
+  }
 thead, tbody {
     border: 1px solid #dddd;
     text-align: left;
@@ -25,8 +32,9 @@ td, {
 }
 </style>
 </head>
+<body>
 <div class="center">
-<img src="https://auroralink.id/asset/img/logo.png"  alt="Logo" style="border-bottom:1px solid black;text-decoration:none;color:#000001;">
+<img src="https://auroralink.id/asset/img/logo.png">
         <p>TANDA TERIMA SERVIS: #{{$model->kode_servis}}<p>
 </div>
 <div>
@@ -94,7 +102,6 @@ td, {
 </table>
 <div>
 <br>
-
     <table width="100%">
     <thead>
     <tr>

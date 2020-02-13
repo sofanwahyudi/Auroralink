@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Kelengkapan;
 use App\Model\Merk;
 use Illuminate\Http\Request;
 use App\Model\Servis;
@@ -10,6 +11,7 @@ use PDF;
 use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ServisController extends Controller
 {
@@ -55,7 +57,6 @@ class ServisController extends Controller
         $model = new Servis();
         $items = new ServisItem();
         $item = ServisItem::all();
-        //  dd($item);
         return view('admin.servis.form', compact('model','item'));
     }
 
@@ -79,28 +80,55 @@ class ServisController extends Controller
             return redirect()->back()->with('danger', 'OPS... sorry you have to register and login first.');
         }
 
-        $servis =[
-            'kode_servis' => 'SE'.strtoupper(uniqid()),
-            'users_id' => $request->users_id,
-            'team_id' => $request->team_id,
-            'recieve_at' => Carbon::now(),
-            'completed_at' => Carbon::now(),
-            'keterangan' => $request->keterangan,
-            'status_id' => 1,
-            ];
 
-        $servis_detail =[
-            'merk_id' => $request->merk_id,
-            'serial_number' => $request->serial_number,
-            'warna' => $request->warna,
-            'garansi_id' => $request->garansi_id,
-        ];
+        $repair = new Servis();
+        $repair->kode_servis = 'SE'.strtoupper(uniqid());
+        $repair->user_id = $request->user_id;
+        $repair->team_id = $request->team_id;
+        $repair->recieve_at = Carbon::now();
+        $repair->keterangan = $request->keterangan;
+        $repair->status_id = 1;
 
-        $servis = Servis::create($servis);
-        $servis->device()->create($servis_detail);
+        if($repair->save()){
+            $id = $repair->id;
+            $merk = 2;
+            $garansi = 1;
+            $biaya = 100000;
+            $sn = 'SN123124323';
+            $warna = 'merah';
+            $keluhan = 'blank';
+
+            //Tampung di Array
+            $servis_detail = array(
+                'servis_id' => $id,
+                'merk_id' => $merk,
+                'model_id' => $merk,
+                'serial_number' => $sn,
+                'warna' => $warna,
+                'garansi_id' => $garansi,
+                'keluhan' => $keluhan,
+                'biaya' => $biaya,
+            );
+
+            //Masukan Database
+            if($id = DB::table('item_servis')->insertGetId($servis_detail)){
+                $value = [1,2,3,4];
+                $dataSet = [];
+                foreach ($value as $data) {
+                    $dataSet[] = [
+                        'servis_item_id'  => $id,
+                        'kelengkapan_id'   => $data,
+                    ];
+                }
+                 DB::table('kelengkapan_servis_item')->insert($dataSet);
+            }
 
 
-        return redirect()->back()->withSuccess();
+
+        }
+
+        return view('admin.servis.index')->with('success','Data Berhasil disimpan');
+
     }
 
 
