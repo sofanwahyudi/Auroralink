@@ -45,19 +45,19 @@ td, {
             <td>#Untuk Servis di</td>
         </tr>
         <tr>
-            <td>Nama : {{ ($model->team->nama) }}</td>
+            <td>{{ ($model->pelanggan->name) }}</td>
             <td>AURORALINK</td>
         </tr>
         <tr>
-            <td>Alamat : {{ ($model->team->alamat) }}</td>
+            <td>{!! ($model->pelanggan->alamat) !!}</td>
             <td> Jl Bulak Setro Utara VI/4C Bulak Surabaya</td>
         </tr>
         <tr>
-            <td>Telepon : {{ ($model->team->telepon) }}</td>
-            <td> 081553177408</td>
+            <td>{{ ($model->pelanggan->telepon) }}</td>
+            <td> 08113190408</td>
         </tr>
          <tr>
-            <td>Email : {{ ($model->team->email) }}</td>
+            <td>{{ ($model->pelanggan->email) }}</td>
             <td> support@auroralink.id</td>
         </tr>
         <tr>
@@ -108,6 +108,10 @@ td, {
             <td width="80%"></td>
             <td>Sby,  {{ date('d-m-Y') }}</td>
         </tr>
+    <tr>
+        <td width="80%"></td>
+        <td>Diterima Oleh,</td>
+    </tr>
         <tr>
             <td width="80%"><br></td>
             <td></td>

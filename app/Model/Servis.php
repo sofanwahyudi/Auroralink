@@ -9,7 +9,7 @@ class Servis extends Model
     protected $table ='servis';
 
     protected $fillable =[
-        'kode_servis'
+        'kode_servis','pelanggan_id','team_id','status_id','keterangan','recieve_at','completed_at','updated_at',
     ];
 
     public function device()
@@ -18,7 +18,7 @@ class Servis extends Model
     }
     public function pelanggan()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Pelanggan::class);
     }
     public function status()
     {

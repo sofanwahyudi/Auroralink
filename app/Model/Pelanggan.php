@@ -19,4 +19,8 @@ class Pelanggan extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function servis()
+    {
+        return $this->hasOne(Servis::class);
+    }
 }

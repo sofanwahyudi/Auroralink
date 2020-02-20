@@ -43,11 +43,11 @@ Servis | Auroralink
                     {{-- <th class="sorting_asc"> <input type="checkbox" id="check_all"></th> --}}
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Kode Servis</th>
                     {{--  <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Pelanggan</th>  --}}
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Teknisi</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Pelanggan</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tgl Terima</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
                     <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Status</th>
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Kelengkapan</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Teknisi</th>
                     <th width="150px">Aksi</th></tr>
                 </thead>
                 <tbody>
@@ -71,15 +71,13 @@ $(document).ready(function(){
         // { data: 'id', name: 'id' },
         { data: 'kode_servis', name: 'kode_servis' },
        // { data: 'pelanggan', name: 'pelanggan' },
-        { data: 'teknisi', name: 'teknisi' },
+        { data: 'pelanggan', name: 'pelanggan' },
         { data: 'recieve_at', name: 'recieve_at' },
         { data: 'keterangan', name: 'keterangan' },
         { data: 'status', name: 'status', render : function(data, type, row) {
               return '<span class="badge bg-blue">'+data+'</span>'
           }   },
-          { data: 'kelengkapan', name: 'kelengkapan', render : function(data, type, row) {
-            return '<span class="badge bg-blue">'+data+'</span>'
-        }   },
+        { data: 'teknisi', name: 'teknisi' },
         { data: 'action', orderable:false, searchable:false },
     ]
     }

@@ -11,22 +11,22 @@
             <tr>
                 <td style="padding: 1px;" width="30%">Nama </td>
                 <td style="padding: 1px;">:</td>
-                <td style="padding: 1px;">{{ ($model->team['nama']) }}</td>
+                <td style="padding: 1px;">{{ ($model->pelanggan['name']) }}</td>
             </tr>
             <tr>
                 <td style="padding: 1px;">Alamat</td>
                 <td style="padding: 1px;">:</td>
-                <td style="padding: 1px;">{{ ($model->team['alamat']) }}</td>
+                <td style="padding: 1px;">{!! ($model->pelanggan['alamat'])!!}</td>
             </tr>
             <tr>
                 <td style="padding: 1px;">Telepon</td>
                 <td style="padding: 1px;">:</td>
-                <td style="padding: 1px;">{{ ($model->team['telepon']) }}</td>
+                <td style="padding: 1px;">{{ ($model->pelanggan['telepon']) }}</td>
             </tr>
             <tr>
                 <td style="padding: 1px;">Email</td>
                 <td style="padding: 1px;">:</td>
-                <td style="padding: 1px;">{{ ($model->team['email']) }}</td>
+                <td style="padding: 1px;">{{ ($model->pelanggan['email']) }}</td>
             </tr>
             <tr>
                 <td style="padding: 1px;">Status</td>

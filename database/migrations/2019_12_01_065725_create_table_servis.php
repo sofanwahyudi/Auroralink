@@ -16,7 +16,7 @@ class CreateTableServis extends Migration
         Schema::create('servis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kode_servis');
-            $table->unsignedBigInteger('users_id')->nullable();
+            $table->unsignedBigInteger('pelanggan_id')->nullable();
             $table->integer('team_id')->unsigned();
             $table->date('recieve_at')->nullable();
             $table->date('completed_at')->nullable();
@@ -24,7 +24,7 @@ class CreateTableServis extends Migration
             $table->integer('status_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('pelanggan_id')->references('id')->on('pelanggan')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
